@@ -1,0 +1,170 @@
+[
+ {
+  "cat": "File handling",
+  "name": "open() and the three modes",
+  "desc": "\"w\" writes and WIPES whatever was there. \"a\" adds to the end. \"r\" reads. Choose carefully.",
+  "code": "f = open(\"notes.txt\", \"w\")\nf.write(\"first line\\n\")\nf.write(\"second line\\n\")\nf.close()\n\nf = open(\"notes.txt\", \"r\")\nprint(f.read())\nf.close()",
+  "out": "first line\nsecond line"
+ },
+ {
+  "cat": "File handling",
+  "name": "\"w\" wipes the file",
+  "desc": "The mistake that loses work. Opening in w mode empties the file before you write a single thing.",
+  "code": "open(\"data.txt\", \"w\").write(\"original content\\n\")\n\nopen(\"data.txt\", \"w\").write(\"new content\\n\")   # the original is GONE\n\nprint(open(\"data.txt\").read())",
+  "out": "new content"
+ },
+ {
+  "cat": "File handling",
+  "name": "\"a\" adds instead",
+  "desc": "Append mode keeps what is already there and writes underneath it.",
+  "code": "open(\"log.txt\", \"w\").write(\"line 1\\n\")\nopen(\"log.txt\", \"a\").write(\"line 2\\n\")\nopen(\"log.txt\", \"a\").write(\"line 3\\n\")\n\nprint(open(\"log.txt\").read())",
+  "out": "line 1\nline 2\nline 3"
+ },
+ {
+  "cat": "File handling",
+  "name": "read / readline / readlines",
+  "desc": "read gives one big string, readline gives one line, readlines gives a list of lines.",
+  "code": "open(\"f.txt\", \"w\").write(\"alpha\\nbeta\\ngamma\\n\")\n\nf = open(\"f.txt\")\nprint(repr(f.readline()))\nf.close()\n\nf = open(\"f.txt\")\nprint(f.readlines())\nf.close()",
+  "out": "'alpha\\n'\n['alpha\\n', 'beta\\n', 'gamma\\n']"
+ },
+ {
+  "cat": "File handling",
+  "name": "Looping over a file",
+  "desc": "The normal way to read a file line by line. strip() takes the newline off each one.",
+  "code": "open(\"f.txt\", \"w\").write(\"HR\\nTech\\nSales\\n\")\n\nf = open(\"f.txt\")\nfor line in f:\n    print(\"[\" + line.strip() + \"]\")\nf.close()",
+  "out": "[HR]\n[Tech]\n[Sales]"
+ },
+ {
+  "cat": "File handling",
+  "name": "with open()  —  closes it for you",
+  "desc": "The version to actually use. The file is closed automatically, even if the code inside fails.",
+  "code": "with open(\"f.txt\", \"w\") as f:\n    f.write(\"written safely\\n\")\n\nwith open(\"f.txt\") as f:\n    print(f.read().strip())\n\nprint(\"file closed?\", f.closed)",
+  "out": "written safely\nfile closed? True"
+ },
+ {
+  "cat": "Error handling",
+  "name": "Why it exists",
+  "desc": "Without it, one bad value stops the whole program and nothing after it runs.",
+  "code": "nums = [\"10\", \"20\", \"abc\", \"30\"]\n\nfor n in nums:\n    print(int(n))      # stops dead on \"abc\"",
+  "out": "10\n20\nValueError: invalid literal for int() with base 10: 'abc'"
+ },
+ {
+  "cat": "Error handling",
+  "name": "try  /  except",
+  "desc": "Try the risky line. If it fails, run the except block instead of stopping.",
+  "code": "nums = [\"10\", \"20\", \"abc\", \"30\"]\n\nfor n in nums:\n    try:\n        print(int(n))\n    except:\n        print(n, \"is not a number - skipped\")",
+  "out": "10\n20\nabc is not a number - skipped\n30"
+ },
+ {
+  "cat": "Error handling",
+  "name": "Catching a SPECIFIC error",
+  "desc": "A bare except hides every problem, including the ones you wanted to know about. Name the error.",
+  "code": "def divide(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return \"cannot divide by zero\"\n\nprint(divide(10, 2))\nprint(divide(10, 0))",
+  "out": "5.0\ncannot divide by zero"
+ },
+ {
+  "cat": "Error handling",
+  "name": "More than one except",
+  "desc": "Different problems, different handling. Python runs the first one that matches.",
+  "code": "for value, divisor in [(\"10\", 2), (\"abc\", 2), (\"10\", 0)]:\n    try:\n        print(int(value) / divisor)\n    except ValueError:\n        print(\"not a number:\", value)\n    except ZeroDivisionError:\n        print(\"divisor was zero\")",
+  "out": "5.0\nnot a number: abc\ndivisor was zero"
+ },
+ {
+  "cat": "Error handling",
+  "name": "else  and  finally",
+  "desc": "else runs only when nothing failed. finally runs either way — it is where you clean up.",
+  "code": "def read(n):\n    try:\n        v = int(n)\n    except ValueError:\n        print(\"bad input\")\n    else:\n        print(\"worked:\", v)\n    finally:\n        print(\"-- done --\")\n\nread(\"25\")\nread(\"xyz\")",
+  "out": "worked: 25\n-- done --\nbad input\n-- done --"
+ },
+ {
+  "cat": "Error handling",
+  "name": "The error names worth knowing",
+  "desc": "Each one tells you something different. Read the name before you read anything else.",
+  "code": "tests = [lambda: int(\"abc\"),\n         lambda: 10 / 0,\n         lambda: [1, 2, 3][9],\n         lambda: {\"a\": 1}[\"b\"],\n         lambda: \"5\" + 5]\n\nfor t in tests:\n    try:\n        t()\n    except Exception as e:\n        print(type(e).__name__, \"-\", e)",
+  "out": "ValueError - invalid literal for int() with base 10: 'abc'\nZeroDivisionError - division by zero\nIndexError - list index out of range\nKeyError - 'b'\nTypeError - can only concatenate str (not \"int\") to str"
+ },
+ {
+  "cat": "Classes and objects",
+  "name": "class and object",
+  "desc": "A class is the blueprint. An object is one real thing built from it. One class, many objects.",
+  "code": "class Employee:\n    pass\n\ne1 = Employee()\ne2 = Employee()\nprint(type(e1))\nprint(e1 is e2)      # two different objects",
+  "out": "<class '__main__.Employee'>\nFalse"
+ },
+ {
+  "cat": "Classes and objects",
+  "name": "__init__  and  self",
+  "desc": "__init__ runs automatically when an object is made. self is that object — it is how each one keeps its own values.",
+  "code": "class Employee:\n    def __init__(self, name, dept, salary):\n        self.name = name\n        self.dept = dept\n        self.salary = salary\n\ne = Employee(\"Rahul\", \"HR\", 47764)\nprint(e.name, e.dept, e.salary)",
+  "out": "Rahul HR 47764"
+ },
+ {
+  "cat": "Classes and objects",
+  "name": "Methods",
+  "desc": "A function inside a class. It always takes self first, so it can reach the object's own values.",
+  "code": "class Employee:\n    def __init__(self, name, salary):\n        self.name = name\n        self.salary = salary\n\n    def hike(self, pct):\n        self.salary = self.salary + self.salary * pct / 100\n        return self.salary\n\n    def show(self):\n        print(self.name, \"earns\", self.salary)\n\ne = Employee(\"Rahul\", 47764)\ne.show()\ne.hike(10)\ne.show()",
+  "out": "Rahul earns 47764\nRahul earns 52540.4"
+ },
+ {
+  "cat": "Classes and objects",
+  "name": "Each object keeps its own data",
+  "desc": "This is the point of self. Two objects from one class do not share anything.",
+  "code": "class Employee:\n    def __init__(self, name, salary):\n        self.name = name\n        self.salary = salary\n\na = Employee(\"Rahul\", 47764)\nb = Employee(\"Priya\", 62990)\n\na.salary = 50000\nprint(a.name, a.salary)\nprint(b.name, b.salary)     # untouched",
+  "out": "Rahul 50000\nPriya 62990"
+ },
+ {
+  "cat": "Classes and objects",
+  "name": "Objects in a list",
+  "desc": "Once objects are in a list you can loop over them like any other data. This is where it becomes useful.",
+  "code": "class Employee:\n    def __init__(self, name, dept, salary):\n        self.name, self.dept, self.salary = name, dept, salary\n\nstaff = [Employee(\"Rahul\", \"HR\", 47764),\n         Employee(\"Priya\", \"Tech\", 62990),\n         Employee(\"Amit\", \"Sales\", 51200)]\n\nfor e in staff:\n    print(e.name.ljust(8), e.dept.ljust(7), e.salary)\n\ntotal = sum(e.salary for e in staff)\nprint(\"total payroll:\", total)\nprint(\"average      :\", total / len(staff))",
+  "out": "Rahul    HR      47764\nPriya    Tech    62990\nAmit     Sales   51200\ntotal payroll: 161954\naverage      : 53984.666666666664"
+ },
+ {
+  "cat": "Classes and objects",
+  "name": "Filtering a list of objects",
+  "desc": "Everything you learned about lists still applies — the items just happen to be objects.",
+  "code": "class Employee:\n    def __init__(self, name, dept, salary):\n        self.name, self.dept, self.salary = name, dept, salary\n\nstaff = [Employee(\"Rahul\", \"HR\", 47764),\n         Employee(\"Priya\", \"Tech\", 62990),\n         Employee(\"Amit\", \"Tech\", 51200)]\n\ntech = [e for e in staff if e.dept == \"Tech\"]\nfor e in tech:\n    print(e.name)\n\nprint(\"highest paid:\", max(staff, key=lambda e: e.salary).name)",
+  "out": "Priya\nAmit\nhighest paid: Priya"
+ },
+ {
+  "cat": "The four pillars",
+  "name": "The four, in one line each",
+  "desc": "Introduced together in the last session. Each one is a way of organising code, not a new syntax.",
+  "code": "print(\"ENCAPSULATION  keep the data and the code that uses it together\")\nprint(\"INHERITANCE    a class can take everything another class has\")\nprint(\"POLYMORPHISM   the same method name behaving differently\")\nprint(\"ABSTRACTION    show what it does, hide how it does it\")",
+  "out": "ENCAPSULATION  keep the data and the code that uses it together\nINHERITANCE    a class can take everything another class has\nPOLYMORPHISM   the same method name behaving differently\nABSTRACTION    show what it does, hide how it does it"
+ },
+ {
+  "cat": "The four pillars",
+  "name": "Encapsulation",
+  "desc": "The data and the methods that work on it live in the same class. Two underscores marks something as internal.",
+  "code": "class Account:\n    def __init__(self, holder, balance):\n        self.holder   = holder\n        self.__balance = balance        # internal\n\n    def deposit(self, amount):\n        self.__balance = self.__balance + amount\n\n    def show(self):\n        print(self.holder, \"balance:\", self.__balance)\n\na = Account(\"Rahul\", 1000)\na.deposit(500)\na.show()\nprint(hasattr(a, \"__balance\"))      # not reachable from outside",
+  "out": "Rahul balance: 1500\nFalse"
+ },
+ {
+  "cat": "The four pillars",
+  "name": "Inheritance",
+  "desc": "Put the parent class in the brackets and the child gets everything it has, for free.",
+  "code": "class Employee:\n    def __init__(self, name):\n        self.name = name\n\n    def show(self):\n        print(\"Employee:\", self.name)\n\nclass Manager(Employee):          # inherits\n    pass\n\nm = Manager(\"Priya\")\nm.show()                          # a method it never defined\nprint(isinstance(m, Employee))",
+  "out": "Employee: Priya\nTrue"
+ },
+ {
+  "cat": "The four pillars",
+  "name": "super()  —  extending the parent",
+  "desc": "Call the parent's version first, then add to it, instead of rewriting what already works.",
+  "code": "class Employee:\n    def __init__(self, name):\n        self.name = name\n\nclass Manager(Employee):\n    def __init__(self, name, team):\n        super().__init__(name)        # reuse the parent\n        self.team = team\n\nm = Manager(\"Priya\", 6)\nprint(m.name, \"manages\", m.team, \"people\")",
+  "out": "Priya manages 6 people"
+ },
+ {
+  "cat": "The four pillars",
+  "name": "Polymorphism  —  overriding",
+  "desc": "The child defines a method the parent already has. Same name, different behaviour.",
+  "code": "class Employee:\n    def role(self):\n        print(\"does the work\")\n\nclass Manager(Employee):\n    def role(self):               # overrides\n        print(\"assigns the work\")\n\nclass Intern(Employee):\n    pass                          # keeps the parent version\n\nfor p in [Employee(), Manager(), Intern()]:\n    p.role()",
+  "out": "does the work\nassigns the work\ndoes the work"
+ },
+ {
+  "cat": "The four pillars",
+  "name": "Abstraction",
+  "desc": "The caller uses hike() without knowing how it works. A base class can name a method and leave the detail to the children.",
+  "code": "class Payroll:\n    def calculate(self):\n        pass                      # the parent only NAMES it\n\nclass Monthly(Payroll):\n    def calculate(self):\n        return 50000\n\nclass Hourly(Payroll):\n    def calculate(self):\n        return 250 * 160\n\nfor p in [Monthly(), Hourly()]:\n    print(type(p).__name__, \"->\", p.calculate())",
+  "out": "Monthly -> 50000\nHourly -> 40000"
+ }
+]

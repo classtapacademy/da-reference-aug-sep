@@ -1,0 +1,80 @@
+[
+ {
+  "cat": "Writing a function",
+  "q": "Write a function that takes a list of marks and returns the average.",
+  "code": "def average(marks):\n    return sum(marks) / len(marks)\n\nprint(average([45, 72, 88, 61]))",
+  "out": "66.5"
+ },
+ {
+  "cat": "Writing a function",
+  "q": "Write a function is_even(n) that RETURNS True or False, then use it in a loop over 1 to 6.",
+  "code": "def is_even(n):\n    return n % 2 == 0\n\nfor n in range(1, 7):\n    print(n, is_even(n))",
+  "out": "1 False\n2 True\n3 False\n4 True\n5 False\n6 True"
+ },
+ {
+  "cat": "Writing a function",
+  "q": "Write a function that takes a salary and returns it with a 10% hike applied.",
+  "code": "def hike(salary, pct=10):\n    return salary + salary * pct / 100\n\nprint(hike(47764))\nprint(hike(47764, 20))",
+  "out": "52540.4\n57316.8"
+ },
+ {
+  "cat": "The five kinds of argument",
+  "q": "Write a function that takes a name and any number of subject marks, and prints the name with the total.",
+  "code": "def report(name, *marks):\n    print(name, \"scored\", sum(marks), \"across\", len(marks), \"subjects\")\n\nreport(\"Rahul\", 45, 72, 88)\nreport(\"Priya\", 91, 68)",
+  "out": "Rahul scored 205 across 3 subjects\nPriya scored 159 across 2 subjects"
+ },
+ {
+  "cat": "The five kinds of argument",
+  "q": "Write a function that accepts any number of named details and prints each one.",
+  "code": "def profile(**d):\n    for k, v in d.items():\n        print(k, \":\", v)\n\nprofile(name=\"Amit\", city=\"Pune\", exp=4)",
+  "out": "name : Amit\ncity : Pune\nexp : 4"
+ },
+ {
+  "cat": "lambda, map, filter, reduce",
+  "q": "Using map, add 5 bonus marks to every mark in a list.",
+  "code": "marks = [45, 72, 88, 61]\nprint(list(map(lambda x: x + 5, marks)))",
+  "out": "[50, 77, 93, 66]"
+ },
+ {
+  "cat": "lambda, map, filter, reduce",
+  "q": "Using filter, keep only the salaries above 50,000.",
+  "code": "sal = [47764, 62990, 51200, 38000]\nprint(list(filter(lambda x: x > 50000, sal)))",
+  "out": "[62990, 51200]"
+ },
+ {
+  "cat": "lambda, map, filter, reduce",
+  "q": "Using reduce, find the product of [1, 2, 3, 4, 5].",
+  "code": "from functools import reduce\nprint(reduce(lambda a, b: a * b, [1, 2, 3, 4, 5]))",
+  "out": "120"
+ },
+ {
+  "cat": "Recursion",
+  "q": "Write a recursive function that adds up the numbers from 1 to n. Test it with 10.",
+  "code": "def total(n):\n    if n == 0:\n        return 0\n    return n + total(n - 1)\n\nprint(total(10))",
+  "out": "55"
+ },
+ {
+  "cat": "Recursion",
+  "q": "Write a recursive function that reverses a string.",
+  "code": "def rev(s):\n    if len(s) == 0:\n        return \"\"\n    return s[-1] + rev(s[:-1])\n\nprint(rev(\"analytics\"))",
+  "out": "scitylana"
+ },
+ {
+  "cat": "List comprehension",
+  "q": "Build a list of the squares of every even number from 1 to 20.",
+  "code": "print([n * n for n in range(1, 21) if n % 2 == 0])",
+  "out": "[4, 16, 36, 64, 100, 144, 196, 256, 324, 400]"
+ },
+ {
+  "cat": "List comprehension",
+  "q": "From ['HR','Tech','Sales'], build a list of the names in uppercase.",
+  "code": "d = [\"HR\", \"Tech\", \"Sales\"]\nprint([x.upper() for x in d])",
+  "out": "['HR', 'TECH', 'SALES']"
+ },
+ {
+  "cat": "List comprehension",
+  "q": "Label each mark 'pass' or 'fail' at a cut-off of 60, in one line.",
+  "code": "m = [45, 72, 88, 61, 33]\nprint([\"pass\" if x >= 60 else \"fail\" for x in m])",
+  "out": "['fail', 'pass', 'pass', 'pass', 'fail']"
+ }
+]

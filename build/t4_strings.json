@@ -1,0 +1,170 @@
+[
+ {
+  "cat": "Strings and slicing",
+  "name": "Indexing a string",
+  "desc": "A string is a sequence of characters. Counting starts at 0, and -1 is the last one.",
+  "code": "name = \"Analytics\"\n\nprint(name[0])\nprint(name[4])\nprint(name[-1])\nprint(len(name))",
+  "out": "A\ny\ns\n9"
+ },
+ {
+  "cat": "Strings and slicing",
+  "name": "Slicing  [start:stop]",
+  "desc": "Take a piece. The stop is NOT included, so [0:4] gives characters 0, 1, 2 and 3.",
+  "code": "name = \"Analytics\"\n\nprint(name[0:4])\nprint(name[:4])\nprint(name[4:])\nprint(name[-3:])",
+  "out": "Anal\nAnal\nytics\nics"
+ },
+ {
+  "cat": "Strings and slicing",
+  "name": "The third number  —  step",
+  "desc": "How big a jump to take. A negative step walks backwards, which is how you reverse a string.",
+  "code": "name = \"Analytics\"\n\nprint(name[::2])\nprint(name[1::2])\nprint(name[::-1])        # reversed",
+  "out": "Aayis\nnltc\nscitylanA"
+ },
+ {
+  "cat": "Strings and slicing",
+  "name": "A string cannot be changed",
+  "desc": "Unlike a list, you cannot assign to one character. Build a new string instead.",
+  "code": "name = \"Analytics\"\nname[0] = \"X\"",
+  "out": "TypeError: 'str' object does not support item assignment"
+ },
+ {
+  "cat": "Strings and slicing",
+  "name": "Joining and repeating",
+  "desc": "+ joins two strings, * repeats one. Both make a NEW string.",
+  "code": "a, b = \"Data\", \"Analytics\"\nprint(a + \" \" + b)\nprint(\"-\" * 20)\nprint(a * 3)",
+  "out": "Data Analytics\n--------------------\nDataDataData"
+ },
+ {
+  "cat": "Strings and slicing",
+  "name": "in  —  is it there?",
+  "desc": "Checks whether one string appears inside another. Hands back True or False.",
+  "code": "s = \"Data Analytics\"\nprint(\"Data\" in s)\nprint(\"Python\" in s)\nprint(\"data\" in s)      # case matters",
+  "out": "True\nFalse\nFalse"
+ },
+ {
+  "cat": "String methods",
+  "name": "Changing case",
+  "desc": "Four of them, and none of them change the original — they all hand back a new string.",
+  "code": "s = \"data analytics\"\nprint(s.upper())\nprint(s.title())\nprint(s.capitalize())\nprint(\"HELLO\".lower())\nprint(s)        # untouched",
+  "out": "DATA ANALYTICS\nData Analytics\nData analytics\nhello\ndata analytics"
+ },
+ {
+  "cat": "String methods",
+  "name": "strip()  —  removing stray spaces",
+  "desc": "The one you will use most on real data. Takes whitespace off both ends.",
+  "code": "s = \"   Rahul Sharma   \"\nprint(\"[\" + s + \"]\")\nprint(\"[\" + s.strip() + \"]\")\nprint(\"[\" + s.lstrip() + \"]\")\nprint(\"[\" + s.rstrip() + \"]\")",
+  "out": "[   Rahul Sharma   ]\n[Rahul Sharma]\n[Rahul Sharma   ]\n[   Rahul Sharma]"
+ },
+ {
+  "cat": "String methods",
+  "name": "replace()",
+  "desc": "Swaps every occurrence of one piece of text for another.",
+  "code": "s = \"Data Analytics\"\nprint(s.replace(\"Data\", \"Business\"))\nprint(\"a-b-c\".replace(\"-\", \" \"))\nprint(s.replace(\"a\", \"*\"))",
+  "out": "Business Analytics\na b c\nD*t* An*lytics"
+ },
+ {
+  "cat": "String methods",
+  "name": "split()  and  join()",
+  "desc": "split cuts a string into a list; join glues a list back into a string. Opposites.",
+  "code": "s = \"HR,Tech,Sales\"\nparts = s.split(\",\")\nprint(parts)\n\nprint(\" | \".join(parts))\nprint(\"Rahul Kumar Sharma\".split())     # no argument = split on spaces",
+  "out": "['HR', 'Tech', 'Sales']\nHR | Tech | Sales\n['Rahul', 'Kumar', 'Sharma']"
+ },
+ {
+  "cat": "String methods",
+  "name": "find()  and  count()",
+  "desc": "find gives the POSITION of the first match, or -1 if it is not there. count gives how many.",
+  "code": "s = \"statistics\"\nprint(s.find(\"t\"))\nprint(s.find(\"z\"))        # -1, not an error\nprint(s.count(\"t\"))\nprint(s.count(\"s\"))",
+  "out": "1\n-1\n3\n3"
+ },
+ {
+  "cat": "String methods",
+  "name": "startswith / endswith",
+  "desc": "Checks the beginning or the end. Handy for filenames and codes.",
+  "code": "f = \"employees.csv\"\nprint(f.endswith(\".csv\"))\nprint(f.startswith(\"emp\"))\nprint(\"EMP1001\".startswith(\"EMP\"))",
+  "out": "True\nTrue\nTrue"
+ },
+ {
+  "cat": "String methods",
+  "name": "The is... checks",
+  "desc": "Each one asks a yes/no question about what the string contains.",
+  "code": "print(\"12345\".isdigit())\nprint(\"Rahul\".isalpha())\nprint(\"Rahul123\".isalnum())\nprint(\"   \".isspace())\nprint(\"HELLO\".isupper())",
+  "out": "True\nTrue\nTrue\nTrue\nTrue"
+ },
+ {
+  "cat": "String formatting",
+  "name": "f-strings",
+  "desc": "Put an f before the quote and anything in curly brackets is worked out and dropped in.",
+  "code": "name, dept, salary = \"Rahul\", \"HR\", 47764\n\nprint(f\"{name} works in {dept} and earns {salary}\")\nprint(f\"next year: {salary * 1.1}\")",
+  "out": "Rahul works in HR and earns 47764\nnext year: 52540.4"
+ },
+ {
+  "cat": "String formatting",
+  "name": "Rounding inside an f-string",
+  "desc": ":.2f means two decimal places. This is how you stop a salary printing as 52540.400000000001.",
+  "code": "salary = 47764\nhiked = salary * 1.1\n\nprint(f\"raw     {hiked}\")\nprint(f\"rounded {hiked:.2f}\")\nprint(f\"no dp   {hiked:.0f}\")",
+  "out": "raw     52540.4\nrounded 52540.40\nno dp   52540"
+ },
+ {
+  "cat": "String formatting",
+  "name": "Lining things up",
+  "desc": "A number after < > or ^ sets the width, which is how you get columns that line up.",
+  "code": "rows = [(\"HR\", 45), (\"Marketing\", 42), (\"Tech\", 49)]\n\nfor d, n in rows:\n    print(f\"{d:<12}{n:>5}\")",
+  "out": "HR             45\nMarketing      42\nTech           49"
+ },
+ {
+  "cat": "String formatting",
+  "name": "format()  —  the older way",
+  "desc": "You will still meet this in older code. The curly brackets are filled in order.",
+  "code": "print(\"{} works in {}\".format(\"Rahul\", \"HR\"))\nprint(\"{1} then {0}\".format(\"second\", \"first\"))\nprint(\"{:.2f}\".format(3.14159))",
+  "out": "Rahul works in HR\nfirst then second\n3.14"
+ },
+ {
+  "cat": "Regular expressions",
+  "name": "What a meta character is",
+  "desc": "A character that means something other than itself. These are the ones that matter.",
+  "code": "print(r\"\\d   any digit 0-9\")\nprint(r\"\\w   any letter, digit or underscore\")\nprint(r\"\\s   any space, tab or newline\")\nprint(r\".    any character at all\")\nprint(r\"^    start of the string\")\nprint(r\"$    end of the string\")\nprint(r\"+    one or more\")\nprint(r\"*    zero or more\")\nprint(r\"?    zero or one\")\nprint(r\"{n}  exactly n of them\")",
+  "out": "\\d   any digit 0-9\n\\w   any letter, digit or underscore\n\\s   any space, tab or newline\n.    any character at all\n^    start of the string\n$    end of the string\n+    one or more\n*    zero or more\n?    zero or one\n{n}  exactly n of them"
+ },
+ {
+  "cat": "Regular expressions",
+  "name": "re.findall()",
+  "desc": "Finds EVERY match and hands them back as a list. The one you will use most.",
+  "code": "import re\n\ns = \"Rahul 1001, Priya 1002, Amit 1003\"\nprint(re.findall(r\"\\d+\", s))\nprint(re.findall(r\"[A-Z][a-z]+\", s))",
+  "out": "['1001', '1002', '1003']\n['Rahul', 'Priya', 'Amit']"
+ },
+ {
+  "cat": "Regular expressions",
+  "name": "re.search()",
+  "desc": "Finds the FIRST match anywhere and hands back a match object, or None.",
+  "code": "import re\n\ns = \"Employee ID is EMP1001\"\nm = re.search(r\"EMP\\d+\", s)\nprint(m)\nprint(m.group())\nprint(re.search(r\"XYZ\", s))      # None",
+  "out": "<re.Match object; span=(15, 22), match='EMP1001'>\nEMP1001\nNone"
+ },
+ {
+  "cat": "Regular expressions",
+  "name": "re.match()  —  only at the start",
+  "desc": "Same as search, but it only looks at the beginning of the string.",
+  "code": "import re\n\nprint(re.match(r\"EMP\", \"EMP1001\"))\nprint(re.match(r\"1001\", \"EMP1001\"))     # None - not at the start",
+  "out": "<re.Match object; span=(0, 3), match='EMP'>\nNone"
+ },
+ {
+  "cat": "Regular expressions",
+  "name": "re.sub()  —  find and replace",
+  "desc": "Replaces every match with something else. A find-and-replace that understands patterns.",
+  "code": "import re\n\ns = \"Call 9876543210 or 9123456789\"\nprint(re.sub(r\"\\d\", \"X\", s))\nprint(re.sub(r\"\\d{10}\", \"[hidden]\", s))",
+  "out": "Call XXXXXXXXXX or XXXXXXXXXX\nCall [hidden] or [hidden]"
+ },
+ {
+  "cat": "Regular expressions",
+  "name": "re.split()",
+  "desc": "Splits on a pattern rather than on one fixed character.",
+  "code": "import re\n\nprint(re.split(r\"[,;]\", \"HR,Tech;Sales,Marketing\"))\nprint(re.split(r\"\\s+\", \"too    many     spaces\"))",
+  "out": "['HR', 'Tech', 'Sales', 'Marketing']\n['too', 'many', 'spaces']"
+ },
+ {
+  "cat": "Regular expressions",
+  "name": "A real check  —  is this an email?",
+  "desc": "Putting the pieces together. ^ and $ mean the WHOLE string has to match, not just part of it.",
+  "code": "import re\n\npattern = r\"^[\\w.]+@[\\w]+\\.[a-z]{2,}$\"\n\nfor e in [\"rahul@tap.com\", \"priya.s@tap.co.in\", \"not-an-email\", \"a@b\"]:\n    print(e.ljust(20), bool(re.match(pattern, e)))",
+  "out": "rahul@tap.com        True\npriya.s@tap.co.in    False\nnot-an-email         False\na@b                  False"
+ }
+]

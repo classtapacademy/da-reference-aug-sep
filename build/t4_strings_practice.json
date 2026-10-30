@@ -1,0 +1,68 @@
+[
+ {
+  "cat": "Strings and slicing",
+  "q": "Take the string 'Data Analytics' and print it reversed, then print only the last five characters.",
+  "code": "s = \"Data Analytics\"\nprint(s[::-1])\nprint(s[-5:])",
+  "out": "scitylanA ataD\nytics"
+ },
+ {
+  "cat": "Strings and slicing",
+  "q": "Check whether a word is a palindrome. Test it with 'madam' and with 'python'.",
+  "code": "for w in [\"madam\", \"python\"]:\n    print(w, w == w[::-1])",
+  "out": "madam True\npython False"
+ },
+ {
+  "cat": "Strings and slicing",
+  "q": "Count the vowels in 'data analytics' without using count().",
+  "code": "s = \"data analytics\"\nn = 0\nfor ch in s:\n    if ch in \"aeiou\":\n        n = n + 1\nprint(n)",
+  "out": "5"
+ },
+ {
+  "cat": "String methods",
+  "q": "A name arrives as '   rahul SHARMA  '. Clean it up so it reads 'Rahul Sharma'.",
+  "code": "raw = \"   rahul SHARMA  \"\nprint(\"[\" + raw.strip().title() + \"]\")",
+  "out": "[Rahul Sharma]"
+ },
+ {
+  "cat": "String methods",
+  "q": "Split 'HR,Tech,Sales,Marketing' into a list, then join it back with ' | '.",
+  "code": "s = \"HR,Tech,Sales,Marketing\"\nparts = s.split(\",\")\nprint(parts)\nprint(\" | \".join(parts))",
+  "out": "['HR', 'Tech', 'Sales', 'Marketing']\nHR | Tech | Sales | Marketing"
+ },
+ {
+  "cat": "String methods",
+  "q": "Count how many times each letter appears in 'statistics' and print the most common one.",
+  "code": "w = \"statistics\"\nc = {}\nfor ch in w:\n    c[ch] = c.get(ch, 0) + 1\nprint(c)\nprint(\"most common:\", max(c, key=c.get))",
+  "out": "{'s': 3, 't': 3, 'a': 1, 'i': 2, 'c': 1}\nmost common: s"
+ },
+ {
+  "cat": "String formatting",
+  "q": "Print a small table of three departments and their headcounts, with the numbers lined up.",
+  "code": "rows = [(\"HR\", 45), (\"Marketing\", 42), (\"Tech\", 49)]\nfor d, n in rows:\n    print(f\"{d:<12}{n:>4}\")",
+  "out": "HR            45\nMarketing     42\nTech          49"
+ },
+ {
+  "cat": "String formatting",
+  "q": "A salary of 47764 gets a 12% hike. Print the new salary to two decimal places using an f-string.",
+  "code": "s = 47764\nprint(f\"new salary: {s * 1.12:.2f}\")",
+  "out": "new salary: 53495.68"
+ },
+ {
+  "cat": "Regular expressions",
+  "q": "Pull every number out of 'Order 12 shipped on 2026-10-30 for 450 rupees'.",
+  "code": "import re\nprint(re.findall(r\"\\d+\", \"Order 12 shipped on 2026-10-30 for 450 rupees\"))",
+  "out": "['12', '2026', '10', '30', '450']"
+ },
+ {
+  "cat": "Regular expressions",
+  "q": "Hide every 10-digit phone number in a line of text.",
+  "code": "import re\ns = \"Call 9876543210 or 9123456789 today\"\nprint(re.sub(r\"\\d{10}\", \"[hidden]\", s))",
+  "out": "Call [hidden] or [hidden] today"
+ },
+ {
+  "cat": "Regular expressions",
+  "q": "Check which of these are valid employee IDs in the form EMP followed by exactly four digits.",
+  "code": "import re\nfor x in [\"EMP1001\", \"EMP10\", \"emp1001\", \"EMP12345\"]:\n    print(x.ljust(10), bool(re.match(r\"^EMP\\d{4}$\", x)))",
+  "out": "EMP1001    True\nEMP10      False\nemp1001    False\nEMP12345   False"
+ }
+]

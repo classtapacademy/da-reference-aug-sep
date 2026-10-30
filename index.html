@@ -1,0 +1,2131 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Python &mdash; Student Reference</title>
+<meta name="description" content="Every Python topic from the course, with runnable examples and practice questions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--paper:#fff;--ink:#17191c;--slate:#5f656e;--ash:#8c9199;--hair:#e6e6e8;--mist:#f4f4f5;
+ --code-bg:#f7f8f9;--out-bg:#e9f1ec;--out-ink:#13543e;--peach:#fbe1d1;--sienna:#5d2a1a;
+ --ser:'Source Serif 4',Georgia,serif;--sans:'Inter',system-ui,sans-serif;
+ --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+[data-theme="dark"]{--paper:#0f1113;--ink:#eceef1;--slate:#a2a9b3;--ash:#767c85;--hair:#262b30;
+ --mist:#1a1d21;--code-bg:#0a0c0e;--out-bg:#11271e;--out-ink:#7fd0a0;--peach:#3d2718;--sienna:#f3c8a8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0f1113;--ink:#eceef1;
+ --slate:#a2a9b3;--ash:#767c85;--hair:#262b30;--mist:#1a1d21;--code-bg:#0a0c0e;--out-bg:#11271e;
+ --out-ink:#7fd0a0;--peach:#3d2718;--sienna:#f3c8a8}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;
+ -webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+.brand{padding:26px 0 0}.brand img{height:29px;display:block}
+.lg-l{display:none}[data-theme="dark"] .lg-d{display:none}[data-theme="dark"] .lg-l{display:block}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lg-d{display:none}
+ :root:not([data-theme="light"]) .lg-l{display:block}}
+header{padding:22px 0 0}
+h1{font-family:var(--ser);font-size:38px;font-weight:600;letter-spacing:-.4px;line-height:1.1}
+.sub{font-size:17px;color:var(--slate);margin-top:9px;max-width:62ch}
+.batch{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:600;letter-spacing:.05em;
+ text-transform:uppercase;color:var(--sienna);background:var(--peach);padding:4px 12px;border-radius:9999px}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:22px 0 0;border-bottom:1px solid var(--hair);
+ padding-bottom:14px}
+.tab{font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--slate);background:none;
+ border:1px solid var(--hair);border-radius:9999px;padding:7px 16px;cursor:pointer;
+ display:flex;gap:7px;align-items:center}
+.tab span{font-size:12px;font-weight:500;color:var(--ash);font-variant-numeric:tabular-nums}
+.tab:hover{border-color:var(--sienna);color:var(--ink)}
+.tab.on{background:var(--peach);border-color:var(--peach);color:var(--sienna)}
+.tab.on span{color:var(--sienna);opacity:.7}
+.sec{display:none}.sec.on{display:block}
+.blurb{font-size:16px;color:var(--slate);padding:20px 0 0}
+.jump{display:flex;flex-wrap:wrap;gap:6px;padding:14px 0 6px}
+.jump a{font-size:12.5px;color:var(--slate);text-decoration:none;background:var(--mist);
+ border-radius:9999px;padding:4px 11px}
+.jump a:hover{color:var(--ink)}
+h2.cat{font-family:var(--ser);font-size:25px;font-weight:600;margin:34px 0 16px;
+ padding-bottom:8px;border-bottom:2px solid var(--ink);display:flex;align-items:baseline;gap:10px}
+h2.cat .day{margin-left:auto;font-family:var(--sans);font-size:11.5px;font-weight:600;
+ letter-spacing:.06em;text-transform:uppercase;color:var(--sienna);background:var(--peach);
+ padding:3px 10px;border-radius:9999px;white-space:nowrap}
+.e{border:1px solid var(--hair);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+.e h3{font-size:18px;font-weight:600;margin-bottom:12px}
+.lbl{font-size:10.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ash);
+ display:block;margin-bottom:5px}
+.mt{margin-top:14px}
+.what p{font-size:15px;color:var(--slate);line-height:1.55}
+pre{background:var(--code-bg);border:1px solid var(--hair);border-radius:8px;padding:12px 14px;
+ overflow-x:auto}
+pre code{font-family:var(--mono);font-size:12.5px;line-height:1.65;white-space:pre;color:var(--ink)}
+.c{color:var(--ash)}.k{color:#7a3ba8;font-weight:500}.o{color:#a8541f}
+[data-theme="dark"] .k{color:#c99bf0}[data-theme="dark"] .o{color:#e0a86a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .k{color:#c99bf0}
+ :root:not([data-theme="light"]) .o{color:#e0a86a}}
+.out{background:var(--out-bg);color:var(--out-ink);border-radius:8px;padding:11px 14px;
+ font-family:var(--mono);font-size:12.5px;line-height:1.6;white-space:pre;overflow-x:auto}
+.prac{border:2px solid var(--peach);border-radius:12px;padding:16px 20px 6px;margin:4px 0 30px;
+ background:var(--mist)}
+.prachead{font-family:var(--ser);font-size:19px;font-weight:600;color:var(--sienna);margin-bottom:12px}
+[data-theme="dark"] .prachead{color:var(--sienna)}
+.pq{border-top:1px solid var(--hair);padding:12px 0}
+.pq:first-of-type{border-top:0;padding-top:0}
+.qn{font-size:15px;line-height:1.55}
+.qn b{color:var(--sienna);margin-right:4px}
+details{margin-top:9px}
+summary{font-size:13px;font-weight:600;color:var(--slate);cursor:pointer;
+ display:inline-block;padding:4px 12px;border:1px solid var(--hair);border-radius:9999px;
+ background:var(--paper);list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:hover{color:var(--ink);border-color:var(--sienna)}
+details[open] summary{margin-bottom:9px}
+footer{border-top:1px solid var(--hair);margin-top:44px;padding:20px 0 60px;color:var(--ash);font-size:14px}
+.tt{position:fixed;right:16px;bottom:16px;background:var(--mist);border:1px solid var(--hair);
+ color:var(--slate);border-radius:9999px;padding:8px 15px;font-size:13px;font-family:var(--sans);
+ cursor:pointer;z-index:50}
+button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--sienna);outline-offset:2px}
+@media (max-width:640px){h1{font-size:29px}.wrap{padding:0 16px}h2.cat{flex-wrap:wrap}h2.cat .day{margin-left:0}}
+</style></head>
+<body>
+<script>try{var t=localStorage.getItem("steep-theme");
+ if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+<div class="wrap">
+<div class="brand"><img class="lg-d" src="data:image/png;base64,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" alt="TAP Academy"><img class="lg-l" src="data:image/png;base64,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" alt="TAP Academy"></div>
+<header>
+ <h1>Python &mdash; Student Reference</h1>
+ <p class="sub">Every topic from the course in one place, in the order you were taught it.
+ <b>Every example on this page was executed to produce the output you see</b>, so if you type it
+ in you will get the same thing. Each section ends with practice questions &mdash; try them before
+ you open the answer.</p>
+ <div class="batch">August B3 &amp; September B2</div>
+ <div class="tabs"><button class="tab" data-go="basics">Basics <span>25</span></button><button class="tab" data-go="collections">Loops &amp; Collections <span>26</span></button><button class="tab" data-go="functions">Functions <span>25</span></button><button class="tab" data-go="strings">Strings &amp; Regex <span>24</span></button><button class="tab" data-go="oop">Files, Errors &amp; OOP <span>24</span></button></div>
+</header>
+<section class="sec" id="basics"><p class="blurb">Printing, the data types, converting between them, input, operators and if-else.</p><nav class="jump"><a href="#your-first-lines">Your first lines</a><a href="#the-data-types">The data types</a><a href="#type-conversion">Type conversion</a><a href="#taking-input">Taking input</a><a href="#operators">Operators</a><a href="#making-decisions">Making decisions</a></nav><h2 class="cat" id="your-first-lines">Your first lines<span class="day">Days 1-3</span></h2>
+<article class="e"><h3>print()</h3>
+<div class="what"><p>Shows something on the screen. Anything in quotes is text; anything without is worked out first.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">print</span>("Hello, Data Analytics")
+<span class="k">print</span>(<span class="o">2026</span>)
+<span class="k">print</span>(<span class="o">60</span> * <span class="o">7</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Hello, Data Analytics
+2026
+420</div>
+</article>
+<article class="e"><h3>Several things in one print</h3>
+<div class="what"><p>Separate the parts with commas. Python puts a single space between them for you.</p></div>
+<div class="lbl mt">Code</div><pre><code>name = "Rahul"
+dept = "HR"
+<span class="k">print</span>("Employee", name, "works <span class="k">in</span>", dept)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Employee Rahul works in HR</div>
+</article>
+<article class="e"><h3>Comments  #</h3>
+<div class="what"><p>Anything after a # is ignored by Python. It is a note for the human reading the code.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="c"># this line does nothing at all</span>
+salary = <span class="o">47764</span>      <span class="c"># monthly, in rupees</span>
+<span class="k">print</span>(salary)</code></pre>
+<div class="lbl mt">Output</div><div class="out">47764</div>
+</article>
+<article class="e"><h3>Variables</h3>
+<div class="what"><p>A name that holds a value. Assign with a single =, and you can change it later.</p></div>
+<div class="lbl mt">Code</div><pre><code>emp_id = <span class="o">1001</span>
+name   = "Rahul Sharma"
+salary = <span class="o">47764</span>
+
+<span class="k">print</span>(emp_id, name, salary)
+
+salary = <span class="o">52000</span>          <span class="c"># changed</span>
+<span class="k">print</span>("after the hike:", salary)</code></pre>
+<div class="lbl mt">Output</div><div class="out">1001 Rahul Sharma 47764
+after the hike: 52000</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Your first lines</div>
+<div class="pq"><div class="qn"><b>1.</b> Store your own name, your city and your age in three variables, then print them in one sentence.</div>
+<details><summary>Show one way to do it</summary><pre><code>name = "Anita"
+city = "Chennai"
+age  = <span class="o">22</span>
+<span class="k">print</span>(name, "<span class="k">is</span>", age, "<span class="k">and</span> lives <span class="k">in</span>", city)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Anita is 22 and lives in Chennai</div>
+</details></div>
+</div>
+<h2 class="cat" id="the-data-types">The data types<span class="day">Day 3</span></h2>
+<article class="e"><h3>int  —  whole numbers</h3>
+<div class="what"><p>Counting numbers, positive or negative, with no decimal point.</p></div>
+<div class="lbl mt">Code</div><pre><code>experience = <span class="o">4</span>
+<span class="k">print</span>(experience)
+<span class="k">print</span>(type(experience))</code></pre>
+<div class="lbl mt">Output</div><div class="out">4
+&lt;class 'int'&gt;</div>
+</article>
+<article class="e"><h3>float  —  numbers with a decimal</h3>
+<div class="what"><p>Any number with a dot in it. Division always produces one, even when it divides evenly.</p></div>
+<div class="lbl mt">Code</div><pre><code>height = <span class="o">169.5</span>
+<span class="k">print</span>(height, type(height))
+<span class="k">print</span>(<span class="o">10</span> / <span class="o">2</span>, type(<span class="o">10</span> / <span class="o">2</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">169.5 &lt;class 'float'&gt;
+5.0 &lt;class 'float'&gt;</div>
+</article>
+<article class="e"><h3>str  —  text</h3>
+<div class="what"><p>Anything inside quotes. Single or double quotes both work, as long as you match them.</p></div>
+<div class="lbl mt">Code</div><pre><code>dept = 'HR'
+city = "Hyderabad"
+<span class="k">print</span>(dept, city)
+<span class="k">print</span>(type(dept))</code></pre>
+<div class="lbl mt">Output</div><div class="out">HR Hyderabad
+&lt;class 'str'&gt;</div>
+</article>
+<article class="e"><h3>bool  —  True or False</h3>
+<div class="what"><p>Only two possible values, and both start with a capital letter.</p></div>
+<div class="lbl mt">Code</div><pre><code>is_active = <span class="k">True</span>
+<span class="k">print</span>(is_active, type(is_active))
+<span class="k">print</span>(<span class="o">5</span> &gt; <span class="o">3</span>)
+<span class="k">print</span>(<span class="o">5</span> == <span class="o">3</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">True &lt;class 'bool'&gt;
+True
+False</div>
+</article>
+<article class="e"><h3>type()</h3>
+<div class="what"><p>Asks Python what something is. Useful the moment a value does not behave the way you expected.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">print</span>(type(<span class="o">10</span>))
+<span class="k">print</span>(type(<span class="o">10.0</span>))
+<span class="k">print</span>(type("<span class="o">10</span>"))
+<span class="k">print</span>(type(<span class="k">True</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">&lt;class 'int'&gt;
+&lt;class 'float'&gt;
+&lt;class 'str'&gt;
+&lt;class 'bool'&gt;</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; The data types</div>
+<div class="pq"><div class="qn"><b>1.</b> Print the type of each of these: 7, 7.0, "7", True. Say out loud why 7 and "7" are different.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">for</span> v <span class="k">in</span> [<span class="o">7</span>, <span class="o">7.0</span>, "<span class="o">7</span>", <span class="k">True</span>]:
+    <span class="k">print</span>(v, "-&gt;", type(v))</code></pre>
+<div class="lbl mt">Output</div><div class="out">7 -&gt; &lt;class 'int'&gt;
+7.0 -&gt; &lt;class 'float'&gt;
+7 -&gt; &lt;class 'str'&gt;
+True -&gt; &lt;class 'bool'&gt;</div>
+</details></div>
+</div>
+<h2 class="cat" id="type-conversion">Type conversion<span class="day">Day 8</span></h2>
+<article class="e"><h3>int()</h3>
+<div class="what"><p>Turns something into a whole number. On a float it CUTS the decimal off — it does not round.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">print</span>(int("<span class="o">25</span>"))
+<span class="k">print</span>(int(<span class="o">9.99</span>))        <span class="c"># 9, not 10</span>
+<span class="k">print</span>(int(<span class="k">True</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">25
+9
+1</div>
+</article>
+<article class="e"><h3>float()  and  str()</h3>
+<div class="what"><p>float() adds a decimal point, str() turns a number into text so it can be joined to other text.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">print</span>(float(<span class="o">25</span>), type(float(<span class="o">25</span>)))
+<span class="k">print</span>(str(<span class="o">25</span>) + " employees")</code></pre>
+<div class="lbl mt">Output</div><div class="out">25.0 &lt;class 'float'&gt;
+25 employees</div>
+</article>
+<article class="e"><h3>Why conversion matters</h3>
+<div class="what"><p>"25" and 25 look the same on screen and behave completely differently. Text repeats; numbers add.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">print</span>("<span class="o">25</span>" + "<span class="o">25</span>")      <span class="c"># text joins</span>
+<span class="k">print</span>(<span class="o">25</span> + <span class="o">25</span>)          <span class="c"># numbers add</span>
+<span class="k">print</span>(int("<span class="o">25</span>") + <span class="o">25</span>)   <span class="c"># convert first</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">2525
+50
+50</div>
+</article>
+<article class="e"><h3>When it cannot convert</h3>
+<div class="what"><p>int() only works on something that really is a number. Anything else stops the program.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">print</span>(int("<span class="o">50</span>"))
+<span class="k">print</span>(int("fifty"))</code></pre>
+<div class="lbl mt">Output</div><div class="out">50
+ValueError: invalid literal for int() with base 10: 'fifty'</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Type conversion</div>
+<div class="pq"><div class="qn"><b>1.</b> A salary arrives as the text "47764". Add a 10% bonus to it and print the total.</div>
+<details><summary>Show one way to do it</summary><pre><code>salary = "<span class="o">47764</span>"
+total = int(salary) + int(salary) * <span class="o">10</span> / <span class="o">100</span>
+<span class="k">print</span>(total)</code></pre>
+<div class="lbl mt">Output</div><div class="out">52540.4</div>
+</details></div>
+</div>
+<h2 class="cat" id="taking-input">Taking input<span class="day">Day 4</span></h2>
+<article class="e"><h3>input()</h3>
+<div class="what"><p>Stops and waits for the user to type. Whatever they type arrives as TEXT, always.</p></div>
+<div class="lbl mt">Code</div><pre><code>name = input("Enter your name: ")
+<span class="k">print</span>("Welcome,", name)
+<span class="k">print</span>(type(name))</code></pre>
+<div class="lbl mt">Output</div><div class="out">Enter your name: Priya
+Welcome, Priya
+&lt;class 'str'&gt;</div>
+</article>
+<article class="e"><h3>int(input())  —  the one everybody forgets</h3>
+<div class="what"><p>input() hands back text, so you must convert before doing any maths with it.</p></div>
+<div class="lbl mt">Code</div><pre><code>age = input("Enter your age: ")
+<span class="k">print</span>("next year you are", age + <span class="o">1</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Enter your age: 23
+TypeError: can only concatenate str (not "int") to str</div>
+</article>
+<article class="e"><h3>The fix</h3>
+<div class="what"><p>Wrap input() in int() — or float() if decimals are possible.</p></div>
+<div class="lbl mt">Code</div><pre><code>age = int(input("Enter your age: "))
+<span class="k">print</span>("next year you are", age + <span class="o">1</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Enter your age: 23
+next year you are 24</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Taking input</div>
+<div class="pq"><div class="qn"><b>1.</b> Ask for two numbers and print their sum. Make sure it adds rather than joins.</div>
+<details><summary>Show one way to do it</summary><pre><code>a = int(input("first number: "))
+b = int(input("second number: "))
+<span class="k">print</span>("sum <span class="k">is</span>", a + b)</code></pre>
+<div class="lbl mt">Output</div><div class="out">first number: 12
+second number: 30
+sum is 42</div>
+</details></div>
+</div>
+<h2 class="cat" id="operators">Operators<span class="day">Days 3-4</span></h2>
+<article class="e"><h3>Arithmetic</h3>
+<div class="what"><p>The usual five, plus // for whole-number division and % for the remainder.</p></div>
+<div class="lbl mt">Code</div><pre><code>a, b = <span class="o">17</span>, <span class="o">5</span>
+<span class="k">print</span>("add      ", a + b)
+<span class="k">print</span>("subtract ", a - b)
+<span class="k">print</span>("multiply ", a * b)
+<span class="k">print</span>("divide   ", a / b)      <span class="c"># always a float</span>
+<span class="k">print</span>("floor    ", a // b)     <span class="c"># whole part only</span>
+<span class="k">print</span>("remainder", a % b)
+<span class="k">print</span>("power    ", a ** <span class="o">2</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">add       22
+subtract  12
+multiply  85
+divide    3.4
+floor     3
+remainder 2
+power     289</div>
+</article>
+<article class="e"><h3>% — the even/odd test</h3>
+<div class="what"><p>The remainder operator is how you check whether a number divides evenly. Remainder 0 means it does.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">for</span> n <span class="k">in</span> [<span class="o">10</span>, <span class="o">7</span>, <span class="o">24</span>]:
+    <span class="k">if</span> n % <span class="o">2</span> == <span class="o">0</span>:
+        <span class="k">print</span>(n, "<span class="k">is</span> even")
+    <span class="k">else</span>:
+        <span class="k">print</span>(n, "<span class="k">is</span> odd")</code></pre>
+<div class="lbl mt">Output</div><div class="out">10 is even
+7 is odd
+24 is even</div>
+</article>
+<article class="e"><h3>Comparison</h3>
+<div class="what"><p>Six of them, and every one hands back True or False. Note == is a question, = is an instruction.</p></div>
+<div class="lbl mt">Code</div><pre><code>salary = <span class="o">47764</span>
+<span class="k">print</span>(salary &gt; <span class="o">50000</span>)
+<span class="k">print</span>(salary &lt; <span class="o">50000</span>)
+<span class="k">print</span>(salary == <span class="o">47764</span>)
+<span class="k">print</span>(salary != <span class="o">47764</span>)
+<span class="k">print</span>(salary &gt;= <span class="o">47764</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">False
+True
+True
+False
+True</div>
+</article>
+<article class="e"><h3>and  /  or  /  not</h3>
+<div class="what"><p>Join two conditions. and needs both true; or needs one; not flips it.</p></div>
+<div class="lbl mt">Code</div><pre><code>dept, salary = "Tech", <span class="o">62990</span>
+
+<span class="k">print</span>(dept == "Tech" <span class="k">and</span> salary &gt; <span class="o">50000</span>)
+<span class="k">print</span>(dept == "HR"   <span class="k">or</span>  salary &gt; <span class="o">50000</span>)
+<span class="k">print</span>(<span class="k">not</span> dept == "Tech")</code></pre>
+<div class="lbl mt">Output</div><div class="out">True
+True
+False</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Operators</div>
+<div class="pq"><div class="qn"><b>1.</b> Ask for a number and say whether it is even or odd.</div>
+<details><summary>Show one way to do it</summary><pre><code>n = int(input("number: "))
+<span class="k">if</span> n % <span class="o">2</span> == <span class="o">0</span>:
+    <span class="k">print</span>(n, "<span class="k">is</span> even")
+<span class="k">else</span>:
+    <span class="k">print</span>(n, "<span class="k">is</span> odd")</code></pre>
+<div class="lbl mt">Output</div><div class="out">number: 18
+18 is even</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> An employee is in Tech AND earns over 50,000. Print True or False for salary 48,000.</div>
+<details><summary>Show one way to do it</summary><pre><code>dept, salary = "Tech", <span class="o">48000</span>
+<span class="k">print</span>(dept == "Tech" <span class="k">and</span> salary &gt; <span class="o">50000</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">False</div>
+</details></div>
+</div>
+<h2 class="cat" id="making-decisions">Making decisions<span class="day">Day 4</span></h2>
+<article class="e"><h3>if</h3>
+<div class="what"><p>Runs the indented block only when the condition is True. The colon and the indent are both required.</p></div>
+<div class="lbl mt">Code</div><pre><code>salary = <span class="o">62990</span>
+
+<span class="k">if</span> salary &gt; <span class="o">50000</span>:
+    <span class="k">print</span>("above fifty thousand")
+
+<span class="k">print</span>("this line always runs")</code></pre>
+<div class="lbl mt">Output</div><div class="out">above fifty thousand
+this line always runs</div>
+</article>
+<article class="e"><h3>if  /  else</h3>
+<div class="what"><p>Two paths, and exactly one of them runs.</p></div>
+<div class="lbl mt">Code</div><pre><code>age = <span class="o">17</span>
+
+<span class="k">if</span> age &gt;= <span class="o">18</span>:
+    <span class="k">print</span>("can vote")
+<span class="k">else</span>:
+    <span class="k">print</span>("cannot vote yet")</code></pre>
+<div class="lbl mt">Output</div><div class="out">cannot vote yet</div>
+</article>
+<article class="e"><h3>if  /  elif  /  else</h3>
+<div class="what"><p>More than two paths. Python checks top to bottom and stops at the FIRST one that is true.</p></div>
+<div class="lbl mt">Code</div><pre><code>marks = <span class="o">72</span>
+
+<span class="k">if</span> marks &gt;= <span class="o">90</span>:
+    <span class="k">print</span>("A")
+<span class="k">elif</span> marks &gt;= <span class="o">75</span>:
+    <span class="k">print</span>("B")
+<span class="k">elif</span> marks &gt;= <span class="o">60</span>:
+    <span class="k">print</span>("C")
+<span class="k">else</span>:
+    <span class="k">print</span>("D")</code></pre>
+<div class="lbl mt">Output</div><div class="out">C</div>
+</article>
+<article class="e"><h3>Order matters</h3>
+<div class="what"><p>Because it stops at the first match, a loose condition placed first swallows all the rest.</p></div>
+<div class="lbl mt">Code</div><pre><code>marks = <span class="o">95</span>
+
+<span class="c"># WRONG - 95 is &gt;= 60, so it stops here</span>
+<span class="k">if</span> marks &gt;= <span class="o">60</span>:
+    <span class="k">print</span>("C")
+<span class="k">elif</span> marks &gt;= <span class="o">90</span>:
+    <span class="k">print</span>("A")      <span class="c"># never reached</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">C</div>
+</article>
+<article class="e"><h3>Nested if</h3>
+<div class="what"><p>An if inside another if. The inner one is only reached when the outer one passed.</p></div>
+<div class="lbl mt">Code</div><pre><code>dept, salary = "Tech", <span class="o">62990</span>
+
+<span class="k">if</span> dept == "Tech":
+    <span class="k">if</span> salary &gt; <span class="o">50000</span>:
+        <span class="k">print</span>("senior tech")
+    <span class="k">else</span>:
+        <span class="k">print</span>("junior tech")
+<span class="k">else</span>:
+    <span class="k">print</span>("<span class="k">not</span> tech")</code></pre>
+<div class="lbl mt">Output</div><div class="out">senior tech</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Making decisions</div>
+<div class="pq"><div class="qn"><b>1.</b> Grade a mark out of 100: 90+ A, 75+ B, 60+ C, 40+ D, below that Fail. Test it with 61.</div>
+<details><summary>Show one way to do it</summary><pre><code>marks = <span class="o">61</span>
+<span class="k">if</span> marks &gt;= <span class="o">90</span>:
+    <span class="k">print</span>("A")
+<span class="k">elif</span> marks &gt;= <span class="o">75</span>:
+    <span class="k">print</span>("B")
+<span class="k">elif</span> marks &gt;= <span class="o">60</span>:
+    <span class="k">print</span>("C")
+<span class="k">elif</span> marks &gt;= <span class="o">40</span>:
+    <span class="k">print</span>("D")
+<span class="k">else</span>:
+    <span class="k">print</span>("Fail")</code></pre>
+<div class="lbl mt">Output</div><div class="out">C</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Ask for a year and print whether it is a leap year. (Divisible by 4, but not by 100, unless also by 400.)</div>
+<details><summary>Show one way to do it</summary><pre><code>y = int(input("year: "))
+<span class="k">if</span> y % <span class="o">400</span> == <span class="o">0</span>:
+    <span class="k">print</span>(y, "<span class="k">is</span> a leap year")
+<span class="k">elif</span> y % <span class="o">100</span> == <span class="o">0</span>:
+    <span class="k">print</span>(y, "<span class="k">is</span> <span class="k">not</span> a leap year")
+<span class="k">elif</span> y % <span class="o">4</span> == <span class="o">0</span>:
+    <span class="k">print</span>(y, "<span class="k">is</span> a leap year")
+<span class="k">else</span>:
+    <span class="k">print</span>(y, "<span class="k">is</span> <span class="k">not</span> a leap year")</code></pre>
+<div class="lbl mt">Output</div><div class="out">year: 2024
+2024 is a leap year</div>
+</details></div>
+</div></section>
+<section class="sec" id="collections"><p class="blurb">Repeating work, and the four containers Python gives you to hold it.</p><nav class="jump"><a href="#loops">Loops</a><a href="#lists">Lists</a><a href="#tuples">Tuples</a><a href="#sets">Sets</a><a href="#dictionaries">Dictionaries</a></nav><h2 class="cat" id="loops">Loops<span class="day">Days 9 &amp; 23</span></h2>
+<article class="e"><h3>for  —  over a list</h3>
+<div class="what"><p>Walks through a collection one item at a time. The variable after for is a name you choose.</p></div>
+<div class="lbl mt">Code</div><pre><code>depts = ["HR", "Tech", "Sales", "Marketing"]
+
+<span class="k">for</span> d <span class="k">in</span> depts:
+    <span class="k">print</span>(d)</code></pre>
+<div class="lbl mt">Output</div><div class="out">HR
+Tech
+Sales
+Marketing</div>
+</article>
+<article class="e"><h3>range()</h3>
+<div class="what"><p>Produces a run of numbers. The stop value is NEVER included — range(5) gives 0 to 4.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">5</span>):
+    <span class="k">print</span>(i, end=" ")
+<span class="k">print</span>()
+
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">6</span>):
+    <span class="k">print</span>(i, end=" ")
+<span class="k">print</span>()
+
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">0</span>, <span class="o">20</span>, <span class="o">5</span>):      <span class="c"># start, stop, step</span>
+    <span class="k">print</span>(i, end=" ")</code></pre>
+<div class="lbl mt">Output</div><div class="out">0 1 2 3 4 
+1 2 3 4 5 
+0 5 10 15 </div>
+</article>
+<article class="e"><h3>for with an index</h3>
+<div class="what"><p>range(len(...)) gives you the positions, which you need when you want the position as well as the value.</p></div>
+<div class="lbl mt">Code</div><pre><code>depts = ["HR", "Tech", "Sales"]
+
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="k">len</span>(depts)):
+    <span class="k">print</span>(i, depts[i])</code></pre>
+<div class="lbl mt">Output</div><div class="out">0 HR
+1 Tech
+2 Sales</div>
+</article>
+<article class="e"><h3>while</h3>
+<div class="what"><p>Repeats while a condition stays True. YOU have to change something inside, or it never stops.</p></div>
+<div class="lbl mt">Code</div><pre><code>count = <span class="o">1</span>
+<span class="k">while</span> count &lt;= <span class="o">5</span>:
+    <span class="k">print</span>(count, end=" ")
+    count = count + <span class="o">1</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">1 2 3 4 5 </div>
+</article>
+<article class="e"><h3>break</h3>
+<div class="what"><p>Leaves the loop immediately, no matter how many items are left.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">for</span> n <span class="k">in</span> [<span class="o">12</span>, <span class="o">7</span>, <span class="o">40</span>, <span class="o">3</span>, <span class="o">55</span>]:
+    <span class="k">if</span> n &gt; <span class="o">30</span>:
+        <span class="k">print</span>("found one over <span class="o">30</span>:", n)
+        <span class="k">break</span>
+    <span class="k">print</span>("checked", n)</code></pre>
+<div class="lbl mt">Output</div><div class="out">checked 12
+checked 7
+found one over 30: 40</div>
+</article>
+<article class="e"><h3>continue</h3>
+<div class="what"><p>Skips the rest of THIS turn and jumps to the next one. The loop keeps going.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">for</span> n <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">11</span>):
+    <span class="k">if</span> n % <span class="o">2</span> != <span class="o">0</span>:
+        <span class="k">continue</span>          <span class="c"># skip the odd ones</span>
+    <span class="k">print</span>(n, end=" ")</code></pre>
+<div class="lbl mt">Output</div><div class="out">2 4 6 8 10 </div>
+</article>
+<article class="e"><h3>Nested loops</h3>
+<div class="what"><p>A loop inside a loop. The inner one runs completely for every single turn of the outer one.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">4</span>):
+    <span class="k">for</span> j <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">4</span>):
+        <span class="k">print</span>(i * j, end="\t")
+    <span class="k">print</span>()</code></pre>
+<div class="lbl mt">Output</div><div class="out">1	2	3	
+2	4	6	
+3	6	9	</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Loops</div>
+<div class="pq"><div class="qn"><b>1.</b> Print the 7 times table from 7x1 to 7x10, one line each.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">11</span>):
+    <span class="k">print</span>("<span class="o">7</span> x", i, "=", <span class="o">7</span> * i)</code></pre>
+<div class="lbl mt">Output</div><div class="out">7 x 1 = 7
+7 x 2 = 14
+7 x 3 = 21
+7 x 4 = 28
+7 x 5 = 35
+7 x 6 = 42
+7 x 7 = 49
+7 x 8 = 56
+7 x 9 = 63
+7 x 10 = 70</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Add up every number from 1 to 100 using a loop. (The answer is 5050.)</div>
+<details><summary>Show one way to do it</summary><pre><code>total = <span class="o">0</span>
+<span class="k">for</span> n <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">101</span>):
+    total = total + n
+<span class="k">print</span>(total)</code></pre>
+<div class="lbl mt">Output</div><div class="out">5050</div>
+</details></div>
+<div class="pq"><div class="qn"><b>3.</b> Print the numbers 1 to 20, but skip every multiple of 3.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">for</span> n <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">21</span>):
+    <span class="k">if</span> n % <span class="o">3</span> == <span class="o">0</span>:
+        <span class="k">continue</span>
+    <span class="k">print</span>(n, end=" ")</code></pre>
+<div class="lbl mt">Output</div><div class="out">1 2 4 5 7 8 10 11 13 14 16 17 19 20 </div>
+</details></div>
+<div class="pq"><div class="qn"><b>4.</b> Count down from 10 to 1 using a while loop, then print 'Go'.</div>
+<details><summary>Show one way to do it</summary><pre><code>n = <span class="o">10</span>
+<span class="k">while</span> n &gt;= <span class="o">1</span>:
+    <span class="k">print</span>(n, end=" ")
+    n = n - <span class="o">1</span>
+<span class="k">print</span>("Go")</code></pre>
+<div class="lbl mt">Output</div><div class="out">10 9 8 7 6 5 4 3 2 1 Go</div>
+</details></div>
+</div>
+<h2 class="cat" id="lists">Lists<span class="day">Days 5 &amp; 11</span></h2>
+<article class="e"><h3>Making one, and reaching in</h3>
+<div class="what"><p>Ordered, changeable, and allows duplicates. Counting starts at 0; -1 is the last one.</p></div>
+<div class="lbl mt">Code</div><pre><code>marks = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>, <span class="o">95</span>]
+
+<span class="k">print</span>(marks)
+<span class="k">print</span>(marks[<span class="o">0</span>])
+<span class="k">print</span>(marks[-<span class="o">1</span>])
+<span class="k">print</span>(<span class="k">len</span>(marks))</code></pre>
+<div class="lbl mt">Output</div><div class="out">[45, 72, 88, 61, 95]
+45
+95
+5</div>
+</article>
+<article class="e"><h3>Slicing</h3>
+<div class="what"><p>Take a range of items. The stop is not included, so [1:4] gives positions 1, 2 and 3.</p></div>
+<div class="lbl mt">Code</div><pre><code>marks = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>, <span class="o">95</span>]
+
+<span class="k">print</span>(marks[<span class="o">1</span>:<span class="o">4</span>])
+<span class="k">print</span>(marks[:<span class="o">3</span>])
+<span class="k">print</span>(marks[<span class="o">2</span>:])
+<span class="k">print</span>(marks[-<span class="o">2</span>:])
+<span class="k">print</span>(marks[::<span class="o">2</span>])
+<span class="k">print</span>(marks[::-<span class="o">1</span>])     <span class="c"># reversed</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">[72, 88, 61]
+[45, 72, 88]
+[88, 61, 95]
+[61, 95]
+[45, 88, 95]
+[95, 61, 88, 72, 45]</div>
+</article>
+<article class="e"><h3>Changing a list</h3>
+<div class="what"><p>Unlike a string, a list can be edited in place.</p></div>
+<div class="lbl mt">Code</div><pre><code>marks = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>]
+marks[<span class="o">0</span>] = <span class="o">50</span>
+<span class="k">print</span>(marks)</code></pre>
+<div class="lbl mt">Output</div><div class="out">[50, 72, 88]</div>
+</article>
+<article class="e"><h3>append / insert / extend</h3>
+<div class="what"><p>append adds one to the end, insert puts one at a position, extend adds a whole list.</p></div>
+<div class="lbl mt">Code</div><pre><code>m = [<span class="o">45</span>, <span class="o">72</span>]
+m.append(<span class="o">88</span>)
+<span class="k">print</span>(m)
+m.insert(<span class="o">1</span>, <span class="o">60</span>)
+<span class="k">print</span>(m)
+m.extend([<span class="o">91</span>, <span class="o">33</span>])
+<span class="k">print</span>(m)</code></pre>
+<div class="lbl mt">Output</div><div class="out">[45, 72, 88]
+[45, 60, 72, 88]
+[45, 60, 72, 88, 91, 33]</div>
+</article>
+<article class="e"><h3>remove / pop / clear</h3>
+<div class="what"><p>remove deletes by VALUE, pop deletes by POSITION and hands it back, clear empties the list.</p></div>
+<div class="lbl mt">Code</div><pre><code>m = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>]
+m.remove(<span class="o">72</span>)
+<span class="k">print</span>(m)
+taken = m.pop(<span class="o">0</span>)
+<span class="k">print</span>("popped", taken, "-&gt;", m)
+<span class="k">print</span>(m.pop())      <span class="c"># no number = the last one</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">[45, 88, 61]
+popped 45 -&gt; [88, 61]
+61</div>
+</article>
+<article class="e"><h3>sort / reverse / count / index</h3>
+<div class="what"><p>sort changes the list itself. sorted() leaves it alone and hands back a new one.</p></div>
+<div class="lbl mt">Code</div><pre><code>m = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>, <span class="o">72</span>]
+m.sort()
+<span class="k">print</span>(m)
+m.sort(reverse=<span class="k">True</span>)
+<span class="k">print</span>(m)
+<span class="k">print</span>("how many 72s:", m.count(<span class="o">72</span>))
+<span class="k">print</span>("where <span class="k">is</span> <span class="o">88</span>:", m.index(<span class="o">88</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">[45, 61, 72, 72, 88]
+[88, 72, 72, 61, 45]
+how many 72s: 2
+where is 88: 0</div>
+</article>
+<article class="e"><h3>sum / max / min on a list</h3>
+<div class="what"><p>The three you will use constantly once real data arrives.</p></div>
+<div class="lbl mt">Code</div><pre><code>marks = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>, <span class="o">95</span>]
+<span class="k">print</span>("total  ", sum(marks))
+<span class="k">print</span>("highest", max(marks))
+<span class="k">print</span>("lowest ", min(marks))
+<span class="k">print</span>("average", sum(marks) / <span class="k">len</span>(marks))</code></pre>
+<div class="lbl mt">Output</div><div class="out">total   361
+highest 95
+lowest  45
+average 72.2</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Lists</div>
+<div class="pq"><div class="qn"><b>1.</b> From [45, 72, 88, 61, 95], print the highest, the lowest and the average.</div>
+<details><summary>Show one way to do it</summary><pre><code>m = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>, <span class="o">95</span>]
+<span class="k">print</span>("highest", max(m))
+<span class="k">print</span>("lowest ", min(m))
+<span class="k">print</span>("average", sum(m) / <span class="k">len</span>(m))</code></pre>
+<div class="lbl mt">Output</div><div class="out">highest 95
+lowest  45
+average 72.2</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Given a list of marks, print only the ones above the average.</div>
+<details><summary>Show one way to do it</summary><pre><code>m = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>, <span class="o">95</span>]
+avg = sum(m) / <span class="k">len</span>(m)
+<span class="k">print</span>("average <span class="k">is</span>", avg)
+<span class="k">for</span> x <span class="k">in</span> m:
+    <span class="k">if</span> x &gt; avg:
+        <span class="k">print</span>(x, "<span class="k">is</span> above")</code></pre>
+<div class="lbl mt">Output</div><div class="out">average is 72.2
+88 is above
+95 is above</div>
+</details></div>
+<div class="pq"><div class="qn"><b>3.</b> Reverse a list without using reverse() or [::-1].</div>
+<details><summary>Show one way to do it</summary><pre><code>m = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>]
+out = []
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="k">len</span>(m) - <span class="o">1</span>, -<span class="o">1</span>, -<span class="o">1</span>):
+    out.append(m[i])
+<span class="k">print</span>(out)</code></pre>
+<div class="lbl mt">Output</div><div class="out">[61, 88, 72, 45]</div>
+</details></div>
+</div>
+<h2 class="cat" id="tuples">Tuples<span class="day">Day 6</span></h2>
+<article class="e"><h3>A tuple is a list that cannot change</h3>
+<div class="what"><p>Round brackets instead of square. Everything about reading it is the same; writing is forbidden.</p></div>
+<div class="lbl mt">Code</div><pre><code>point = (<span class="o">10</span>, <span class="o">20</span>, <span class="o">30</span>)
+<span class="k">print</span>(point)
+<span class="k">print</span>(point[<span class="o">0</span>])
+<span class="k">print</span>(point[<span class="o">1</span>:])
+<span class="k">print</span>(<span class="k">len</span>(point))</code></pre>
+<div class="lbl mt">Output</div><div class="out">(10, 20, 30)
+10
+(20, 30)
+3</div>
+</article>
+<article class="e"><h3>Trying to change one</h3>
+<div class="what"><p>This is the whole difference, and the error names it: tuples do not support assignment.</p></div>
+<div class="lbl mt">Code</div><pre><code>point = (<span class="o">10</span>, <span class="o">20</span>, <span class="o">30</span>)
+point[<span class="o">0</span>] = <span class="o">99</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">TypeError: 'tuple' object does not support item assignment</div>
+</article>
+<article class="e"><h3>Why use one at all</h3>
+<div class="what"><p>When the values must not be edited by accident — fixed settings, coordinates, a database row.</p></div>
+<div class="lbl mt">Code</div><pre><code>WEEKDAYS = ("Mon", "Tue", "Wed", "Thu", "Fri")
+<span class="k">print</span>(<span class="k">len</span>(WEEKDAYS), "working days")
+<span class="k">print</span>("Wed" <span class="k">in</span> WEEKDAYS)
+<span class="k">print</span>(WEEKDAYS.count("Mon"), WEEKDAYS.index("Thu"))</code></pre>
+<div class="lbl mt">Output</div><div class="out">5 working days
+True
+1 3</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Tuples</div>
+<div class="pq"><div class="qn"><b>1.</b> Make a tuple of the five weekdays, print how many there are, and check whether 'Sun' is in it.</div>
+<details><summary>Show one way to do it</summary><pre><code>days = ("Mon", "Tue", "Wed", "Thu", "Fri")
+<span class="k">print</span>(<span class="k">len</span>(days))
+<span class="k">print</span>("Sun" <span class="k">in</span> days)</code></pre>
+<div class="lbl mt">Output</div><div class="out">5
+False</div>
+</details></div>
+</div>
+<h2 class="cat" id="sets">Sets<span class="day">Days 6-7</span></h2>
+<article class="e"><h3>A set throws away duplicates</h3>
+<div class="what"><p>Curly brackets. No duplicates, and NO ORDER — so you cannot ask for set[0], and printing one gives the items in whatever order Python feels like. Wrap it in sorted() when you need a fixed order.</p></div>
+<div class="lbl mt">Code</div><pre><code>depts = {"HR", "Tech", "HR", "Sales", "Tech"}
+
+<span class="k">print</span>(<span class="k">len</span>(depts))          <span class="c"># the 2 repeats are gone</span>
+<span class="k">print</span>(sorted(depts))      <span class="c"># sorted, so it looks the same every run</span>
+<span class="k">print</span>("HR" <span class="k">in</span> depts)</code></pre>
+<div class="lbl mt">Output</div><div class="out">3
+['HR', 'Sales', 'Tech']
+True</div>
+</article>
+<article class="e"><h3>De-duplicating a list</h3>
+<div class="what"><p>The most common real use: wrap a list in set() to see the distinct values.</p></div>
+<div class="lbl mt">Code</div><pre><code>entries = ["HR", "Tech", "HR", "Sales", "Tech", "HR"]
+
+<span class="k">print</span>(sorted(set(entries)))
+<span class="k">print</span>("distinct departments:", <span class="k">len</span>(set(entries)))</code></pre>
+<div class="lbl mt">Output</div><div class="out">['HR', 'Sales', 'Tech']
+distinct departments: 3</div>
+</article>
+<article class="e"><h3>add / remove / discard</h3>
+<div class="what"><p>remove complains if the item is not there. discard does not.</p></div>
+<div class="lbl mt">Code</div><pre><code>s = {"HR", "Tech"}
+s.add("Sales")
+<span class="k">print</span>(s == {"HR", "Tech", "Sales"})
+s.discard("Finance")     <span class="c"># not there, no error</span>
+s.remove("HR")
+<span class="k">print</span>(sorted(s))</code></pre>
+<div class="lbl mt">Output</div><div class="out">True
+['Sales', 'Tech']</div>
+</article>
+<article class="e"><h3>union / intersection / difference</h3>
+<div class="what"><p>The school set theory, as code. Useful for comparing two groups of anything.</p></div>
+<div class="lbl mt">Code</div><pre><code>a = {"Rahul", "Priya", "Amit"}
+b = {"Priya", "Amit", "Kavya"}
+
+<span class="k">print</span>(sorted(a | b))     <span class="c"># in either</span>
+<span class="k">print</span>(sorted(a &amp; b))     <span class="c"># in both</span>
+<span class="k">print</span>(sorted(a - b))     <span class="c"># only in a</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">['Amit', 'Kavya', 'Priya', 'Rahul']
+['Amit', 'Priya']
+['Rahul']</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Sets</div>
+<div class="pq"><div class="qn"><b>1.</b> From ['HR','Tech','HR','Sales','Tech','HR'], print the distinct departments and how many there are.</div>
+<details><summary>Show one way to do it</summary><pre><code>e = ["HR", "Tech", "HR", "Sales", "Tech", "HR"]
+d = set(e)
+<span class="k">print</span>(sorted(d))
+<span class="k">print</span>(<span class="k">len</span>(d), "distinct")</code></pre>
+<div class="lbl mt">Output</div><div class="out">['HR', 'Sales', 'Tech']
+3 distinct</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Two teams are given as sets. Print who is on both teams, and who is only on the first.</div>
+<details><summary>Show one way to do it</summary><pre><code>a = {"Rahul", "Priya", "Amit"}
+b = {"Priya", "Amit", "Kavya"}
+<span class="k">print</span>("both:", sorted(a &amp; b))
+<span class="k">print</span>("only a:", sorted(a - b))</code></pre>
+<div class="lbl mt">Output</div><div class="out">both: ['Amit', 'Priya']
+only a: ['Rahul']</div>
+</details></div>
+</div>
+<h2 class="cat" id="dictionaries">Dictionaries<span class="day">Day 7</span></h2>
+<article class="e"><h3>Key and value</h3>
+<div class="what"><p>Instead of a position you use a name. That name is the key, and it has to be unique.</p></div>
+<div class="lbl mt">Code</div><pre><code>emp = {"name": "Rahul", "dept": "HR", "salary": <span class="o">47764</span>}
+
+<span class="k">print</span>(emp)
+<span class="k">print</span>(emp["name"])
+<span class="k">print</span>(<span class="k">len</span>(emp))</code></pre>
+<div class="lbl mt">Output</div><div class="out">{'name': 'Rahul', 'dept': 'HR', 'salary': 47764}
+Rahul
+3</div>
+</article>
+<article class="e"><h3>get()  —  the safe way to read</h3>
+<div class="what"><p>Square brackets raise an error if the key is missing. get() hands back None, or whatever you choose.</p></div>
+<div class="lbl mt">Code</div><pre><code>emp = {"name": "Rahul", "dept": "HR"}
+
+<span class="k">print</span>(emp.get("dept"))
+<span class="k">print</span>(emp.get("city"))                 <span class="c"># None, not an error</span>
+<span class="k">print</span>(emp.get("city", "<span class="k">not</span> recorded"))</code></pre>
+<div class="lbl mt">Output</div><div class="out">HR
+None
+not recorded</div>
+</article>
+<article class="e"><h3>Adding and changing</h3>
+<div class="what"><p>Assign to a key that exists and it updates. Assign to a new one and it is added.</p></div>
+<div class="lbl mt">Code</div><pre><code>emp = {"name": "Rahul", "dept": "HR"}
+emp["salary"] = <span class="o">47764</span>      <span class="c"># new</span>
+emp["dept"]   = "Tech"     <span class="c"># changed</span>
+<span class="k">print</span>(emp)
+<span class="k">del</span> emp["dept"]
+<span class="k">print</span>(emp)</code></pre>
+<div class="lbl mt">Output</div><div class="out">{'name': 'Rahul', 'dept': 'Tech', 'salary': 47764}
+{'name': 'Rahul', 'salary': 47764}</div>
+</article>
+<article class="e"><h3>keys / values / items</h3>
+<div class="what"><p>The three views, and items() is the one you loop over when you want both halves.</p></div>
+<div class="lbl mt">Code</div><pre><code>emp = {"name": "Rahul", "dept": "HR", "salary": <span class="o">47764</span>}
+
+<span class="k">print</span>(list(emp.keys()))
+<span class="k">print</span>(list(emp.values()))
+
+<span class="k">for</span> k, v <span class="k">in</span> emp.items():
+    <span class="k">print</span>(k, "-&gt;", v)</code></pre>
+<div class="lbl mt">Output</div><div class="out">['name', 'dept', 'salary']
+['Rahul', 'HR', 47764]
+name -&gt; Rahul
+dept -&gt; HR
+salary -&gt; 47764</div>
+</article>
+<article class="e"><h3>Counting with a dictionary</h3>
+<div class="what"><p>The pattern worth memorising: a dictionary of counts, built in one pass over the data.</p></div>
+<div class="lbl mt">Code</div><pre><code>depts = ["HR", "Tech", "HR", "Sales", "Tech", "HR"]
+
+counts = {}
+<span class="k">for</span> d <span class="k">in</span> depts:
+    counts[d] = counts.get(d, <span class="o">0</span>) + <span class="o">1</span>
+
+<span class="k">print</span>(counts)</code></pre>
+<div class="lbl mt">Output</div><div class="out">{'HR': 3, 'Tech': 2, 'Sales': 1}</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Dictionaries</div>
+<div class="pq"><div class="qn"><b>1.</b> Build a dictionary for one employee with name, department and salary, then print each key and value on its own line.</div>
+<details><summary>Show one way to do it</summary><pre><code>emp = {"name": "Priya", "dept": "Tech", "salary": <span class="o">62990</span>}
+<span class="k">for</span> k, v <span class="k">in</span> emp.items():
+    <span class="k">print</span>(k, "-&gt;", v)</code></pre>
+<div class="lbl mt">Output</div><div class="out">name -&gt; Priya
+dept -&gt; Tech
+salary -&gt; 62990</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Count how many times each letter appears in the word 'statistics'.</div>
+<details><summary>Show one way to do it</summary><pre><code>word = "statistics"
+counts = {}
+<span class="k">for</span> ch <span class="k">in</span> word:
+    counts[ch] = counts.get(ch, <span class="o">0</span>) + <span class="o">1</span>
+<span class="k">print</span>(counts)</code></pre>
+<div class="lbl mt">Output</div><div class="out">{'s': 3, 't': 3, 'a': 1, 'i': 2, 'c': 1}</div>
+</details></div>
+</div></section>
+<section class="sec" id="functions"><p class="blurb">Writing your own, the five kinds of argument, the one-liners, and recursion.</p><nav class="jump"><a href="#writing-a-function">Writing a function</a><a href="#the-five-kinds-of-argument">The five kinds of argument</a><a href="#lambda-map-filter-reduce">lambda, map, filter, reduce</a><a href="#recursion">Recursion</a><a href="#list-comprehension">List comprehension</a></nav><h2 class="cat" id="writing-a-function">Writing a function<span class="day">Day 10</span></h2>
+<article class="e"><h3>def</h3>
+<div class="what"><p>A block of code with a name, written once and used as many times as you like. Note the colon and the indent.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> greet():
+    <span class="k">print</span>("Welcome to Data Analytics")
+
+greet()
+greet()</code></pre>
+<div class="lbl mt">Output</div><div class="out">Welcome to Data Analytics
+Welcome to Data Analytics</div>
+</article>
+<article class="e"><h3>Passing something in</h3>
+<div class="what"><p>The name in the brackets is a parameter. The value you send is the argument.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> greet(name):
+    <span class="k">print</span>("Welcome,", name)
+
+greet("Rahul")
+greet("Priya")</code></pre>
+<div class="lbl mt">Output</div><div class="out">Welcome, Rahul
+Welcome, Priya</div>
+</article>
+<article class="e"><h3>return</h3>
+<div class="what"><p>Hands a value BACK so it can be stored or used. A function with no return hands back None.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> add(a, b):
+    <span class="k">return</span> a + b
+
+total = add(<span class="o">10</span>, <span class="o">20</span>)
+<span class="k">print</span>(total)
+<span class="k">print</span>(add(<span class="o">5</span>, <span class="o">6</span>) * <span class="o">2</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">30
+22</div>
+</article>
+<article class="e"><h3>print is not return</h3>
+<div class="what"><p>The single most common confusion. print shows something; return gives it back to the code.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> shows(a, b):
+    <span class="k">print</span>(a + b)
+
+<span class="k">def</span> gives(a, b):
+    <span class="k">return</span> a + b
+
+x = shows(<span class="o">2</span>, <span class="o">3</span>)
+y = gives(<span class="o">2</span>, <span class="o">3</span>)
+<span class="k">print</span>("x <span class="k">is</span>", x)      <span class="c"># None - nothing came back</span>
+<span class="k">print</span>("y <span class="k">is</span>", y)</code></pre>
+<div class="lbl mt">Output</div><div class="out">5
+x is None
+y is 5</div>
+</article>
+<article class="e"><h3>Returning more than one value</h3>
+<div class="what"><p>Separate them with commas and they come back as a tuple, which you can unpack straight away.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> stats(nums):
+    <span class="k">return</span> min(nums), max(nums), sum(nums) / <span class="k">len</span>(nums)
+
+lo, hi, avg = stats([<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>])
+<span class="k">print</span>(lo, hi, avg)</code></pre>
+<div class="lbl mt">Output</div><div class="out">45 88 66.5</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Writing a function</div>
+<div class="pq"><div class="qn"><b>1.</b> Write a function that takes a list of marks and returns the average.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> average(marks):
+    <span class="k">return</span> sum(marks) / <span class="k">len</span>(marks)
+
+<span class="k">print</span>(average([<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>]))</code></pre>
+<div class="lbl mt">Output</div><div class="out">66.5</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Write a function is_even(n) that RETURNS True or False, then use it in a loop over 1 to 6.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> is_even(n):
+    <span class="k">return</span> n % <span class="o">2</span> == <span class="o">0</span>
+
+<span class="k">for</span> n <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">7</span>):
+    <span class="k">print</span>(n, is_even(n))</code></pre>
+<div class="lbl mt">Output</div><div class="out">1 False
+2 True
+3 False
+4 True
+5 False
+6 True</div>
+</details></div>
+<div class="pq"><div class="qn"><b>3.</b> Write a function that takes a salary and returns it with a 10% hike applied.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> hike(salary, pct=<span class="o">10</span>):
+    <span class="k">return</span> salary + salary * pct / <span class="o">100</span>
+
+<span class="k">print</span>(hike(<span class="o">47764</span>))
+<span class="k">print</span>(hike(<span class="o">47764</span>, <span class="o">20</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">52540.4
+57316.8</div>
+</details></div>
+</div>
+<h2 class="cat" id="the-five-kinds-of-argument">The five kinds of argument<span class="day">Day 14</span></h2>
+<article class="e"><h3>1. Positional</h3>
+<div class="what"><p>Matched by ORDER. Swap them round and you quietly get the wrong answer, with no error.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> detail(name, dept):
+    <span class="k">print</span>(name, "works <span class="k">in</span>", dept)
+
+detail("Rahul", "HR")
+detail("HR", "Rahul")      <span class="c"># no error - just wrong</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul works in HR
+HR works in Rahul</div>
+</article>
+<article class="e"><h3>2. Keyword</h3>
+<div class="what"><p>Matched by NAME, so the order stops mattering.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> detail(name, dept):
+    <span class="k">print</span>(name, "works <span class="k">in</span>", dept)
+
+detail(name="Rahul", dept="HR")
+detail(dept="HR", name="Rahul")</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul works in HR
+Rahul works in HR</div>
+</article>
+<article class="e"><h3>3. Default</h3>
+<div class="what"><p>Give a parameter a value in the def line and it becomes optional.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> detail(name, dept="Not assigned"):
+    <span class="k">print</span>(name, "-", dept)
+
+detail("Rahul", "HR")
+detail("Priya")              <span class="c"># dept falls back</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul - HR
+Priya - Not assigned</div>
+</article>
+<article class="e"><h3>4. Variable length  *args</h3>
+<div class="what"><p>One star collects any number of positional arguments into a tuple.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> total(*nums):
+    <span class="k">print</span>(nums, type(nums))
+    <span class="k">return</span> sum(nums)
+
+<span class="k">print</span>(total(<span class="o">10</span>, <span class="o">20</span>))
+<span class="k">print</span>(total(<span class="o">10</span>, <span class="o">20</span>, <span class="o">30</span>, <span class="o">40</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">(10, 20) &lt;class 'tuple'&gt;
+30
+(10, 20, 30, 40) &lt;class 'tuple'&gt;
+100</div>
+</article>
+<article class="e"><h3>5. Variable length  **kwargs</h3>
+<div class="what"><p>Two stars collect any number of named arguments into a dictionary.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> record(**info):
+    <span class="k">for</span> k, v <span class="k">in</span> info.items():
+        <span class="k">print</span>(k, "-&gt;", v)
+
+record(name="Rahul", dept="HR", salary=<span class="o">47764</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">name -&gt; Rahul
+dept -&gt; HR
+salary -&gt; 47764</div>
+</article>
+<article class="e"><h3>The order they must go in</h3>
+<div class="what"><p>Positional first, then default, then *args, then **kwargs. Putting a default before a plain one is an error.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> show(a, b=<span class="o">2</span>, *args, **kwargs):
+    <span class="k">print</span>("a", a, "| b", b, "| args", args, "| kwargs", kwargs)
+
+show(<span class="o">1</span>)
+show(<span class="o">1</span>, <span class="o">9</span>)
+show(<span class="o">1</span>, <span class="o">9</span>, <span class="o">100</span>, <span class="o">200</span>, city="Chennai")</code></pre>
+<div class="lbl mt">Output</div><div class="out">a 1 | b 2 | args () | kwargs {}
+a 1 | b 9 | args () | kwargs {}
+a 1 | b 9 | args (100, 200) | kwargs {'city': 'Chennai'}</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; The five kinds of argument</div>
+<div class="pq"><div class="qn"><b>1.</b> Write a function that takes a name and any number of subject marks, and prints the name with the total.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> report(name, *marks):
+    <span class="k">print</span>(name, "scored", sum(marks), "across", <span class="k">len</span>(marks), "subjects")
+
+report("Rahul", <span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>)
+report("Priya", <span class="o">91</span>, <span class="o">68</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul scored 205 across 3 subjects
+Priya scored 159 across 2 subjects</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Write a function that accepts any number of named details and prints each one.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> profile(**d):
+    <span class="k">for</span> k, v <span class="k">in</span> d.items():
+        <span class="k">print</span>(k, ":", v)
+
+profile(name="Amit", city="Pune", exp=<span class="o">4</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">name : Amit
+city : Pune
+exp : 4</div>
+</details></div>
+</div>
+<h2 class="cat" id="lambda-map-filter-reduce">lambda, map, filter, reduce<span class="day">Days 11-12</span></h2>
+<article class="e"><h3>lambda</h3>
+<div class="what"><p>A function with no name, written on one line. Good for something tiny you use once.</p></div>
+<div class="lbl mt">Code</div><pre><code>double = <span class="k">lambda</span> x: x * <span class="o">2</span>
+<span class="k">print</span>(double(<span class="o">21</span>))
+
+add = <span class="k">lambda</span> a, b: a + b
+<span class="k">print</span>(add(<span class="o">10</span>, <span class="o">20</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">42
+30</div>
+</article>
+<article class="e"><h3>map()</h3>
+<div class="what"><p>Applies a function to EVERY item and gives back the same number of items.</p></div>
+<div class="lbl mt">Code</div><pre><code>marks = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>]
+
+out = map(<span class="k">lambda</span> x: x + <span class="o">5</span>, marks)
+<span class="k">print</span>(list(out))
+
+<span class="k">print</span>(list(map(str, marks)))     <span class="c"># any function works</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">[50, 77, 93]
+['45', '72', '88']</div>
+</article>
+<article class="e"><h3>filter()</h3>
+<div class="what"><p>Keeps only the items where the function says True. You get FEWER items back.</p></div>
+<div class="lbl mt">Code</div><pre><code>marks = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>, <span class="o">33</span>]
+
+passed = filter(<span class="k">lambda</span> x: x &gt;= <span class="o">60</span>, marks)
+<span class="k">print</span>(list(passed))
+
+<span class="k">print</span>(list(filter(<span class="k">lambda</span> x: x % <span class="o">2</span> == <span class="o">0</span>, marks)))</code></pre>
+<div class="lbl mt">Output</div><div class="out">[72, 88, 61]
+[72, 88]</div>
+</article>
+<article class="e"><h3>reduce()</h3>
+<div class="what"><p>Boils a whole list down to ONE value, two at a time. It has to be imported first.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">from</span> functools <span class="k">import</span> reduce
+
+marks = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>]
+<span class="k">print</span>(reduce(<span class="k">lambda</span> a, b: a + b, marks))
+<span class="k">print</span>(reduce(<span class="k">lambda</span> a, b: a <span class="k">if</span> a &gt; b <span class="k">else</span> b, marks))</code></pre>
+<div class="lbl mt">Output</div><div class="out">205
+88</div>
+</article>
+<article class="e"><h3>The three side by side</h3>
+<div class="what"><p>map keeps the count, filter reduces the count, reduce collapses it to one.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">from</span> functools <span class="k">import</span> reduce
+m = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>]
+
+<span class="k">print</span>("map   ", list(map(<span class="k">lambda</span> x: x * <span class="o">2</span>, m)), "   same count")
+<span class="k">print</span>("filter", list(filter(<span class="k">lambda</span> x: x &gt; <span class="o">60</span>, m)), "      fewer")
+<span class="k">print</span>("reduce", reduce(<span class="k">lambda</span> a, b: a + b, m), "              one")</code></pre>
+<div class="lbl mt">Output</div><div class="out">map    [90, 144, 176, 122]    same count
+filter [72, 88, 61]       fewer
+reduce 266               one</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; lambda, map, filter, reduce</div>
+<div class="pq"><div class="qn"><b>1.</b> Using map, add 5 bonus marks to every mark in a list.</div>
+<details><summary>Show one way to do it</summary><pre><code>marks = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>]
+<span class="k">print</span>(list(map(<span class="k">lambda</span> x: x + <span class="o">5</span>, marks)))</code></pre>
+<div class="lbl mt">Output</div><div class="out">[50, 77, 93, 66]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Using filter, keep only the salaries above 50,000.</div>
+<details><summary>Show one way to do it</summary><pre><code>sal = [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">38000</span>]
+<span class="k">print</span>(list(filter(<span class="k">lambda</span> x: x &gt; <span class="o">50000</span>, sal)))</code></pre>
+<div class="lbl mt">Output</div><div class="out">[62990, 51200]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>3.</b> Using reduce, find the product of [1, 2, 3, 4, 5].</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">from</span> functools <span class="k">import</span> reduce
+<span class="k">print</span>(reduce(<span class="k">lambda</span> a, b: a * b, [<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>, <span class="o">4</span>, <span class="o">5</span>]))</code></pre>
+<div class="lbl mt">Output</div><div class="out">120</div>
+</details></div>
+</div>
+<h2 class="cat" id="recursion">Recursion<span class="day">Day 13</span></h2>
+<article class="e"><h3>A function that calls itself</h3>
+<div class="what"><p>Every recursion needs a base case — the condition that stops it. Without one it never ends.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> countdown(n):
+    <span class="k">if</span> n == <span class="o">0</span>:           <span class="c"># base case</span>
+        <span class="k">print</span>("Go")
+        <span class="k">return</span>
+    <span class="k">print</span>(n, end=" ")
+    countdown(n - <span class="o">1</span>)     <span class="c"># calls itself</span>
+
+countdown(<span class="o">5</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">5 4 3 2 1 Go</div>
+</article>
+<article class="e"><h3>Factorial</h3>
+<div class="what"><p>The classic. 5! is 5 x 4 x 3 x 2 x 1, and each step is the same problem one size smaller.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> fact(n):
+    <span class="k">if</span> n &lt;= <span class="o">1</span>:
+        <span class="k">return</span> <span class="o">1</span>
+    <span class="k">return</span> n * fact(n - <span class="o">1</span>)
+
+<span class="k">print</span>(fact(<span class="o">5</span>))
+<span class="k">print</span>(fact(<span class="o">7</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">120
+5040</div>
+</article>
+<article class="e"><h3>Fibonacci</h3>
+<div class="what"><p>Each number is the sum of the two before it. Two base cases this time.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> fib(n):
+    <span class="k">if</span> n &lt;= <span class="o">1</span>:
+        <span class="k">return</span> n
+    <span class="k">return</span> fib(n - <span class="o">1</span>) + fib(n - <span class="o">2</span>)
+
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">10</span>):
+    <span class="k">print</span>(fib(i), end=" ")</code></pre>
+<div class="lbl mt">Output</div><div class="out">0 1 1 2 3 5 8 13 21 34 </div>
+</article>
+<article class="e"><h3>Forgetting the base case</h3>
+<div class="what"><p>Python stops you rather than freezing — but the error is the only warning you get.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">import</span> sys
+sys.setrecursionlimit(<span class="o">100</span>)
+
+<span class="k">def</span> forever(n):
+    <span class="k">return</span> forever(n - <span class="o">1</span>)      <span class="c"># nothing stops it</span>
+
+forever(<span class="o">5</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">RecursionError: maximum recursion depth exceeded</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Recursion</div>
+<div class="pq"><div class="qn"><b>1.</b> Write a recursive function that adds up the numbers from 1 to n. Test it with 10.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> total(n):
+    <span class="k">if</span> n == <span class="o">0</span>:
+        <span class="k">return</span> <span class="o">0</span>
+    <span class="k">return</span> n + total(n - <span class="o">1</span>)
+
+<span class="k">print</span>(total(<span class="o">10</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">55</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Write a recursive function that reverses a string.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> rev(s):
+    <span class="k">if</span> <span class="k">len</span>(s) == <span class="o">0</span>:
+        <span class="k">return</span> ""
+    <span class="k">return</span> s[-<span class="o">1</span>] + rev(s[:-<span class="o">1</span>])
+
+<span class="k">print</span>(rev("analytics"))</code></pre>
+<div class="lbl mt">Output</div><div class="out">scitylana</div>
+</details></div>
+</div>
+<h2 class="cat" id="list-comprehension">List comprehension<span class="day">Days 21-22</span></h2>
+<article class="e"><h3>The short way to build a list</h3>
+<div class="what"><p>A for loop and an append, written on one line. Read it as: what I want, then where it comes from.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="c"># the long way</span>
+squares = []
+<span class="k">for</span> n <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">6</span>):
+    squares.append(n * n)
+<span class="k">print</span>(squares)
+
+<span class="c"># the same thing</span>
+squares = [n * n <span class="k">for</span> n <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">6</span>)]
+<span class="k">print</span>(squares)</code></pre>
+<div class="lbl mt">Output</div><div class="out">[1, 4, 9, 16, 25]
+[1, 4, 9, 16, 25]</div>
+</article>
+<article class="e"><h3>With a condition</h3>
+<div class="what"><p>Put the if at the END and it filters — only the items that pass get built.</p></div>
+<div class="lbl mt">Code</div><pre><code>marks = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>, <span class="o">33</span>]
+
+<span class="k">print</span>([m <span class="k">for</span> m <span class="k">in</span> marks <span class="k">if</span> m &gt;= <span class="o">60</span>])
+<span class="k">print</span>([m * <span class="o">2</span> <span class="k">for</span> m <span class="k">in</span> marks <span class="k">if</span> m % <span class="o">2</span> == <span class="o">0</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">[72, 88, 61]
+[144, 176]</div>
+</article>
+<article class="e"><h3>if ... else inside one</h3>
+<div class="what"><p>When you want a value for EVERY item, the if-else goes at the FRONT. That trips people up.</p></div>
+<div class="lbl mt">Code</div><pre><code>marks = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>]
+
+<span class="k">print</span>(["<span class="k">pass</span>" <span class="k">if</span> m &gt;= <span class="o">60</span> <span class="k">else</span> "fail" <span class="k">for</span> m <span class="k">in</span> marks])</code></pre>
+<div class="lbl mt">Output</div><div class="out">['fail', 'pass', 'pass', 'pass']</div>
+</article>
+<article class="e"><h3>On a string, and nested</h3>
+<div class="what"><p>Anything you can loop over, you can comprehend over.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">print</span>([c.upper() <span class="k">for</span> c <span class="k">in</span> "python"])
+<span class="k">print</span>([x <span class="k">for</span> x <span class="k">in</span> "statistics" <span class="k">if</span> x <span class="k">in</span> "aeiou"])
+<span class="k">print</span>([[i * j <span class="k">for</span> j <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">4</span>)] <span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">4</span>)])</code></pre>
+<div class="lbl mt">Output</div><div class="out">['P', 'Y', 'T', 'H', 'O', 'N']
+['a', 'i', 'i']
+[[1, 2, 3], [2, 4, 6], [3, 6, 9]]</div>
+</article>
+<article class="e"><h3>Dictionary comprehension</h3>
+<div class="what"><p>Same idea with curly brackets and a key : value pair.</p></div>
+<div class="lbl mt">Code</div><pre><code>depts = ["HR", "Tech", "Sales"]
+<span class="k">print</span>({d: <span class="k">len</span>(d) <span class="k">for</span> d <span class="k">in</span> depts})
+<span class="k">print</span>({n: n * n <span class="k">for</span> n <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">6</span>)})</code></pre>
+<div class="lbl mt">Output</div><div class="out">{'HR': 2, 'Tech': 4, 'Sales': 5}
+{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; List comprehension</div>
+<div class="pq"><div class="qn"><b>1.</b> Build a list of the squares of every even number from 1 to 20.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">print</span>([n * n <span class="k">for</span> n <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">21</span>) <span class="k">if</span> n % <span class="o">2</span> == <span class="o">0</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">[4, 16, 36, 64, 100, 144, 196, 256, 324, 400]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> From ['HR','Tech','Sales'], build a list of the names in uppercase.</div>
+<details><summary>Show one way to do it</summary><pre><code>d = ["HR", "Tech", "Sales"]
+<span class="k">print</span>([x.upper() <span class="k">for</span> x <span class="k">in</span> d])</code></pre>
+<div class="lbl mt">Output</div><div class="out">['HR', 'TECH', 'SALES']</div>
+</details></div>
+<div class="pq"><div class="qn"><b>3.</b> Label each mark 'pass' or 'fail' at a cut-off of 60, in one line.</div>
+<details><summary>Show one way to do it</summary><pre><code>m = [<span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>, <span class="o">61</span>, <span class="o">33</span>]
+<span class="k">print</span>(["<span class="k">pass</span>" <span class="k">if</span> x &gt;= <span class="o">60</span> <span class="k">else</span> "fail" <span class="k">for</span> x <span class="k">in</span> m])</code></pre>
+<div class="lbl mt">Output</div><div class="out">['fail', 'pass', 'pass', 'pass', 'fail']</div>
+</details></div>
+</div></section>
+<section class="sec" id="strings"><p class="blurb">Cutting text up, cleaning it, formatting it, and finding patterns in it.</p><nav class="jump"><a href="#strings-and-slicing">Strings and slicing</a><a href="#string-methods">String methods</a><a href="#string-formatting">String formatting</a><a href="#regular-expressions">Regular expressions</a></nav><h2 class="cat" id="strings-and-slicing">Strings and slicing<span class="day">Days 13 &amp; 15</span></h2>
+<article class="e"><h3>Indexing a string</h3>
+<div class="what"><p>A string is a sequence of characters. Counting starts at 0, and -1 is the last one.</p></div>
+<div class="lbl mt">Code</div><pre><code>name = "Analytics"
+
+<span class="k">print</span>(name[<span class="o">0</span>])
+<span class="k">print</span>(name[<span class="o">4</span>])
+<span class="k">print</span>(name[-<span class="o">1</span>])
+<span class="k">print</span>(<span class="k">len</span>(name))</code></pre>
+<div class="lbl mt">Output</div><div class="out">A
+y
+s
+9</div>
+</article>
+<article class="e"><h3>Slicing  [start:stop]</h3>
+<div class="what"><p>Take a piece. The stop is NOT included, so [0:4] gives characters 0, 1, 2 and 3.</p></div>
+<div class="lbl mt">Code</div><pre><code>name = "Analytics"
+
+<span class="k">print</span>(name[<span class="o">0</span>:<span class="o">4</span>])
+<span class="k">print</span>(name[:<span class="o">4</span>])
+<span class="k">print</span>(name[<span class="o">4</span>:])
+<span class="k">print</span>(name[-<span class="o">3</span>:])</code></pre>
+<div class="lbl mt">Output</div><div class="out">Anal
+Anal
+ytics
+ics</div>
+</article>
+<article class="e"><h3>The third number  —  step</h3>
+<div class="what"><p>How big a jump to take. A negative step walks backwards, which is how you reverse a string.</p></div>
+<div class="lbl mt">Code</div><pre><code>name = "Analytics"
+
+<span class="k">print</span>(name[::<span class="o">2</span>])
+<span class="k">print</span>(name[<span class="o">1</span>::<span class="o">2</span>])
+<span class="k">print</span>(name[::-<span class="o">1</span>])        <span class="c"># reversed</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">Aayis
+nltc
+scitylanA</div>
+</article>
+<article class="e"><h3>A string cannot be changed</h3>
+<div class="what"><p>Unlike a list, you cannot assign to one character. Build a new string instead.</p></div>
+<div class="lbl mt">Code</div><pre><code>name = "Analytics"
+name[<span class="o">0</span>] = "X"</code></pre>
+<div class="lbl mt">Output</div><div class="out">TypeError: 'str' object does not support item assignment</div>
+</article>
+<article class="e"><h3>Joining and repeating</h3>
+<div class="what"><p>+ joins two strings, * repeats one. Both make a NEW string.</p></div>
+<div class="lbl mt">Code</div><pre><code>a, b = "Data", "Analytics"
+<span class="k">print</span>(a + " " + b)
+<span class="k">print</span>("-" * <span class="o">20</span>)
+<span class="k">print</span>(a * <span class="o">3</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Data Analytics
+--------------------
+DataDataData</div>
+</article>
+<article class="e"><h3>in  —  is it there?</h3>
+<div class="what"><p>Checks whether one string appears inside another. Hands back True or False.</p></div>
+<div class="lbl mt">Code</div><pre><code>s = "Data Analytics"
+<span class="k">print</span>("Data" <span class="k">in</span> s)
+<span class="k">print</span>("Python" <span class="k">in</span> s)
+<span class="k">print</span>("data" <span class="k">in</span> s)      <span class="c"># case matters</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">True
+False
+False</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Strings and slicing</div>
+<div class="pq"><div class="qn"><b>1.</b> Take the string 'Data Analytics' and print it reversed, then print only the last five characters.</div>
+<details><summary>Show one way to do it</summary><pre><code>s = "Data Analytics"
+<span class="k">print</span>(s[::-<span class="o">1</span>])
+<span class="k">print</span>(s[-<span class="o">5</span>:])</code></pre>
+<div class="lbl mt">Output</div><div class="out">scitylanA ataD
+ytics</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Check whether a word is a palindrome. Test it with 'madam' and with 'python'.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">for</span> w <span class="k">in</span> ["madam", "python"]:
+    <span class="k">print</span>(w, w == w[::-<span class="o">1</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">madam True
+python False</div>
+</details></div>
+<div class="pq"><div class="qn"><b>3.</b> Count the vowels in 'data analytics' without using count().</div>
+<details><summary>Show one way to do it</summary><pre><code>s = "data analytics"
+n = <span class="o">0</span>
+<span class="k">for</span> ch <span class="k">in</span> s:
+    <span class="k">if</span> ch <span class="k">in</span> "aeiou":
+        n = n + <span class="o">1</span>
+<span class="k">print</span>(n)</code></pre>
+<div class="lbl mt">Output</div><div class="out">5</div>
+</details></div>
+</div>
+<h2 class="cat" id="string-methods">String methods<span class="day">Day 16</span></h2>
+<article class="e"><h3>Changing case</h3>
+<div class="what"><p>Four of them, and none of them change the original — they all hand back a new string.</p></div>
+<div class="lbl mt">Code</div><pre><code>s = "data analytics"
+<span class="k">print</span>(s.upper())
+<span class="k">print</span>(s.title())
+<span class="k">print</span>(s.capitalize())
+<span class="k">print</span>("HELLO".lower())
+<span class="k">print</span>(s)        <span class="c"># untouched</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">DATA ANALYTICS
+Data Analytics
+Data analytics
+hello
+data analytics</div>
+</article>
+<article class="e"><h3>strip()  —  removing stray spaces</h3>
+<div class="what"><p>The one you will use most on real data. Takes whitespace off both ends.</p></div>
+<div class="lbl mt">Code</div><pre><code>s = "   Rahul Sharma   "
+<span class="k">print</span>("[" + s + "]")
+<span class="k">print</span>("[" + s.strip() + "]")
+<span class="k">print</span>("[" + s.lstrip() + "]")
+<span class="k">print</span>("[" + s.rstrip() + "]")</code></pre>
+<div class="lbl mt">Output</div><div class="out">[   Rahul Sharma   ]
+[Rahul Sharma]
+[Rahul Sharma   ]
+[   Rahul Sharma]</div>
+</article>
+<article class="e"><h3>replace()</h3>
+<div class="what"><p>Swaps every occurrence of one piece of text for another.</p></div>
+<div class="lbl mt">Code</div><pre><code>s = "Data Analytics"
+<span class="k">print</span>(s.replace("Data", "Business"))
+<span class="k">print</span>("a-b-c".replace("-", " "))
+<span class="k">print</span>(s.replace("a", "*"))</code></pre>
+<div class="lbl mt">Output</div><div class="out">Business Analytics
+a b c
+D*t* An*lytics</div>
+</article>
+<article class="e"><h3>split()  and  join()</h3>
+<div class="what"><p>split cuts a string into a list; join glues a list back into a string. Opposites.</p></div>
+<div class="lbl mt">Code</div><pre><code>s = "HR,Tech,Sales"
+parts = s.split(",")
+<span class="k">print</span>(parts)
+
+<span class="k">print</span>(" | ".join(parts))
+<span class="k">print</span>("Rahul Kumar Sharma".split())     <span class="c"># no argument = split on spaces</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">['HR', 'Tech', 'Sales']
+HR | Tech | Sales
+['Rahul', 'Kumar', 'Sharma']</div>
+</article>
+<article class="e"><h3>find()  and  count()</h3>
+<div class="what"><p>find gives the POSITION of the first match, or -1 if it is not there. count gives how many.</p></div>
+<div class="lbl mt">Code</div><pre><code>s = "statistics"
+<span class="k">print</span>(s.find("t"))
+<span class="k">print</span>(s.find("z"))        <span class="c"># -1, not an error</span>
+<span class="k">print</span>(s.count("t"))
+<span class="k">print</span>(s.count("s"))</code></pre>
+<div class="lbl mt">Output</div><div class="out">1
+-1
+3
+3</div>
+</article>
+<article class="e"><h3>startswith / endswith</h3>
+<div class="what"><p>Checks the beginning or the end. Handy for filenames and codes.</p></div>
+<div class="lbl mt">Code</div><pre><code>f = "employees.csv"
+<span class="k">print</span>(f.endswith(".csv"))
+<span class="k">print</span>(f.startswith("emp"))
+<span class="k">print</span>("EMP1001".startswith("EMP"))</code></pre>
+<div class="lbl mt">Output</div><div class="out">True
+True
+True</div>
+</article>
+<article class="e"><h3>The is... checks</h3>
+<div class="what"><p>Each one asks a yes/no question about what the string contains.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">print</span>("<span class="o">12345</span>".isdigit())
+<span class="k">print</span>("Rahul".isalpha())
+<span class="k">print</span>("Rahul123".isalnum())
+<span class="k">print</span>("   ".isspace())
+<span class="k">print</span>("HELLO".isupper())</code></pre>
+<div class="lbl mt">Output</div><div class="out">True
+True
+True
+True
+True</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; String methods</div>
+<div class="pq"><div class="qn"><b>1.</b> A name arrives as '   rahul SHARMA  '. Clean it up so it reads 'Rahul Sharma'.</div>
+<details><summary>Show one way to do it</summary><pre><code>raw = "   rahul SHARMA  "
+<span class="k">print</span>("[" + raw.strip().title() + "]")</code></pre>
+<div class="lbl mt">Output</div><div class="out">[Rahul Sharma]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Split 'HR,Tech,Sales,Marketing' into a list, then join it back with ' | '.</div>
+<details><summary>Show one way to do it</summary><pre><code>s = "HR,Tech,Sales,Marketing"
+parts = s.split(",")
+<span class="k">print</span>(parts)
+<span class="k">print</span>(" | ".join(parts))</code></pre>
+<div class="lbl mt">Output</div><div class="out">['HR', 'Tech', 'Sales', 'Marketing']
+HR | Tech | Sales | Marketing</div>
+</details></div>
+<div class="pq"><div class="qn"><b>3.</b> Count how many times each letter appears in 'statistics' and print the most common one.</div>
+<details><summary>Show one way to do it</summary><pre><code>w = "statistics"
+c = {}
+<span class="k">for</span> ch <span class="k">in</span> w:
+    c[ch] = c.get(ch, <span class="o">0</span>) + <span class="o">1</span>
+<span class="k">print</span>(c)
+<span class="k">print</span>("most common:", max(c, key=c.get))</code></pre>
+<div class="lbl mt">Output</div><div class="out">{'s': 3, 't': 3, 'a': 1, 'i': 2, 'c': 1}
+most common: s</div>
+</details></div>
+</div>
+<h2 class="cat" id="string-formatting">String formatting<span class="day">Day 17</span></h2>
+<article class="e"><h3>f-strings</h3>
+<div class="what"><p>Put an f before the quote and anything in curly brackets is worked out and dropped in.</p></div>
+<div class="lbl mt">Code</div><pre><code>name, dept, salary = "Rahul", "HR", <span class="o">47764</span>
+
+<span class="k">print</span>(f"{name} works <span class="k">in</span> {dept} <span class="k">and</span> earns {salary}")
+<span class="k">print</span>(f"next year: {salary * <span class="o">1.1</span>}")</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul works in HR and earns 47764
+next year: 52540.4</div>
+</article>
+<article class="e"><h3>Rounding inside an f-string</h3>
+<div class="what"><p>:.2f means two decimal places. This is how you stop a salary printing as 52540.400000000001.</p></div>
+<div class="lbl mt">Code</div><pre><code>salary = <span class="o">47764</span>
+hiked = salary * <span class="o">1.1</span>
+
+<span class="k">print</span>(f"raw     {hiked}")
+<span class="k">print</span>(f"rounded {hiked:.2f}")
+<span class="k">print</span>(f"no dp   {hiked:.0f}")</code></pre>
+<div class="lbl mt">Output</div><div class="out">raw     52540.4
+rounded 52540.40
+no dp   52540</div>
+</article>
+<article class="e"><h3>Lining things up</h3>
+<div class="what"><p>A number after &lt; &gt; or ^ sets the width, which is how you get columns that line up.</p></div>
+<div class="lbl mt">Code</div><pre><code>rows = [("HR", <span class="o">45</span>), ("Marketing", <span class="o">42</span>), ("Tech", <span class="o">49</span>)]
+
+<span class="k">for</span> d, n <span class="k">in</span> rows:
+    <span class="k">print</span>(f"{d:&lt;<span class="o">12</span>}{n:&gt;<span class="o">5</span>}")</code></pre>
+<div class="lbl mt">Output</div><div class="out">HR             45
+Marketing      42
+Tech           49</div>
+</article>
+<article class="e"><h3>format()  —  the older way</h3>
+<div class="what"><p>You will still meet this in older code. The curly brackets are filled in order.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">print</span>("{} works <span class="k">in</span> {}".format("Rahul", "HR"))
+<span class="k">print</span>("{<span class="o">1</span>} then {<span class="o">0</span>}".format("second", "first"))
+<span class="k">print</span>("{:.2f}".format(<span class="o">3.14159</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul works in HR
+first then second
+3.14</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; String formatting</div>
+<div class="pq"><div class="qn"><b>1.</b> Print a small table of three departments and their headcounts, with the numbers lined up.</div>
+<details><summary>Show one way to do it</summary><pre><code>rows = [("HR", <span class="o">45</span>), ("Marketing", <span class="o">42</span>), ("Tech", <span class="o">49</span>)]
+<span class="k">for</span> d, n <span class="k">in</span> rows:
+    <span class="k">print</span>(f"{d:&lt;<span class="o">12</span>}{n:&gt;<span class="o">4</span>}")</code></pre>
+<div class="lbl mt">Output</div><div class="out">HR            45
+Marketing     42
+Tech          49</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> A salary of 47764 gets a 12% hike. Print the new salary to two decimal places using an f-string.</div>
+<details><summary>Show one way to do it</summary><pre><code>s = <span class="o">47764</span>
+<span class="k">print</span>(f"new salary: {s * <span class="o">1.12</span>:.2f}")</code></pre>
+<div class="lbl mt">Output</div><div class="out">new salary: 53495.68</div>
+</details></div>
+</div>
+<h2 class="cat" id="regular-expressions">Regular expressions<span class="day">Days 18-20</span></h2>
+<article class="e"><h3>What a meta character is</h3>
+<div class="what"><p>A character that means something other than itself. These are the ones that matter.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">print</span>(r"\d   any digit <span class="o">0</span>-<span class="o">9</span>")
+<span class="k">print</span>(r"\w   any letter, digit <span class="k">or</span> underscore")
+<span class="k">print</span>(r"\s   any space, tab <span class="k">or</span> newline")
+<span class="k">print</span>(r".    any character at all")
+<span class="k">print</span>(r"^    start of the string")
+<span class="k">print</span>(r"$    end of the string")
+<span class="k">print</span>(r"+    one <span class="k">or</span> more")
+<span class="k">print</span>(r"*    zero <span class="k">or</span> more")
+<span class="k">print</span>(r"?    zero <span class="k">or</span> one")
+<span class="k">print</span>(r"{n}  exactly n of them")</code></pre>
+<div class="lbl mt">Output</div><div class="out">\d   any digit 0-9
+\w   any letter, digit or underscore
+\s   any space, tab or newline
+.    any character at all
+^    start of the string
+$    end of the string
++    one or more
+*    zero or more
+?    zero or one
+{n}  exactly n of them</div>
+</article>
+<article class="e"><h3>re.findall()</h3>
+<div class="what"><p>Finds EVERY match and hands them back as a list. The one you will use most.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">import</span> re
+
+s = "Rahul <span class="o">1001</span>, Priya <span class="o">1002</span>, Amit <span class="o">1003</span>"
+<span class="k">print</span>(re.findall(r"\d+", s))
+<span class="k">print</span>(re.findall(r"[A-Z][a-z]+", s))</code></pre>
+<div class="lbl mt">Output</div><div class="out">['1001', '1002', '1003']
+['Rahul', 'Priya', 'Amit']</div>
+</article>
+<article class="e"><h3>re.search()</h3>
+<div class="what"><p>Finds the FIRST match anywhere and hands back a match object, or None.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">import</span> re
+
+s = "Employee ID <span class="k">is</span> EMP1001"
+m = re.search(r"EMP\d+", s)
+<span class="k">print</span>(m)
+<span class="k">print</span>(m.group())
+<span class="k">print</span>(re.search(r"XYZ", s))      <span class="c"># None</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">&lt;re.Match object; span=(15, 22), match='EMP1001'&gt;
+EMP1001
+None</div>
+</article>
+<article class="e"><h3>re.match()  —  only at the start</h3>
+<div class="what"><p>Same as search, but it only looks at the beginning of the string.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">import</span> re
+
+<span class="k">print</span>(re.match(r"EMP", "EMP1001"))
+<span class="k">print</span>(re.match(r"<span class="o">1001</span>", "EMP1001"))     <span class="c"># None - not at the start</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">&lt;re.Match object; span=(0, 3), match='EMP'&gt;
+None</div>
+</article>
+<article class="e"><h3>re.sub()  —  find and replace</h3>
+<div class="what"><p>Replaces every match with something else. A find-and-replace that understands patterns.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">import</span> re
+
+s = "Call <span class="o">9876543210</span> <span class="k">or</span> <span class="o">9123456789</span>"
+<span class="k">print</span>(re.sub(r"\d", "X", s))
+<span class="k">print</span>(re.sub(r"\d{<span class="o">10</span>}", "[hidden]", s))</code></pre>
+<div class="lbl mt">Output</div><div class="out">Call XXXXXXXXXX or XXXXXXXXXX
+Call [hidden] or [hidden]</div>
+</article>
+<article class="e"><h3>re.split()</h3>
+<div class="what"><p>Splits on a pattern rather than on one fixed character.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">import</span> re
+
+<span class="k">print</span>(re.split(r"[,;]", "HR,Tech;Sales,Marketing"))
+<span class="k">print</span>(re.split(r"\s+", "too    many     spaces"))</code></pre>
+<div class="lbl mt">Output</div><div class="out">['HR', 'Tech', 'Sales', 'Marketing']
+['too', 'many', 'spaces']</div>
+</article>
+<article class="e"><h3>A real check  —  is this an email?</h3>
+<div class="what"><p>Putting the pieces together. ^ and $ mean the WHOLE string has to match, not just part of it.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">import</span> re
+
+pattern = r"^[\w.]+@[\w]+\.[a-z]{<span class="o">2</span>,}$"
+
+<span class="k">for</span> e <span class="k">in</span> ["rahul@tap.com", "priya.s@tap.co.<span class="k">in</span>", "<span class="k">not</span>-an-email", "a@b"]:
+    <span class="k">print</span>(e.ljust(<span class="o">20</span>), bool(re.match(pattern, e)))</code></pre>
+<div class="lbl mt">Output</div><div class="out">rahul@tap.com        True
+priya.s@tap.co.in    False
+not-an-email         False
+a@b                  False</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Regular expressions</div>
+<div class="pq"><div class="qn"><b>1.</b> Pull every number out of 'Order 12 shipped on 2026-10-30 for 450 rupees'.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> re
+<span class="k">print</span>(re.findall(r"\d+", "Order <span class="o">12</span> shipped on <span class="o">2026</span>-<span class="o">10</span>-<span class="o">30</span> <span class="k">for</span> <span class="o">450</span> rupees"))</code></pre>
+<div class="lbl mt">Output</div><div class="out">['12', '2026', '10', '30', '450']</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Hide every 10-digit phone number in a line of text.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> re
+s = "Call <span class="o">9876543210</span> <span class="k">or</span> <span class="o">9123456789</span> today"
+<span class="k">print</span>(re.sub(r"\d{<span class="o">10</span>}", "[hidden]", s))</code></pre>
+<div class="lbl mt">Output</div><div class="out">Call [hidden] or [hidden] today</div>
+</details></div>
+<div class="pq"><div class="qn"><b>3.</b> Check which of these are valid employee IDs in the form EMP followed by exactly four digits.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> re
+<span class="k">for</span> x <span class="k">in</span> ["EMP1001", "EMP10", "emp1001", "EMP12345"]:
+    <span class="k">print</span>(x.ljust(<span class="o">10</span>), bool(re.match(r"^EMP\d{<span class="o">4</span>}$", x)))</code></pre>
+<div class="lbl mt">Output</div><div class="out">EMP1001    True
+EMP10      False
+emp1001    False
+EMP12345   False</div>
+</details></div>
+</div></section>
+<section class="sec" id="oop"><p class="blurb">Reading and writing files, surviving a crash, and organising code into classes.</p><nav class="jump"><a href="#file-handling">File handling</a><a href="#error-handling">Error handling</a><a href="#classes-and-objects">Classes and objects</a><a href="#the-four-pillars">The four pillars</a></nav><h2 class="cat" id="file-handling">File handling<span class="day">Days 24-25</span></h2>
+<article class="e"><h3>open() and the three modes</h3>
+<div class="what"><p>"w" writes and WIPES whatever was there. "a" adds to the end. "r" reads. Choose carefully.</p></div>
+<div class="lbl mt">Code</div><pre><code>f = open("notes.txt", "w")
+f.write("first line\n")
+f.write("second line\n")
+f.close()
+
+f = open("notes.txt", "r")
+<span class="k">print</span>(f.read())
+f.close()</code></pre>
+<div class="lbl mt">Output</div><div class="out">first line
+second line</div>
+</article>
+<article class="e"><h3>"w" wipes the file</h3>
+<div class="what"><p>The mistake that loses work. Opening in w mode empties the file before you write a single thing.</p></div>
+<div class="lbl mt">Code</div><pre><code>open("data.txt", "w").write("original content\n")
+
+open("data.txt", "w").write("new content\n")   <span class="c"># the original is GONE</span>
+
+<span class="k">print</span>(open("data.txt").read())</code></pre>
+<div class="lbl mt">Output</div><div class="out">new content</div>
+</article>
+<article class="e"><h3>"a" adds instead</h3>
+<div class="what"><p>Append mode keeps what is already there and writes underneath it.</p></div>
+<div class="lbl mt">Code</div><pre><code>open("log.txt", "w").write("line <span class="o">1</span>\n")
+open("log.txt", "a").write("line <span class="o">2</span>\n")
+open("log.txt", "a").write("line <span class="o">3</span>\n")
+
+<span class="k">print</span>(open("log.txt").read())</code></pre>
+<div class="lbl mt">Output</div><div class="out">line 1
+line 2
+line 3</div>
+</article>
+<article class="e"><h3>read / readline / readlines</h3>
+<div class="what"><p>read gives one big string, readline gives one line, readlines gives a list of lines.</p></div>
+<div class="lbl mt">Code</div><pre><code>open("f.txt", "w").write("alpha\nbeta\ngamma\n")
+
+f = open("f.txt")
+<span class="k">print</span>(repr(f.readline()))
+f.close()
+
+f = open("f.txt")
+<span class="k">print</span>(f.readlines())
+f.close()</code></pre>
+<div class="lbl mt">Output</div><div class="out">'alpha\n'
+['alpha\n', 'beta\n', 'gamma\n']</div>
+</article>
+<article class="e"><h3>Looping over a file</h3>
+<div class="what"><p>The normal way to read a file line by line. strip() takes the newline off each one.</p></div>
+<div class="lbl mt">Code</div><pre><code>open("f.txt", "w").write("HR\nTech\nSales\n")
+
+f = open("f.txt")
+<span class="k">for</span> line <span class="k">in</span> f:
+    <span class="k">print</span>("[" + line.strip() + "]")
+f.close()</code></pre>
+<div class="lbl mt">Output</div><div class="out">[HR]
+[Tech]
+[Sales]</div>
+</article>
+<article class="e"><h3>with open()  —  closes it for you</h3>
+<div class="what"><p>The version to actually use. The file is closed automatically, even if the code inside fails.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">with</span> open("f.txt", "w") <span class="k">as</span> f:
+    f.write("written safely\n")
+
+<span class="k">with</span> open("f.txt") <span class="k">as</span> f:
+    <span class="k">print</span>(f.read().strip())
+
+<span class="k">print</span>("file closed?", f.closed)</code></pre>
+<div class="lbl mt">Output</div><div class="out">written safely
+file closed? True</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; File handling</div>
+<div class="pq"><div class="qn"><b>1.</b> Write three department names to a file, then read it back and print each one without the newline.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">with</span> open("d.txt", "w") <span class="k">as</span> f:
+    <span class="k">for</span> d <span class="k">in</span> ["HR", "Tech", "Sales"]:
+        f.write(d + "\n")
+
+<span class="k">with</span> open("d.txt") <span class="k">as</span> f:
+    <span class="k">for</span> line <span class="k">in</span> f:
+        <span class="k">print</span>("[" + line.strip() + "]")</code></pre>
+<div class="lbl mt">Output</div><div class="out">[HR]
+[Tech]
+[Sales]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Append two more lines to an existing file and print how many lines it has in total.</div>
+<details><summary>Show one way to do it</summary><pre><code>open("d.txt", "w").write("HR\nTech\n")
+<span class="k">with</span> open("d.txt", "a") <span class="k">as</span> f:
+    f.write("Sales\n")
+    f.write("Marketing\n")
+<span class="k">print</span>(<span class="k">len</span>(open("d.txt").readlines()), "lines")</code></pre>
+<div class="lbl mt">Output</div><div class="out">4 lines</div>
+</details></div>
+<div class="pq"><div class="qn"><b>3.</b> Read a file of numbers, one per line, and print their total.</div>
+<details><summary>Show one way to do it</summary><pre><code>open("n.txt", "w").write("<span class="o">10</span>\n20\n30\n")
+total = <span class="o">0</span>
+<span class="k">with</span> open("n.txt") <span class="k">as</span> f:
+    <span class="k">for</span> line <span class="k">in</span> f:
+        total = total + int(line.strip())
+<span class="k">print</span>(total)</code></pre>
+<div class="lbl mt">Output</div><div class="out">60</div>
+</details></div>
+</div>
+<h2 class="cat" id="error-handling">Error handling<span class="day">Day 25</span></h2>
+<article class="e"><h3>Why it exists</h3>
+<div class="what"><p>Without it, one bad value stops the whole program and nothing after it runs.</p></div>
+<div class="lbl mt">Code</div><pre><code>nums = ["<span class="o">10</span>", "<span class="o">20</span>", "abc", "<span class="o">30</span>"]
+
+<span class="k">for</span> n <span class="k">in</span> nums:
+    <span class="k">print</span>(int(n))      <span class="c"># stops dead on "abc"</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">10
+20
+ValueError: invalid literal for int() with base 10: 'abc'</div>
+</article>
+<article class="e"><h3>try  /  except</h3>
+<div class="what"><p>Try the risky line. If it fails, run the except block instead of stopping.</p></div>
+<div class="lbl mt">Code</div><pre><code>nums = ["<span class="o">10</span>", "<span class="o">20</span>", "abc", "<span class="o">30</span>"]
+
+<span class="k">for</span> n <span class="k">in</span> nums:
+    <span class="k">try</span>:
+        <span class="k">print</span>(int(n))
+    <span class="k">except</span>:
+        <span class="k">print</span>(n, "<span class="k">is</span> <span class="k">not</span> a number - skipped")</code></pre>
+<div class="lbl mt">Output</div><div class="out">10
+20
+abc is not a number - skipped
+30</div>
+</article>
+<article class="e"><h3>Catching a SPECIFIC error</h3>
+<div class="what"><p>A bare except hides every problem, including the ones you wanted to know about. Name the error.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> divide(a, b):
+    <span class="k">try</span>:
+        <span class="k">return</span> a / b
+    <span class="k">except</span> ZeroDivisionError:
+        <span class="k">return</span> "cannot divide by zero"
+
+<span class="k">print</span>(divide(<span class="o">10</span>, <span class="o">2</span>))
+<span class="k">print</span>(divide(<span class="o">10</span>, <span class="o">0</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">5.0
+cannot divide by zero</div>
+</article>
+<article class="e"><h3>More than one except</h3>
+<div class="what"><p>Different problems, different handling. Python runs the first one that matches.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">for</span> value, divisor <span class="k">in</span> [("<span class="o">10</span>", <span class="o">2</span>), ("abc", <span class="o">2</span>), ("<span class="o">10</span>", <span class="o">0</span>)]:
+    <span class="k">try</span>:
+        <span class="k">print</span>(int(value) / divisor)
+    <span class="k">except</span> ValueError:
+        <span class="k">print</span>("<span class="k">not</span> a number:", value)
+    <span class="k">except</span> ZeroDivisionError:
+        <span class="k">print</span>("divisor was zero")</code></pre>
+<div class="lbl mt">Output</div><div class="out">5.0
+not a number: abc
+divisor was zero</div>
+</article>
+<article class="e"><h3>else  and  finally</h3>
+<div class="what"><p>else runs only when nothing failed. finally runs either way — it is where you clean up.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">def</span> read(n):
+    <span class="k">try</span>:
+        v = int(n)
+    <span class="k">except</span> ValueError:
+        <span class="k">print</span>("bad input")
+    <span class="k">else</span>:
+        <span class="k">print</span>("worked:", v)
+    <span class="k">finally</span>:
+        <span class="k">print</span>("-- done --")
+
+read("<span class="o">25</span>")
+read("xyz")</code></pre>
+<div class="lbl mt">Output</div><div class="out">worked: 25
+-- done --
+bad input
+-- done --</div>
+</article>
+<article class="e"><h3>The error names worth knowing</h3>
+<div class="what"><p>Each one tells you something different. Read the name before you read anything else.</p></div>
+<div class="lbl mt">Code</div><pre><code>tests = [<span class="k">lambda</span>: int("abc"),
+         <span class="k">lambda</span>: <span class="o">10</span> / <span class="o">0</span>,
+         <span class="k">lambda</span>: [<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>][<span class="o">9</span>],
+         <span class="k">lambda</span>: {"a": <span class="o">1</span>}["b"],
+         <span class="k">lambda</span>: "<span class="o">5</span>" + <span class="o">5</span>]
+
+<span class="k">for</span> t <span class="k">in</span> tests:
+    <span class="k">try</span>:
+        t()
+    <span class="k">except</span> Exception <span class="k">as</span> e:
+        <span class="k">print</span>(type(e).__name__, "-", e)</code></pre>
+<div class="lbl mt">Output</div><div class="out">ValueError - invalid literal for int() with base 10: 'abc'
+ZeroDivisionError - division by zero
+IndexError - list index out of range
+KeyError - 'b'
+TypeError - can only concatenate str (not "int") to str</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Error handling</div>
+<div class="pq"><div class="qn"><b>1.</b> Ask for a number and keep going even if the user types text instead.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">for</span> entry <span class="k">in</span> ["<span class="o">25</span>", "hello"]:
+    <span class="k">try</span>:
+        <span class="k">print</span>("doubled:", int(entry) * <span class="o">2</span>)
+    <span class="k">except</span> ValueError:
+        <span class="k">print</span>(entry, "<span class="k">is</span> <span class="k">not</span> a number")</code></pre>
+<div class="lbl mt">Output</div><div class="out">doubled: 50
+hello is not a number</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Write a safe divide function that handles both a zero divisor and a non-numeric input.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> safe(a, b):
+    <span class="k">try</span>:
+        <span class="k">return</span> int(a) / int(b)
+    <span class="k">except</span> ZeroDivisionError:
+        <span class="k">return</span> "cannot divide by zero"
+    <span class="k">except</span> ValueError:
+        <span class="k">return</span> "give me numbers"
+
+<span class="k">print</span>(safe(<span class="o">10</span>, <span class="o">2</span>))
+<span class="k">print</span>(safe(<span class="o">10</span>, <span class="o">0</span>))
+<span class="k">print</span>(safe("x", <span class="o">2</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">5.0
+cannot divide by zero
+give me numbers</div>
+</details></div>
+<div class="pq"><div class="qn"><b>3.</b> Try to open a file that does not exist and print a friendly message instead of crashing.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">try</span>:
+    <span class="k">with</span> open("missing.txt") <span class="k">as</span> f:
+        <span class="k">print</span>(f.read())
+<span class="k">except</span> FileNotFoundError:
+    <span class="k">print</span>("that file <span class="k">is</span> <span class="k">not</span> here")</code></pre>
+<div class="lbl mt">Output</div><div class="out">that file is not here</div>
+</details></div>
+</div>
+<h2 class="cat" id="classes-and-objects">Classes and objects<span class="day">Days 26-28</span></h2>
+<article class="e"><h3>class and object</h3>
+<div class="what"><p>A class is the blueprint. An object is one real thing built from it. One class, many objects.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">class</span> Employee:
+    <span class="k">pass</span>
+
+e1 = Employee()
+e2 = Employee()
+<span class="k">print</span>(type(e1))
+<span class="k">print</span>(e1 <span class="k">is</span> e2)      <span class="c"># two different objects</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">&lt;class '__main__.Employee'&gt;
+False</div>
+</article>
+<article class="e"><h3>__init__  and  self</h3>
+<div class="what"><p>__init__ runs automatically when an object is made. self is that object — it is how each one keeps its own values.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name, dept, salary):
+        self.name = name
+        self.dept = dept
+        self.salary = salary
+
+e = Employee("Rahul", "HR", <span class="o">47764</span>)
+<span class="k">print</span>(e.name, e.dept, e.salary)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul HR 47764</div>
+</article>
+<article class="e"><h3>Methods</h3>
+<div class="what"><p>A function inside a class. It always takes self first, so it can reach the object's own values.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    <span class="k">def</span> hike(self, pct):
+        self.salary = self.salary + self.salary * pct / <span class="o">100</span>
+        <span class="k">return</span> self.salary
+
+    <span class="k">def</span> show(self):
+        <span class="k">print</span>(self.name, "earns", self.salary)
+
+e = Employee("Rahul", <span class="o">47764</span>)
+e.show()
+e.hike(<span class="o">10</span>)
+e.show()</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul earns 47764
+Rahul earns 52540.4</div>
+</article>
+<article class="e"><h3>Each object keeps its own data</h3>
+<div class="what"><p>This is the point of self. Two objects from one class do not share anything.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+a = Employee("Rahul", <span class="o">47764</span>)
+b = Employee("Priya", <span class="o">62990</span>)
+
+a.salary = <span class="o">50000</span>
+<span class="k">print</span>(a.name, a.salary)
+<span class="k">print</span>(b.name, b.salary)     <span class="c"># untouched</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul 50000
+Priya 62990</div>
+</article>
+<article class="e"><h3>Objects in a list</h3>
+<div class="what"><p>Once objects are in a list you can loop over them like any other data. This is where it becomes useful.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name, dept, salary):
+        self.name, self.dept, self.salary = name, dept, salary
+
+staff = [Employee("Rahul", "HR", <span class="o">47764</span>),
+         Employee("Priya", "Tech", <span class="o">62990</span>),
+         Employee("Amit", "Sales", <span class="o">51200</span>)]
+
+<span class="k">for</span> e <span class="k">in</span> staff:
+    <span class="k">print</span>(e.name.ljust(<span class="o">8</span>), e.dept.ljust(<span class="o">7</span>), e.salary)
+
+total = sum(e.salary <span class="k">for</span> e <span class="k">in</span> staff)
+<span class="k">print</span>("total payroll:", total)
+<span class="k">print</span>("average      :", total / <span class="k">len</span>(staff))</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul    HR      47764
+Priya    Tech    62990
+Amit     Sales   51200
+total payroll: 161954
+average      : 53984.666666666664</div>
+</article>
+<article class="e"><h3>Filtering a list of objects</h3>
+<div class="what"><p>Everything you learned about lists still applies — the items just happen to be objects.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name, dept, salary):
+        self.name, self.dept, self.salary = name, dept, salary
+
+staff = [Employee("Rahul", "HR", <span class="o">47764</span>),
+         Employee("Priya", "Tech", <span class="o">62990</span>),
+         Employee("Amit", "Tech", <span class="o">51200</span>)]
+
+tech = [e <span class="k">for</span> e <span class="k">in</span> staff <span class="k">if</span> e.dept == "Tech"]
+<span class="k">for</span> e <span class="k">in</span> tech:
+    <span class="k">print</span>(e.name)
+
+<span class="k">print</span>("highest paid:", max(staff, key=<span class="k">lambda</span> e: e.salary).name)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Priya
+Amit
+highest paid: Priya</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; Classes and objects</div>
+<div class="pq"><div class="qn"><b>1.</b> Build a Student class with name and three marks, and a method that returns the average.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">class</span> Student:
+    <span class="k">def</span> __init__(self, name, m1, m2, m3):
+        self.name = name
+        self.marks = [m1, m2, m3]
+
+    <span class="k">def</span> average(self):
+        <span class="k">return</span> sum(self.marks) / <span class="k">len</span>(self.marks)
+
+s = Student("Rahul", <span class="o">45</span>, <span class="o">72</span>, <span class="o">88</span>)
+<span class="k">print</span>(s.name, "-&gt;", s.average())</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul -&gt; 68.33333333333333</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Make a list of four Employee objects and print the one with the highest salary.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name, salary):
+        self.name, self.salary = name, salary
+
+staff = [Employee("Rahul", <span class="o">47764</span>), Employee("Priya", <span class="o">62990</span>),
+         Employee("Amit", <span class="o">51200</span>), Employee("Kavya", <span class="o">58300</span>)]
+
+top = max(staff, key=<span class="k">lambda</span> e: e.salary)
+<span class="k">print</span>(top.name, top.salary)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Priya 62990</div>
+</details></div>
+<div class="pq"><div class="qn"><b>3.</b> From a list of Employee objects, print the average salary of the Tech department only.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name, dept, salary):
+        self.name, self.dept, self.salary = name, dept, salary
+
+staff = [Employee("Rahul", "HR", <span class="o">47764</span>), Employee("Priya", "Tech", <span class="o">62990</span>),
+         Employee("Amit", "Tech", <span class="o">51200</span>)]
+
+tech = [e.salary <span class="k">for</span> e <span class="k">in</span> staff <span class="k">if</span> e.dept == "Tech"]
+<span class="k">print</span>(sum(tech) / <span class="k">len</span>(tech))</code></pre>
+<div class="lbl mt">Output</div><div class="out">57095.0</div>
+</details></div>
+</div>
+<h2 class="cat" id="the-four-pillars">The four pillars<span class="day">Day 29</span></h2>
+<article class="e"><h3>The four, in one line each</h3>
+<div class="what"><p>Introduced together in the last session. Each one is a way of organising code, not a new syntax.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">print</span>("ENCAPSULATION  keep the data <span class="k">and</span> the code that uses it together")
+<span class="k">print</span>("INHERITANCE    a <span class="k">class</span> can take everything another <span class="k">class</span> has")
+<span class="k">print</span>("POLYMORPHISM   the same method name behaving differently")
+<span class="k">print</span>("ABSTRACTION    show what it does, hide how it does it")</code></pre>
+<div class="lbl mt">Output</div><div class="out">ENCAPSULATION  keep the data and the code that uses it together
+INHERITANCE    a class can take everything another class has
+POLYMORPHISM   the same method name behaving differently
+ABSTRACTION    show what it does, hide how it does it</div>
+</article>
+<article class="e"><h3>Encapsulation</h3>
+<div class="what"><p>The data and the methods that work on it live in the same class. Two underscores marks something as internal.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">class</span> Account:
+    <span class="k">def</span> __init__(self, holder, balance):
+        self.holder   = holder
+        self.__balance = balance        <span class="c"># internal</span>
+
+    <span class="k">def</span> deposit(self, amount):
+        self.__balance = self.__balance + amount
+
+    <span class="k">def</span> show(self):
+        <span class="k">print</span>(self.holder, "balance:", self.__balance)
+
+a = Account("Rahul", <span class="o">1000</span>)
+a.deposit(<span class="o">500</span>)
+a.show()
+<span class="k">print</span>(hasattr(a, "__balance"))      <span class="c"># not reachable from outside</span></code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul balance: 1500
+False</div>
+</article>
+<article class="e"><h3>Inheritance</h3>
+<div class="what"><p>Put the parent class in the brackets and the child gets everything it has, for free.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name):
+        self.name = name
+
+    <span class="k">def</span> show(self):
+        <span class="k">print</span>("Employee:", self.name)
+
+<span class="k">class</span> Manager(Employee):          <span class="c"># inherits</span>
+    <span class="k">pass</span>
+
+m = Manager("Priya")
+m.show()                          <span class="c"># a method it never defined</span>
+<span class="k">print</span>(isinstance(m, Employee))</code></pre>
+<div class="lbl mt">Output</div><div class="out">Employee: Priya
+True</div>
+</article>
+<article class="e"><h3>super()  —  extending the parent</h3>
+<div class="what"><p>Call the parent's version first, then add to it, instead of rewriting what already works.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name):
+        self.name = name
+
+<span class="k">class</span> Manager(Employee):
+    <span class="k">def</span> __init__(self, name, team):
+        <span class="k">super</span>().__init__(name)        <span class="c"># reuse the parent</span>
+        self.team = team
+
+m = Manager("Priya", <span class="o">6</span>)
+<span class="k">print</span>(m.name, "manages", m.team, "people")</code></pre>
+<div class="lbl mt">Output</div><div class="out">Priya manages 6 people</div>
+</article>
+<article class="e"><h3>Polymorphism  —  overriding</h3>
+<div class="what"><p>The child defines a method the parent already has. Same name, different behaviour.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> role(self):
+        <span class="k">print</span>("does the work")
+
+<span class="k">class</span> Manager(Employee):
+    <span class="k">def</span> role(self):               <span class="c"># overrides</span>
+        <span class="k">print</span>("assigns the work")
+
+<span class="k">class</span> Intern(Employee):
+    <span class="k">pass</span>                          <span class="c"># keeps the parent version</span>
+
+<span class="k">for</span> p <span class="k">in</span> [Employee(), Manager(), Intern()]:
+    p.role()</code></pre>
+<div class="lbl mt">Output</div><div class="out">does the work
+assigns the work
+does the work</div>
+</article>
+<article class="e"><h3>Abstraction</h3>
+<div class="what"><p>The caller uses hike() without knowing how it works. A base class can name a method and leave the detail to the children.</p></div>
+<div class="lbl mt">Code</div><pre><code><span class="k">class</span> Payroll:
+    <span class="k">def</span> calculate(self):
+        <span class="k">pass</span>                      <span class="c"># the parent only NAMES it</span>
+
+<span class="k">class</span> Monthly(Payroll):
+    <span class="k">def</span> calculate(self):
+        <span class="k">return</span> <span class="o">50000</span>
+
+<span class="k">class</span> Hourly(Payroll):
+    <span class="k">def</span> calculate(self):
+        <span class="k">return</span> <span class="o">250</span> * <span class="o">160</span>
+
+<span class="k">for</span> p <span class="k">in</span> [Monthly(), Hourly()]:
+    <span class="k">print</span>(type(p).__name__, "-&gt;", p.calculate())</code></pre>
+<div class="lbl mt">Output</div><div class="out">Monthly -&gt; 50000
+Hourly -&gt; 40000</div>
+</article>
+<div class="prac"><div class="prachead">Practice &mdash; The four pillars</div>
+<div class="pq"><div class="qn"><b>1.</b> Make a Vehicle class with a method describe(), then a Car class that overrides it.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">class</span> Vehicle:
+    <span class="k">def</span> describe(self):
+        <span class="k">print</span>("a vehicle that moves")
+
+<span class="k">class</span> Car(Vehicle):
+    <span class="k">def</span> describe(self):
+        <span class="k">print</span>("a car <span class="k">with</span> four wheels")
+
+<span class="k">for</span> v <span class="k">in</span> [Vehicle(), Car()]:
+    v.describe()</code></pre>
+<div class="lbl mt">Output</div><div class="out">a vehicle that moves
+a car with four wheels</div>
+</details></div>
+<div class="pq"><div class="qn"><b>2.</b> Make a Manager class that inherits Employee and adds a team size, reusing the parent's __init__ with super().</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name, salary):
+        self.name, self.salary = name, salary
+    <span class="k">def</span> show(self):
+        <span class="k">print</span>(self.name, self.salary)
+
+<span class="k">class</span> Manager(Employee):
+    <span class="k">def</span> __init__(self, name, salary, team):
+        <span class="k">super</span>().__init__(name, salary)
+        self.team = team
+    <span class="k">def</span> show(self):
+        <span class="k">super</span>().show()
+        <span class="k">print</span>("  manages", self.team, "people")
+
+Manager("Priya", <span class="o">90000</span>, <span class="o">6</span>).show()</code></pre>
+<div class="lbl mt">Output</div><div class="out">Priya 90000
+  manages 6 people</div>
+</details></div>
+</div></section>
+<footer>TAP Academy &mdash; Data Analytics &middot; 124 entries and 55 practice questions, all executed</footer>
+</div>
+<button class="tt" id="tt">Theme</button>
+<script>
+(function(){
+ var tabs=[].slice.call(document.querySelectorAll('.tab'));
+ var secs=[].slice.call(document.querySelectorAll('.sec'));
+ function show(id,setHash){
+   tabs.forEach(function(b){b.classList.toggle('on',b.dataset.go===id);});
+   secs.forEach(function(s){s.classList.toggle('on',s.id===id);});
+   try{localStorage.setItem('pyref-tab',id);}catch(e){}
+   if(setHash && location.hash.slice(1)!==id) history.replaceState(null,'','#'+id);
+ }
+ tabs.forEach(function(b){b.onclick=function(){show(b.dataset.go,true);window.scrollTo(0,0);};});
+ var ids=secs.map(function(s){return s.id;});
+ var start=ids[0],h=location.hash.slice(1);
+ if(ids.indexOf(h)>=0) start=h;
+ else{try{var v=localStorage.getItem('pyref-tab'); if(ids.indexOf(v)>=0) start=v;}catch(e){}}
+ show(start,false);
+ window.scrollTo(0,0);
+ var m=['auto','light','dark'],i=0;
+ try{var t=localStorage.getItem('steep-theme'); if(t) i=m.indexOf(t);}catch(e){}
+ if(i<0)i=0;
+ function ap(){var v=m[i];
+  if(v==='auto') document.documentElement.removeAttribute('data-theme');
+  else document.documentElement.setAttribute('data-theme',v);
+  document.getElementById('tt').textContent=v.charAt(0).toUpperCase()+v.slice(1);
+  try{localStorage.setItem('steep-theme',v);}catch(e){}}
+ document.getElementById('tt').onclick=function(){i=(i+1)%3;ap();};ap();
+})();
+</script>
+</body></html>

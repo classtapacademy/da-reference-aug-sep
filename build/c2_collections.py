@@ -1,0 +1,126 @@
+# -*- coding: utf-8 -*-
+from runner import build
+
+ROWS = [
+# ---------------- Loops ----------------
+dict(cat="Loops", name="for  —  over a list",
+ desc="Walks through a collection one item at a time. The variable after for is a name you choose.",
+ code='depts = ["HR", "Tech", "Sales", "Marketing"]\n\nfor d in depts:\n    print(d)'),
+dict(cat="Loops", name="range()",
+ desc="Produces a run of numbers. The stop value is NEVER included — range(5) gives 0 to 4.",
+ code='for i in range(5):\n    print(i, end=" ")\nprint()\n\nfor i in range(1, 6):\n    print(i, end=" ")\nprint()\n\nfor i in range(0, 20, 5):      # start, stop, step\n    print(i, end=" ")'),
+dict(cat="Loops", name="for with an index",
+ desc="range(len(...)) gives you the positions, which you need when you want the position as well as the value.",
+ code='depts = ["HR", "Tech", "Sales"]\n\nfor i in range(len(depts)):\n    print(i, depts[i])'),
+dict(cat="Loops", name="while",
+ desc="Repeats while a condition stays True. YOU have to change something inside, or it never stops.",
+ code='count = 1\nwhile count <= 5:\n    print(count, end=" ")\n    count = count + 1'),
+dict(cat="Loops", name="break",
+ desc="Leaves the loop immediately, no matter how many items are left.",
+ code='for n in [12, 7, 40, 3, 55]:\n    if n > 30:\n        print("found one over 30:", n)\n        break\n    print("checked", n)'),
+dict(cat="Loops", name="continue",
+ desc="Skips the rest of THIS turn and jumps to the next one. The loop keeps going.",
+ code='for n in range(1, 11):\n    if n % 2 != 0:\n        continue          # skip the odd ones\n    print(n, end=" ")'),
+dict(cat="Loops", name="Nested loops",
+ desc="A loop inside a loop. The inner one runs completely for every single turn of the outer one.",
+ code='for i in range(1, 4):\n    for j in range(1, 4):\n        print(i * j, end="\\t")\n    print()'),
+
+# ---------------- Lists ----------------
+dict(cat="Lists", name="Making one, and reaching in",
+ desc="Ordered, changeable, and allows duplicates. Counting starts at 0; -1 is the last one.",
+ code='marks = [45, 72, 88, 61, 95]\n\nprint(marks)\nprint(marks[0])\nprint(marks[-1])\nprint(len(marks))'),
+dict(cat="Lists", name="Slicing",
+ desc="Take a range of items. The stop is not included, so [1:4] gives positions 1, 2 and 3.",
+ code='marks = [45, 72, 88, 61, 95]\n\nprint(marks[1:4])\nprint(marks[:3])\nprint(marks[2:])\nprint(marks[-2:])\nprint(marks[::2])\nprint(marks[::-1])     # reversed'),
+dict(cat="Lists", name="Changing a list",
+ desc="Unlike a string, a list can be edited in place.",
+ code='marks = [45, 72, 88]\nmarks[0] = 50\nprint(marks)'),
+dict(cat="Lists", name="append / insert / extend",
+ desc="append adds one to the end, insert puts one at a position, extend adds a whole list.",
+ code='m = [45, 72]\nm.append(88)\nprint(m)\nm.insert(1, 60)\nprint(m)\nm.extend([91, 33])\nprint(m)'),
+dict(cat="Lists", name="remove / pop / clear",
+ desc="remove deletes by VALUE, pop deletes by POSITION and hands it back, clear empties the list.",
+ code='m = [45, 72, 88, 61]\nm.remove(72)\nprint(m)\ntaken = m.pop(0)\nprint("popped", taken, "->", m)\nprint(m.pop())      # no number = the last one'),
+dict(cat="Lists", name="sort / reverse / count / index",
+ desc="sort changes the list itself. sorted() leaves it alone and hands back a new one.",
+ code='m = [45, 72, 88, 61, 72]\nm.sort()\nprint(m)\nm.sort(reverse=True)\nprint(m)\nprint("how many 72s:", m.count(72))\nprint("where is 88:", m.index(88))'),
+dict(cat="Lists", name="sum / max / min on a list",
+ desc="The three you will use constantly once real data arrives.",
+ code='marks = [45, 72, 88, 61, 95]\nprint("total  ", sum(marks))\nprint("highest", max(marks))\nprint("lowest ", min(marks))\nprint("average", sum(marks) / len(marks))'),
+
+# ---------------- Tuples ----------------
+dict(cat="Tuples", name="A tuple is a list that cannot change",
+ desc="Round brackets instead of square. Everything about reading it is the same; writing is forbidden.",
+ code='point = (10, 20, 30)\nprint(point)\nprint(point[0])\nprint(point[1:])\nprint(len(point))'),
+dict(cat="Tuples", name="Trying to change one",
+ desc="This is the whole difference, and the error names it: tuples do not support assignment.",
+ code='point = (10, 20, 30)\npoint[0] = 99', raises=True),
+dict(cat="Tuples", name="Why use one at all",
+ desc="When the values must not be edited by accident — fixed settings, coordinates, a database row.",
+ code='WEEKDAYS = ("Mon", "Tue", "Wed", "Thu", "Fri")\nprint(len(WEEKDAYS), "working days")\nprint("Wed" in WEEKDAYS)\nprint(WEEKDAYS.count("Mon"), WEEKDAYS.index("Thu"))'),
+
+# ---------------- Sets ----------------
+dict(cat="Sets", name="A set throws away duplicates",
+ desc="Curly brackets. No duplicates, and NO ORDER — so you cannot ask for set[0], and printing one "
+      "gives the items in whatever order Python feels like. Wrap it in sorted() when you need a fixed order.",
+ code='depts = {"HR", "Tech", "HR", "Sales", "Tech"}\n\nprint(len(depts))          # the 2 repeats are gone\nprint(sorted(depts))      # sorted, so it looks the same every run\nprint("HR" in depts)'),
+dict(cat="Sets", name="De-duplicating a list",
+ desc="The most common real use: wrap a list in set() to see the distinct values.",
+ code='entries = ["HR", "Tech", "HR", "Sales", "Tech", "HR"]\n\nprint(sorted(set(entries)))\nprint("distinct departments:", len(set(entries)))'),
+dict(cat="Sets", name="add / remove / discard",
+ desc="remove complains if the item is not there. discard does not.",
+ code='s = {"HR", "Tech"}\ns.add("Sales")\nprint(s == {"HR", "Tech", "Sales"})\ns.discard("Finance")     # not there, no error\ns.remove("HR")\nprint(sorted(s))'),
+dict(cat="Sets", name="union / intersection / difference",
+ desc="The school set theory, as code. Useful for comparing two groups of anything.",
+ code='a = {"Rahul", "Priya", "Amit"}\nb = {"Priya", "Amit", "Kavya"}\n\nprint(sorted(a | b))     # in either\nprint(sorted(a & b))     # in both\nprint(sorted(a - b))     # only in a'),
+
+# ---------------- Dictionaries ----------------
+dict(cat="Dictionaries", name="Key and value",
+ desc="Instead of a position you use a name. That name is the key, and it has to be unique.",
+ code='emp = {"name": "Rahul", "dept": "HR", "salary": 47764}\n\nprint(emp)\nprint(emp["name"])\nprint(len(emp))'),
+dict(cat="Dictionaries", name="get()  —  the safe way to read",
+ desc="Square brackets raise an error if the key is missing. get() hands back None, or whatever you choose.",
+ code='emp = {"name": "Rahul", "dept": "HR"}\n\nprint(emp.get("dept"))\nprint(emp.get("city"))                 # None, not an error\nprint(emp.get("city", "not recorded"))'),
+dict(cat="Dictionaries", name="Adding and changing",
+ desc="Assign to a key that exists and it updates. Assign to a new one and it is added.",
+ code='emp = {"name": "Rahul", "dept": "HR"}\nemp["salary"] = 47764      # new\nemp["dept"]   = "Tech"     # changed\nprint(emp)\ndel emp["dept"]\nprint(emp)'),
+dict(cat="Dictionaries", name="keys / values / items",
+ desc="The three views, and items() is the one you loop over when you want both halves.",
+ code='emp = {"name": "Rahul", "dept": "HR", "salary": 47764}\n\nprint(list(emp.keys()))\nprint(list(emp.values()))\n\nfor k, v in emp.items():\n    print(k, "->", v)'),
+dict(cat="Dictionaries", name="Counting with a dictionary",
+ desc="The pattern worth memorising: a dictionary of counts, built in one pass over the data.",
+ code='depts = ["HR", "Tech", "HR", "Sales", "Tech", "HR"]\n\ncounts = {}\nfor d in depts:\n    counts[d] = counts.get(d, 0) + 1\n\nprint(counts)'),
+]
+
+PRACTICE = [
+dict(cat="Loops", q="Print the 7 times table from 7x1 to 7x10, one line each.",
+ code='for i in range(1, 11):\n    print("7 x", i, "=", 7 * i)'),
+dict(cat="Loops", q="Add up every number from 1 to 100 using a loop. (The answer is 5050.)",
+ code='total = 0\nfor n in range(1, 101):\n    total = total + n\nprint(total)'),
+dict(cat="Loops", q="Print the numbers 1 to 20, but skip every multiple of 3.",
+ code='for n in range(1, 21):\n    if n % 3 == 0:\n        continue\n    print(n, end=" ")'),
+dict(cat="Loops", q="Count down from 10 to 1 using a while loop, then print 'Go'.",
+ code='n = 10\nwhile n >= 1:\n    print(n, end=" ")\n    n = n - 1\nprint("Go")'),
+dict(cat="Lists", q="From [45, 72, 88, 61, 95], print the highest, the lowest and the average.",
+ code='m = [45, 72, 88, 61, 95]\nprint("highest", max(m))\nprint("lowest ", min(m))\nprint("average", sum(m) / len(m))'),
+dict(cat="Lists", q="Given a list of marks, print only the ones above the average.",
+ code='m = [45, 72, 88, 61, 95]\navg = sum(m) / len(m)\nprint("average is", avg)\nfor x in m:\n    if x > avg:\n        print(x, "is above")'),
+dict(cat="Lists", q="Reverse a list without using reverse() or [::-1].",
+ code='m = [45, 72, 88, 61]\nout = []\nfor i in range(len(m) - 1, -1, -1):\n    out.append(m[i])\nprint(out)'),
+dict(cat="Tuples", q="Make a tuple of the five weekdays, print how many there are, and check whether 'Sun' is in it.",
+ code='days = ("Mon", "Tue", "Wed", "Thu", "Fri")\nprint(len(days))\nprint("Sun" in days)'),
+dict(cat="Sets", q="From ['HR','Tech','HR','Sales','Tech','HR'], print the distinct departments and how many there are.",
+ code='e = ["HR", "Tech", "HR", "Sales", "Tech", "HR"]\nd = set(e)\nprint(sorted(d))\nprint(len(d), "distinct")'),
+dict(cat="Sets", q="Two teams are given as sets. Print who is on both teams, and who is only on the first.",
+ code='a = {"Rahul", "Priya", "Amit"}\nb = {"Priya", "Amit", "Kavya"}\nprint("both:", sorted(a & b))\nprint("only a:", sorted(a - b))'),
+dict(cat="Dictionaries", q="Build a dictionary for one employee with name, department and salary, then print each key and value on its own line.",
+ code='emp = {"name": "Priya", "dept": "Tech", "salary": 62990}\nfor k, v in emp.items():\n    print(k, "->", v)'),
+dict(cat="Dictionaries", q="Count how many times each letter appears in the word 'statistics'.",
+ code='word = "statistics"\ncounts = {}\nfor ch in word:\n    counts[ch] = counts.get(ch, 0) + 1\nprint(counts)'),
+]
+
+if __name__ == "__main__":
+    import sys
+    bad  = build(ROWS, "t2_collections.json")
+    bad += build(PRACTICE, "t2_collections_practice.json")
+    sys.exit(1 if bad else 0)

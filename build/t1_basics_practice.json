@@ -1,0 +1,50 @@
+[
+ {
+  "cat": "Your first lines",
+  "q": "Store your own name, your city and your age in three variables, then print them in one sentence.",
+  "code": "name = \"Anita\"\ncity = \"Chennai\"\nage  = 22\nprint(name, \"is\", age, \"and lives in\", city)",
+  "out": "Anita is 22 and lives in Chennai"
+ },
+ {
+  "cat": "The data types",
+  "q": "Print the type of each of these: 7, 7.0, \"7\", True. Say out loud why 7 and \"7\" are different.",
+  "code": "for v in [7, 7.0, \"7\", True]:\n    print(v, \"->\", type(v))",
+  "out": "7 -> <class 'int'>\n7.0 -> <class 'float'>\n7 -> <class 'str'>\nTrue -> <class 'bool'>"
+ },
+ {
+  "cat": "Type conversion",
+  "q": "A salary arrives as the text \"47764\". Add a 10% bonus to it and print the total.",
+  "code": "salary = \"47764\"\ntotal = int(salary) + int(salary) * 10 / 100\nprint(total)",
+  "out": "52540.4"
+ },
+ {
+  "cat": "Taking input",
+  "q": "Ask for two numbers and print their sum. Make sure it adds rather than joins.",
+  "code": "a = int(input(\"first number: \"))\nb = int(input(\"second number: \"))\nprint(\"sum is\", a + b)",
+  "out": "first number: 12\nsecond number: 30\nsum is 42"
+ },
+ {
+  "cat": "Operators",
+  "q": "Ask for a number and say whether it is even or odd.",
+  "code": "n = int(input(\"number: \"))\nif n % 2 == 0:\n    print(n, \"is even\")\nelse:\n    print(n, \"is odd\")",
+  "out": "number: 18\n18 is even"
+ },
+ {
+  "cat": "Operators",
+  "q": "An employee is in Tech AND earns over 50,000. Print True or False for salary 48,000.",
+  "code": "dept, salary = \"Tech\", 48000\nprint(dept == \"Tech\" and salary > 50000)",
+  "out": "False"
+ },
+ {
+  "cat": "Making decisions",
+  "q": "Grade a mark out of 100: 90+ A, 75+ B, 60+ C, 40+ D, below that Fail. Test it with 61.",
+  "code": "marks = 61\nif marks >= 90:\n    print(\"A\")\nelif marks >= 75:\n    print(\"B\")\nelif marks >= 60:\n    print(\"C\")\nelif marks >= 40:\n    print(\"D\")\nelse:\n    print(\"Fail\")",
+  "out": "C"
+ },
+ {
+  "cat": "Making decisions",
+  "q": "Ask for a year and print whether it is a leap year. (Divisible by 4, but not by 100, unless also by 400.)",
+  "code": "y = int(input(\"year: \"))\nif y % 400 == 0:\n    print(y, \"is a leap year\")\nelif y % 100 == 0:\n    print(y, \"is not a leap year\")\nelif y % 4 == 0:\n    print(y, \"is a leap year\")\nelse:\n    print(y, \"is not a leap year\")",
+  "out": "year: 2024\n2024 is a leap year"
+ }
+]

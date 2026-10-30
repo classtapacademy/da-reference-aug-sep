@@ -1,0 +1,177 @@
+[
+ {
+  "cat": "Your first lines",
+  "name": "print()",
+  "desc": "Shows something on the screen. Anything in quotes is text; anything without is worked out first.",
+  "code": "print(\"Hello, Data Analytics\")\nprint(2026)\nprint(60 * 7)",
+  "out": "Hello, Data Analytics\n2026\n420"
+ },
+ {
+  "cat": "Your first lines",
+  "name": "Several things in one print",
+  "desc": "Separate the parts with commas. Python puts a single space between them for you.",
+  "code": "name = \"Rahul\"\ndept = \"HR\"\nprint(\"Employee\", name, \"works in\", dept)",
+  "out": "Employee Rahul works in HR"
+ },
+ {
+  "cat": "Your first lines",
+  "name": "Comments  #",
+  "desc": "Anything after a # is ignored by Python. It is a note for the human reading the code.",
+  "code": "# this line does nothing at all\nsalary = 47764      # monthly, in rupees\nprint(salary)",
+  "out": "47764"
+ },
+ {
+  "cat": "Your first lines",
+  "name": "Variables",
+  "desc": "A name that holds a value. Assign with a single =, and you can change it later.",
+  "code": "emp_id = 1001\nname   = \"Rahul Sharma\"\nsalary = 47764\n\nprint(emp_id, name, salary)\n\nsalary = 52000          # changed\nprint(\"after the hike:\", salary)",
+  "out": "1001 Rahul Sharma 47764\nafter the hike: 52000"
+ },
+ {
+  "cat": "The data types",
+  "name": "int  —  whole numbers",
+  "desc": "Counting numbers, positive or negative, with no decimal point.",
+  "code": "experience = 4\nprint(experience)\nprint(type(experience))",
+  "out": "4\n<class 'int'>"
+ },
+ {
+  "cat": "The data types",
+  "name": "float  —  numbers with a decimal",
+  "desc": "Any number with a dot in it. Division always produces one, even when it divides evenly.",
+  "code": "height = 169.5\nprint(height, type(height))\nprint(10 / 2, type(10 / 2))",
+  "out": "169.5 <class 'float'>\n5.0 <class 'float'>"
+ },
+ {
+  "cat": "The data types",
+  "name": "str  —  text",
+  "desc": "Anything inside quotes. Single or double quotes both work, as long as you match them.",
+  "code": "dept = 'HR'\ncity = \"Hyderabad\"\nprint(dept, city)\nprint(type(dept))",
+  "out": "HR Hyderabad\n<class 'str'>"
+ },
+ {
+  "cat": "The data types",
+  "name": "bool  —  True or False",
+  "desc": "Only two possible values, and both start with a capital letter.",
+  "code": "is_active = True\nprint(is_active, type(is_active))\nprint(5 > 3)\nprint(5 == 3)",
+  "out": "True <class 'bool'>\nTrue\nFalse"
+ },
+ {
+  "cat": "The data types",
+  "name": "type()",
+  "desc": "Asks Python what something is. Useful the moment a value does not behave the way you expected.",
+  "code": "print(type(10))\nprint(type(10.0))\nprint(type(\"10\"))\nprint(type(True))",
+  "out": "<class 'int'>\n<class 'float'>\n<class 'str'>\n<class 'bool'>"
+ },
+ {
+  "cat": "Type conversion",
+  "name": "int()",
+  "desc": "Turns something into a whole number. On a float it CUTS the decimal off — it does not round.",
+  "code": "print(int(\"25\"))\nprint(int(9.99))        # 9, not 10\nprint(int(True))",
+  "out": "25\n9\n1"
+ },
+ {
+  "cat": "Type conversion",
+  "name": "float()  and  str()",
+  "desc": "float() adds a decimal point, str() turns a number into text so it can be joined to other text.",
+  "code": "print(float(25), type(float(25)))\nprint(str(25) + \" employees\")",
+  "out": "25.0 <class 'float'>\n25 employees"
+ },
+ {
+  "cat": "Type conversion",
+  "name": "Why conversion matters",
+  "desc": "\"25\" and 25 look the same on screen and behave completely differently. Text repeats; numbers add.",
+  "code": "print(\"25\" + \"25\")      # text joins\nprint(25 + 25)          # numbers add\nprint(int(\"25\") + 25)   # convert first",
+  "out": "2525\n50\n50"
+ },
+ {
+  "cat": "Type conversion",
+  "name": "When it cannot convert",
+  "desc": "int() only works on something that really is a number. Anything else stops the program.",
+  "code": "print(int(\"50\"))\nprint(int(\"fifty\"))",
+  "out": "50\nValueError: invalid literal for int() with base 10: 'fifty'"
+ },
+ {
+  "cat": "Taking input",
+  "name": "input()",
+  "desc": "Stops and waits for the user to type. Whatever they type arrives as TEXT, always.",
+  "code": "name = input(\"Enter your name: \")\nprint(\"Welcome,\", name)\nprint(type(name))",
+  "out": "Enter your name: Priya\nWelcome, Priya\n<class 'str'>"
+ },
+ {
+  "cat": "Taking input",
+  "name": "int(input())  —  the one everybody forgets",
+  "desc": "input() hands back text, so you must convert before doing any maths with it.",
+  "code": "age = input(\"Enter your age: \")\nprint(\"next year you are\", age + 1)",
+  "out": "Enter your age: 23\nTypeError: can only concatenate str (not \"int\") to str"
+ },
+ {
+  "cat": "Taking input",
+  "name": "The fix",
+  "desc": "Wrap input() in int() — or float() if decimals are possible.",
+  "code": "age = int(input(\"Enter your age: \"))\nprint(\"next year you are\", age + 1)",
+  "out": "Enter your age: 23\nnext year you are 24"
+ },
+ {
+  "cat": "Operators",
+  "name": "Arithmetic",
+  "desc": "The usual five, plus // for whole-number division and % for the remainder.",
+  "code": "a, b = 17, 5\nprint(\"add      \", a + b)\nprint(\"subtract \", a - b)\nprint(\"multiply \", a * b)\nprint(\"divide   \", a / b)      # always a float\nprint(\"floor    \", a // b)     # whole part only\nprint(\"remainder\", a % b)\nprint(\"power    \", a ** 2)",
+  "out": "add       22\nsubtract  12\nmultiply  85\ndivide    3.4\nfloor     3\nremainder 2\npower     289"
+ },
+ {
+  "cat": "Operators",
+  "name": "% — the even/odd test",
+  "desc": "The remainder operator is how you check whether a number divides evenly. Remainder 0 means it does.",
+  "code": "for n in [10, 7, 24]:\n    if n % 2 == 0:\n        print(n, \"is even\")\n    else:\n        print(n, \"is odd\")",
+  "out": "10 is even\n7 is odd\n24 is even"
+ },
+ {
+  "cat": "Operators",
+  "name": "Comparison",
+  "desc": "Six of them, and every one hands back True or False. Note == is a question, = is an instruction.",
+  "code": "salary = 47764\nprint(salary > 50000)\nprint(salary < 50000)\nprint(salary == 47764)\nprint(salary != 47764)\nprint(salary >= 47764)",
+  "out": "False\nTrue\nTrue\nFalse\nTrue"
+ },
+ {
+  "cat": "Operators",
+  "name": "and  /  or  /  not",
+  "desc": "Join two conditions. and needs both true; or needs one; not flips it.",
+  "code": "dept, salary = \"Tech\", 62990\n\nprint(dept == \"Tech\" and salary > 50000)\nprint(dept == \"HR\"   or  salary > 50000)\nprint(not dept == \"Tech\")",
+  "out": "True\nTrue\nFalse"
+ },
+ {
+  "cat": "Making decisions",
+  "name": "if",
+  "desc": "Runs the indented block only when the condition is True. The colon and the indent are both required.",
+  "code": "salary = 62990\n\nif salary > 50000:\n    print(\"above fifty thousand\")\n\nprint(\"this line always runs\")",
+  "out": "above fifty thousand\nthis line always runs"
+ },
+ {
+  "cat": "Making decisions",
+  "name": "if  /  else",
+  "desc": "Two paths, and exactly one of them runs.",
+  "code": "age = 17\n\nif age >= 18:\n    print(\"can vote\")\nelse:\n    print(\"cannot vote yet\")",
+  "out": "cannot vote yet"
+ },
+ {
+  "cat": "Making decisions",
+  "name": "if  /  elif  /  else",
+  "desc": "More than two paths. Python checks top to bottom and stops at the FIRST one that is true.",
+  "code": "marks = 72\n\nif marks >= 90:\n    print(\"A\")\nelif marks >= 75:\n    print(\"B\")\nelif marks >= 60:\n    print(\"C\")\nelse:\n    print(\"D\")",
+  "out": "C"
+ },
+ {
+  "cat": "Making decisions",
+  "name": "Order matters",
+  "desc": "Because it stops at the first match, a loose condition placed first swallows all the rest.",
+  "code": "marks = 95\n\n# WRONG - 95 is >= 60, so it stops here\nif marks >= 60:\n    print(\"C\")\nelif marks >= 90:\n    print(\"A\")      # never reached",
+  "out": "C"
+ },
+ {
+  "cat": "Making decisions",
+  "name": "Nested if",
+  "desc": "An if inside another if. The inner one is only reached when the outer one passed.",
+  "code": "dept, salary = \"Tech\", 62990\n\nif dept == \"Tech\":\n    if salary > 50000:\n        print(\"senior tech\")\n    else:\n        print(\"junior tech\")\nelse:\n    print(\"not tech\")",
+  "out": "senior tech"
+ }
+]

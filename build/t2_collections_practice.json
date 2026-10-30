@@ -1,0 +1,74 @@
+[
+ {
+  "cat": "Loops",
+  "q": "Print the 7 times table from 7x1 to 7x10, one line each.",
+  "code": "for i in range(1, 11):\n    print(\"7 x\", i, \"=\", 7 * i)",
+  "out": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35\n7 x 6 = 42\n7 x 7 = 49\n7 x 8 = 56\n7 x 9 = 63\n7 x 10 = 70"
+ },
+ {
+  "cat": "Loops",
+  "q": "Add up every number from 1 to 100 using a loop. (The answer is 5050.)",
+  "code": "total = 0\nfor n in range(1, 101):\n    total = total + n\nprint(total)",
+  "out": "5050"
+ },
+ {
+  "cat": "Loops",
+  "q": "Print the numbers 1 to 20, but skip every multiple of 3.",
+  "code": "for n in range(1, 21):\n    if n % 3 == 0:\n        continue\n    print(n, end=\" \")",
+  "out": "1 2 4 5 7 8 10 11 13 14 16 17 19 20 "
+ },
+ {
+  "cat": "Loops",
+  "q": "Count down from 10 to 1 using a while loop, then print 'Go'.",
+  "code": "n = 10\nwhile n >= 1:\n    print(n, end=\" \")\n    n = n - 1\nprint(\"Go\")",
+  "out": "10 9 8 7 6 5 4 3 2 1 Go"
+ },
+ {
+  "cat": "Lists",
+  "q": "From [45, 72, 88, 61, 95], print the highest, the lowest and the average.",
+  "code": "m = [45, 72, 88, 61, 95]\nprint(\"highest\", max(m))\nprint(\"lowest \", min(m))\nprint(\"average\", sum(m) / len(m))",
+  "out": "highest 95\nlowest  45\naverage 72.2"
+ },
+ {
+  "cat": "Lists",
+  "q": "Given a list of marks, print only the ones above the average.",
+  "code": "m = [45, 72, 88, 61, 95]\navg = sum(m) / len(m)\nprint(\"average is\", avg)\nfor x in m:\n    if x > avg:\n        print(x, \"is above\")",
+  "out": "average is 72.2\n88 is above\n95 is above"
+ },
+ {
+  "cat": "Lists",
+  "q": "Reverse a list without using reverse() or [::-1].",
+  "code": "m = [45, 72, 88, 61]\nout = []\nfor i in range(len(m) - 1, -1, -1):\n    out.append(m[i])\nprint(out)",
+  "out": "[61, 88, 72, 45]"
+ },
+ {
+  "cat": "Tuples",
+  "q": "Make a tuple of the five weekdays, print how many there are, and check whether 'Sun' is in it.",
+  "code": "days = (\"Mon\", \"Tue\", \"Wed\", \"Thu\", \"Fri\")\nprint(len(days))\nprint(\"Sun\" in days)",
+  "out": "5\nFalse"
+ },
+ {
+  "cat": "Sets",
+  "q": "From ['HR','Tech','HR','Sales','Tech','HR'], print the distinct departments and how many there are.",
+  "code": "e = [\"HR\", \"Tech\", \"HR\", \"Sales\", \"Tech\", \"HR\"]\nd = set(e)\nprint(sorted(d))\nprint(len(d), \"distinct\")",
+  "out": "['HR', 'Sales', 'Tech']\n3 distinct"
+ },
+ {
+  "cat": "Sets",
+  "q": "Two teams are given as sets. Print who is on both teams, and who is only on the first.",
+  "code": "a = {\"Rahul\", \"Priya\", \"Amit\"}\nb = {\"Priya\", \"Amit\", \"Kavya\"}\nprint(\"both:\", sorted(a & b))\nprint(\"only a:\", sorted(a - b))",
+  "out": "both: ['Amit', 'Priya']\nonly a: ['Rahul']"
+ },
+ {
+  "cat": "Dictionaries",
+  "q": "Build a dictionary for one employee with name, department and salary, then print each key and value on its own line.",
+  "code": "emp = {\"name\": \"Priya\", \"dept\": \"Tech\", \"salary\": 62990}\nfor k, v in emp.items():\n    print(k, \"->\", v)",
+  "out": "name -> Priya\ndept -> Tech\nsalary -> 62990"
+ },
+ {
+  "cat": "Dictionaries",
+  "q": "Count how many times each letter appears in the word 'statistics'.",
+  "code": "word = \"statistics\"\ncounts = {}\nfor ch in word:\n    counts[ch] = counts.get(ch, 0) + 1\nprint(counts)",
+  "out": "{'s': 3, 't': 3, 'a': 1, 'i': 2, 'c': 1}"
+ }
+]

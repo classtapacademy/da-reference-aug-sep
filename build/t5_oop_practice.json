@@ -1,0 +1,68 @@
+[
+ {
+  "cat": "File handling",
+  "q": "Write three department names to a file, then read it back and print each one without the newline.",
+  "code": "with open(\"d.txt\", \"w\") as f:\n    for d in [\"HR\", \"Tech\", \"Sales\"]:\n        f.write(d + \"\\n\")\n\nwith open(\"d.txt\") as f:\n    for line in f:\n        print(\"[\" + line.strip() + \"]\")",
+  "out": "[HR]\n[Tech]\n[Sales]"
+ },
+ {
+  "cat": "File handling",
+  "q": "Append two more lines to an existing file and print how many lines it has in total.",
+  "code": "open(\"d.txt\", \"w\").write(\"HR\\nTech\\n\")\nwith open(\"d.txt\", \"a\") as f:\n    f.write(\"Sales\\n\")\n    f.write(\"Marketing\\n\")\nprint(len(open(\"d.txt\").readlines()), \"lines\")",
+  "out": "4 lines"
+ },
+ {
+  "cat": "File handling",
+  "q": "Read a file of numbers, one per line, and print their total.",
+  "code": "open(\"n.txt\", \"w\").write(\"10\\n20\\n30\\n\")\ntotal = 0\nwith open(\"n.txt\") as f:\n    for line in f:\n        total = total + int(line.strip())\nprint(total)",
+  "out": "60"
+ },
+ {
+  "cat": "Error handling",
+  "q": "Ask for a number and keep going even if the user types text instead.",
+  "code": "for entry in [\"25\", \"hello\"]:\n    try:\n        print(\"doubled:\", int(entry) * 2)\n    except ValueError:\n        print(entry, \"is not a number\")",
+  "out": "doubled: 50\nhello is not a number"
+ },
+ {
+  "cat": "Error handling",
+  "q": "Write a safe divide function that handles both a zero divisor and a non-numeric input.",
+  "code": "def safe(a, b):\n    try:\n        return int(a) / int(b)\n    except ZeroDivisionError:\n        return \"cannot divide by zero\"\n    except ValueError:\n        return \"give me numbers\"\n\nprint(safe(10, 2))\nprint(safe(10, 0))\nprint(safe(\"x\", 2))",
+  "out": "5.0\ncannot divide by zero\ngive me numbers"
+ },
+ {
+  "cat": "Error handling",
+  "q": "Try to open a file that does not exist and print a friendly message instead of crashing.",
+  "code": "try:\n    with open(\"missing.txt\") as f:\n        print(f.read())\nexcept FileNotFoundError:\n    print(\"that file is not here\")",
+  "out": "that file is not here"
+ },
+ {
+  "cat": "Classes and objects",
+  "q": "Build a Student class with name and three marks, and a method that returns the average.",
+  "code": "class Student:\n    def __init__(self, name, m1, m2, m3):\n        self.name = name\n        self.marks = [m1, m2, m3]\n\n    def average(self):\n        return sum(self.marks) / len(self.marks)\n\ns = Student(\"Rahul\", 45, 72, 88)\nprint(s.name, \"->\", s.average())",
+  "out": "Rahul -> 68.33333333333333"
+ },
+ {
+  "cat": "Classes and objects",
+  "q": "Make a list of four Employee objects and print the one with the highest salary.",
+  "code": "class Employee:\n    def __init__(self, name, salary):\n        self.name, self.salary = name, salary\n\nstaff = [Employee(\"Rahul\", 47764), Employee(\"Priya\", 62990),\n         Employee(\"Amit\", 51200), Employee(\"Kavya\", 58300)]\n\ntop = max(staff, key=lambda e: e.salary)\nprint(top.name, top.salary)",
+  "out": "Priya 62990"
+ },
+ {
+  "cat": "Classes and objects",
+  "q": "From a list of Employee objects, print the average salary of the Tech department only.",
+  "code": "class Employee:\n    def __init__(self, name, dept, salary):\n        self.name, self.dept, self.salary = name, dept, salary\n\nstaff = [Employee(\"Rahul\", \"HR\", 47764), Employee(\"Priya\", \"Tech\", 62990),\n         Employee(\"Amit\", \"Tech\", 51200)]\n\ntech = [e.salary for e in staff if e.dept == \"Tech\"]\nprint(sum(tech) / len(tech))",
+  "out": "57095.0"
+ },
+ {
+  "cat": "The four pillars",
+  "q": "Make a Vehicle class with a method describe(), then a Car class that overrides it.",
+  "code": "class Vehicle:\n    def describe(self):\n        print(\"a vehicle that moves\")\n\nclass Car(Vehicle):\n    def describe(self):\n        print(\"a car with four wheels\")\n\nfor v in [Vehicle(), Car()]:\n    v.describe()",
+  "out": "a vehicle that moves\na car with four wheels"
+ },
+ {
+  "cat": "The four pillars",
+  "q": "Make a Manager class that inherits Employee and adds a team size, reusing the parent's __init__ with super().",
+  "code": "class Employee:\n    def __init__(self, name, salary):\n        self.name, self.salary = name, salary\n    def show(self):\n        print(self.name, self.salary)\n\nclass Manager(Employee):\n    def __init__(self, name, salary, team):\n        super().__init__(name, salary)\n        self.team = team\n    def show(self):\n        super().show()\n        print(\"  manages\", self.team, \"people\")\n\nManager(\"Priya\", 90000, 6).show()",
+  "out": "Priya 90000\n  manages 6 people"
+ }
+]

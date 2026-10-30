@@ -1,0 +1,177 @@
+[
+ {
+  "cat": "Writing a function",
+  "name": "def",
+  "desc": "A block of code with a name, written once and used as many times as you like. Note the colon and the indent.",
+  "code": "def greet():\n    print(\"Welcome to Data Analytics\")\n\ngreet()\ngreet()",
+  "out": "Welcome to Data Analytics\nWelcome to Data Analytics"
+ },
+ {
+  "cat": "Writing a function",
+  "name": "Passing something in",
+  "desc": "The name in the brackets is a parameter. The value you send is the argument.",
+  "code": "def greet(name):\n    print(\"Welcome,\", name)\n\ngreet(\"Rahul\")\ngreet(\"Priya\")",
+  "out": "Welcome, Rahul\nWelcome, Priya"
+ },
+ {
+  "cat": "Writing a function",
+  "name": "return",
+  "desc": "Hands a value BACK so it can be stored or used. A function with no return hands back None.",
+  "code": "def add(a, b):\n    return a + b\n\ntotal = add(10, 20)\nprint(total)\nprint(add(5, 6) * 2)",
+  "out": "30\n22"
+ },
+ {
+  "cat": "Writing a function",
+  "name": "print is not return",
+  "desc": "The single most common confusion. print shows something; return gives it back to the code.",
+  "code": "def shows(a, b):\n    print(a + b)\n\ndef gives(a, b):\n    return a + b\n\nx = shows(2, 3)\ny = gives(2, 3)\nprint(\"x is\", x)      # None - nothing came back\nprint(\"y is\", y)",
+  "out": "5\nx is None\ny is 5"
+ },
+ {
+  "cat": "Writing a function",
+  "name": "Returning more than one value",
+  "desc": "Separate them with commas and they come back as a tuple, which you can unpack straight away.",
+  "code": "def stats(nums):\n    return min(nums), max(nums), sum(nums) / len(nums)\n\nlo, hi, avg = stats([45, 72, 88, 61])\nprint(lo, hi, avg)",
+  "out": "45 88 66.5"
+ },
+ {
+  "cat": "The five kinds of argument",
+  "name": "1. Positional",
+  "desc": "Matched by ORDER. Swap them round and you quietly get the wrong answer, with no error.",
+  "code": "def detail(name, dept):\n    print(name, \"works in\", dept)\n\ndetail(\"Rahul\", \"HR\")\ndetail(\"HR\", \"Rahul\")      # no error - just wrong",
+  "out": "Rahul works in HR\nHR works in Rahul"
+ },
+ {
+  "cat": "The five kinds of argument",
+  "name": "2. Keyword",
+  "desc": "Matched by NAME, so the order stops mattering.",
+  "code": "def detail(name, dept):\n    print(name, \"works in\", dept)\n\ndetail(name=\"Rahul\", dept=\"HR\")\ndetail(dept=\"HR\", name=\"Rahul\")",
+  "out": "Rahul works in HR\nRahul works in HR"
+ },
+ {
+  "cat": "The five kinds of argument",
+  "name": "3. Default",
+  "desc": "Give a parameter a value in the def line and it becomes optional.",
+  "code": "def detail(name, dept=\"Not assigned\"):\n    print(name, \"-\", dept)\n\ndetail(\"Rahul\", \"HR\")\ndetail(\"Priya\")              # dept falls back",
+  "out": "Rahul - HR\nPriya - Not assigned"
+ },
+ {
+  "cat": "The five kinds of argument",
+  "name": "4. Variable length  *args",
+  "desc": "One star collects any number of positional arguments into a tuple.",
+  "code": "def total(*nums):\n    print(nums, type(nums))\n    return sum(nums)\n\nprint(total(10, 20))\nprint(total(10, 20, 30, 40))",
+  "out": "(10, 20) <class 'tuple'>\n30\n(10, 20, 30, 40) <class 'tuple'>\n100"
+ },
+ {
+  "cat": "The five kinds of argument",
+  "name": "5. Variable length  **kwargs",
+  "desc": "Two stars collect any number of named arguments into a dictionary.",
+  "code": "def record(**info):\n    for k, v in info.items():\n        print(k, \"->\", v)\n\nrecord(name=\"Rahul\", dept=\"HR\", salary=47764)",
+  "out": "name -> Rahul\ndept -> HR\nsalary -> 47764"
+ },
+ {
+  "cat": "The five kinds of argument",
+  "name": "The order they must go in",
+  "desc": "Positional first, then default, then *args, then **kwargs. Putting a default before a plain one is an error.",
+  "code": "def show(a, b=2, *args, **kwargs):\n    print(\"a\", a, \"| b\", b, \"| args\", args, \"| kwargs\", kwargs)\n\nshow(1)\nshow(1, 9)\nshow(1, 9, 100, 200, city=\"Chennai\")",
+  "out": "a 1 | b 2 | args () | kwargs {}\na 1 | b 9 | args () | kwargs {}\na 1 | b 9 | args (100, 200) | kwargs {'city': 'Chennai'}"
+ },
+ {
+  "cat": "lambda, map, filter, reduce",
+  "name": "lambda",
+  "desc": "A function with no name, written on one line. Good for something tiny you use once.",
+  "code": "double = lambda x: x * 2\nprint(double(21))\n\nadd = lambda a, b: a + b\nprint(add(10, 20))",
+  "out": "42\n30"
+ },
+ {
+  "cat": "lambda, map, filter, reduce",
+  "name": "map()",
+  "desc": "Applies a function to EVERY item and gives back the same number of items.",
+  "code": "marks = [45, 72, 88]\n\nout = map(lambda x: x + 5, marks)\nprint(list(out))\n\nprint(list(map(str, marks)))     # any function works",
+  "out": "[50, 77, 93]\n['45', '72', '88']"
+ },
+ {
+  "cat": "lambda, map, filter, reduce",
+  "name": "filter()",
+  "desc": "Keeps only the items where the function says True. You get FEWER items back.",
+  "code": "marks = [45, 72, 88, 61, 33]\n\npassed = filter(lambda x: x >= 60, marks)\nprint(list(passed))\n\nprint(list(filter(lambda x: x % 2 == 0, marks)))",
+  "out": "[72, 88, 61]\n[72, 88]"
+ },
+ {
+  "cat": "lambda, map, filter, reduce",
+  "name": "reduce()",
+  "desc": "Boils a whole list down to ONE value, two at a time. It has to be imported first.",
+  "code": "from functools import reduce\n\nmarks = [45, 72, 88]\nprint(reduce(lambda a, b: a + b, marks))\nprint(reduce(lambda a, b: a if a > b else b, marks))",
+  "out": "205\n88"
+ },
+ {
+  "cat": "lambda, map, filter, reduce",
+  "name": "The three side by side",
+  "desc": "map keeps the count, filter reduces the count, reduce collapses it to one.",
+  "code": "from functools import reduce\nm = [45, 72, 88, 61]\n\nprint(\"map   \", list(map(lambda x: x * 2, m)), \"   same count\")\nprint(\"filter\", list(filter(lambda x: x > 60, m)), \"      fewer\")\nprint(\"reduce\", reduce(lambda a, b: a + b, m), \"              one\")",
+  "out": "map    [90, 144, 176, 122]    same count\nfilter [72, 88, 61]       fewer\nreduce 266               one"
+ },
+ {
+  "cat": "Recursion",
+  "name": "A function that calls itself",
+  "desc": "Every recursion needs a base case — the condition that stops it. Without one it never ends.",
+  "code": "def countdown(n):\n    if n == 0:           # base case\n        print(\"Go\")\n        return\n    print(n, end=\" \")\n    countdown(n - 1)     # calls itself\n\ncountdown(5)",
+  "out": "5 4 3 2 1 Go"
+ },
+ {
+  "cat": "Recursion",
+  "name": "Factorial",
+  "desc": "The classic. 5! is 5 x 4 x 3 x 2 x 1, and each step is the same problem one size smaller.",
+  "code": "def fact(n):\n    if n <= 1:\n        return 1\n    return n * fact(n - 1)\n\nprint(fact(5))\nprint(fact(7))",
+  "out": "120\n5040"
+ },
+ {
+  "cat": "Recursion",
+  "name": "Fibonacci",
+  "desc": "Each number is the sum of the two before it. Two base cases this time.",
+  "code": "def fib(n):\n    if n <= 1:\n        return n\n    return fib(n - 1) + fib(n - 2)\n\nfor i in range(10):\n    print(fib(i), end=\" \")",
+  "out": "0 1 1 2 3 5 8 13 21 34 "
+ },
+ {
+  "cat": "Recursion",
+  "name": "Forgetting the base case",
+  "desc": "Python stops you rather than freezing — but the error is the only warning you get.",
+  "code": "import sys\nsys.setrecursionlimit(100)\n\ndef forever(n):\n    return forever(n - 1)      # nothing stops it\n\nforever(5)",
+  "out": "RecursionError: maximum recursion depth exceeded"
+ },
+ {
+  "cat": "List comprehension",
+  "name": "The short way to build a list",
+  "desc": "A for loop and an append, written on one line. Read it as: what I want, then where it comes from.",
+  "code": "# the long way\nsquares = []\nfor n in range(1, 6):\n    squares.append(n * n)\nprint(squares)\n\n# the same thing\nsquares = [n * n for n in range(1, 6)]\nprint(squares)",
+  "out": "[1, 4, 9, 16, 25]\n[1, 4, 9, 16, 25]"
+ },
+ {
+  "cat": "List comprehension",
+  "name": "With a condition",
+  "desc": "Put the if at the END and it filters — only the items that pass get built.",
+  "code": "marks = [45, 72, 88, 61, 33]\n\nprint([m for m in marks if m >= 60])\nprint([m * 2 for m in marks if m % 2 == 0])",
+  "out": "[72, 88, 61]\n[144, 176]"
+ },
+ {
+  "cat": "List comprehension",
+  "name": "if ... else inside one",
+  "desc": "When you want a value for EVERY item, the if-else goes at the FRONT. That trips people up.",
+  "code": "marks = [45, 72, 88, 61]\n\nprint([\"pass\" if m >= 60 else \"fail\" for m in marks])",
+  "out": "['fail', 'pass', 'pass', 'pass']"
+ },
+ {
+  "cat": "List comprehension",
+  "name": "On a string, and nested",
+  "desc": "Anything you can loop over, you can comprehend over.",
+  "code": "print([c.upper() for c in \"python\"])\nprint([x for x in \"statistics\" if x in \"aeiou\"])\nprint([[i * j for j in range(1, 4)] for i in range(1, 4)])",
+  "out": "['P', 'Y', 'T', 'H', 'O', 'N']\n['a', 'i', 'i']\n[[1, 2, 3], [2, 4, 6], [3, 6, 9]]"
+ },
+ {
+  "cat": "List comprehension",
+  "name": "Dictionary comprehension",
+  "desc": "Same idea with curly brackets and a key : value pair.",
+  "code": "depts = [\"HR\", \"Tech\", \"Sales\"]\nprint({d: len(d) for d in depts})\nprint({n: n * n for n in range(1, 6)})",
+  "out": "{'HR': 2, 'Tech': 4, 'Sales': 5}\n{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}"
+ }
+]
