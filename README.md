@@ -6,11 +6,13 @@ Student-facing reference for the **August B3 + September B2** Data Analytics bat
 
 **Live:** https://classtapacademy.github.io/da-reference-aug-sep/
 
-Covers every Python topic taught in sessions D01–D29, in teaching order, across five tabs:
-Basics · Loops & Collections · Functions · Strings & Regex · Files, Errors & OOP.
+Seven tabs: Basics · Collections · Functions · Strings · Files & Classes · NumPy · pandas.
 
-124 entries and 55 practice questions. Each section ends with practice questions and a
+188 entries and 76 practice questions. Each section ends with practice questions and a
 collapsible worked answer.
+
+The page itself carries no course framing — no batch names, no session numbers, no
+commentary. It reads as a reference.
 
 ## Every example is executed
 
@@ -33,6 +35,8 @@ python3 c2_collections.py
 python3 c3_functions.py
 python3 c4_strings.py
 python3 c5_oop.py
+python3 c6_numpy.py
+python3 c7_pandas.py
 python3 build_page.py       # -> ../public/index.html
 cp ../public/index.html ../index.html
 ```
@@ -41,9 +45,8 @@ cp ../public/index.html ../index.html
 
 ## Scope
 
-**Python only so far**, as delivered to this batch up to D29 (15-10-2026).
+Python, NumPy, and pandas as far as it has been delivered to this batch. pandas covers
+two sessions so far, so that tab is the smallest; it grows as more are recorded.
 
-NumPy and pandas tabs will be added once the recordings for *this* batch exist — the
-August and September playlists both end at D29 Pillars of OOPs, so there is nothing to
-build them from yet. The July B2 NumPy/pandas recordings are a different batch with
-different examples and are deliberately not used here.
+`rename.py` holds the textbook naming — the content is authored in a teaching voice and
+renamed to neutral reference headings at build time.

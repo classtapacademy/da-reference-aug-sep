@@ -1,39 +1,30 @@
 # -*- coding: utf-8 -*-
 import json, html, io, re, sys
+import rename
 LD=io.open("logo_dark.b64").read().strip(); LL=io.open("logo_light.b64").read().strip()
 def esc(s): return html.escape(s or "", quote=False)
 
 def load(n): return json.load(io.open(n, encoding="utf-8"))
 
 TABS = [
- ("basics","Basics","Printing, the data types, converting between them, input, operators and if-else.",
-  "t1_basics.json","t1_basics_practice.json",
-  ["Your first lines","The data types","Type conversion","Taking input","Operators","Making decisions"]),
- ("collections","Loops &amp; Collections","Repeating work, and the four containers Python gives you to hold it.",
-  "t2_collections.json","t2_collections_practice.json",
+ ("basics","Basics","t1_basics.json","t1_basics_practice.json",
+  ["Output and variables","Data types","Type conversion","Input","Operators","Conditional statements"]),
+ ("collections","Collections","t2_collections.json","t2_collections_practice.json",
   ["Loops","Lists","Tuples","Sets","Dictionaries"]),
- ("functions","Functions","Writing your own, the five kinds of argument, the one-liners, and recursion.",
-  "t3_functions.json","t3_functions_practice.json",
-  ["Writing a function","The five kinds of argument","lambda, map, filter, reduce","Recursion","List comprehension"]),
- ("strings","Strings &amp; Regex","Cutting text up, cleaning it, formatting it, and finding patterns in it.",
-  "t4_strings.json","t4_strings_practice.json",
-  ["Strings and slicing","String methods","String formatting","Regular expressions"]),
- ("oop","Files, Errors &amp; OOP","Reading and writing files, surviving a crash, and organising code into classes.",
-  "t5_oop.json","t5_oop_practice.json",
-  ["File handling","Error handling","Classes and objects","The four pillars"]),
+ ("functions","Functions","t3_functions.json","t3_functions_practice.json",
+  ["Defining functions","Function arguments","Lambda, map, filter and reduce","Recursion","Comprehensions"]),
+ ("strings","Strings","t4_strings.json","t4_strings_practice.json",
+  ["String indexing and slicing","String methods","String formatting","Regular expressions"]),
+ ("oop","Files &amp; Classes","t5_oop.json","t5_oop_practice.json",
+  ["File handling","Exception handling","Classes and objects","The four pillars of OOP"]),
+ ("numpy","NumPy","t6_numpy.json","t6_numpy_practice.json",
+  ["Creating arrays","Inspecting an array","Accessing elements","Array operations",
+   "Aggregation","Broadcasting","Filtering","Sorting","Changing shape"]),
+ ("pandas","pandas","t7_pandas.json","t7_pandas_practice.json",
+  ["Series and DataFrame","Inspecting a DataFrame","Selecting columns","loc and iloc",
+   "Filtering rows","Sorting","Counting values"]),
 ]
 
-DAY = {
- "Your first lines":"Days 1-3","The data types":"Day 3","Type conversion":"Day 8",
- "Taking input":"Day 4","Operators":"Days 3-4","Making decisions":"Day 4",
- "Loops":"Days 9 & 23","Lists":"Days 5 & 11","Tuples":"Day 6","Sets":"Days 6-7","Dictionaries":"Day 7",
- "Writing a function":"Day 10","The five kinds of argument":"Day 14",
- "lambda, map, filter, reduce":"Days 11-12","Recursion":"Day 13","List comprehension":"Days 21-22",
- "Strings and slicing":"Days 13 & 15","String methods":"Day 16","String formatting":"Day 17",
- "Regular expressions":"Days 18-20",
- "File handling":"Days 24-25","Error handling":"Day 25",
- "Classes and objects":"Days 26-28","The four pillars":"Day 29",
-}
 
 KW = (r'\b(for|in|if|else|elif|import|from|print|len|range|def|return|not|and|or|True|False|'
       r'None|lambda|while|as|try|except|finally|class|pass|with|del|is|break|continue|super)\b')
@@ -69,9 +60,7 @@ def render(rows, practice, order):
     out=[]
     for cat in keys:
         cid=re.sub(r'[^a-z0-9]+','-',cat.lower()).strip('-')
-        day=DAY.get(cat,"")
-        out.append('<h2 class="cat" id="%s">%s%s</h2>'%(cid,esc(cat),
-                   '<span class="day">%s</span>'%esc(day) if day else ''))
+        out.append('<h2 class="cat" id="%s">%s</h2>'%(cid,esc(cat)))
         for r in cats[cat]:
             out.append('<article class="e"><h3>%s</h3>'%esc(r["name"]))
             out.append('<div class="what"><p>%s</p></div>'%esc(r["desc"]))
@@ -92,14 +81,14 @@ def render(rows, practice, order):
     return "\n".join(out), keys
 
 secs=[]; tabbtns=[]; total=0; ptotal=0
-for key,label,blurb,rf,pf,order in TABS:
-    rows=load(rf); practice=load(pf)
+for key,label,rf,pf,order in TABS:
+    rows=rename.apply(load(rf)); practice=rename.apply(load(pf))
     body,keys=render(rows,practice,order)
     total+=len(rows); ptotal+=len(practice)
     tabbtns.append('<button class="tab" data-go="%s">%s <span>%d</span></button>'%(key,label,len(rows)))
     jump="".join('<a href="#%s">%s</a>'%(re.sub(r'[^a-z0-9]+','-',c.lower()).strip('-'),esc(c)) for c in keys)
-    secs.append('<section class="sec" id="%s"><p class="blurb">%s</p><nav class="jump">%s</nav>%s</section>'
-                %(key,blurb,jump,body))
+    secs.append('<section class="sec" id="%s"><nav class="jump">%s</nav>%s</section>'
+                %(key,jump,body))
 
 CSS = """
 :root{--paper:#fff;--ink:#17191c;--slate:#5f656e;--ash:#8c9199;--hair:#e6e6e8;--mist:#f4f4f5;
@@ -119,11 +108,8 @@ body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:
 .lg-l{display:none}[data-theme="dark"] .lg-d{display:none}[data-theme="dark"] .lg-l{display:block}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .lg-d{display:none}
  :root:not([data-theme="light"]) .lg-l{display:block}}
-header{padding:22px 0 0}
+header{padding:20px 0 0}
 h1{font-family:var(--ser);font-size:38px;font-weight:600;letter-spacing:-.4px;line-height:1.1}
-.sub{font-size:17px;color:var(--slate);margin-top:9px;max-width:62ch}
-.batch{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:600;letter-spacing:.05em;
- text-transform:uppercase;color:var(--sienna);background:var(--peach);padding:4px 12px;border-radius:9999px}
 .tabs{display:flex;gap:7px;flex-wrap:wrap;margin:22px 0 0;border-bottom:1px solid var(--hair);
  padding-bottom:14px}
 .tab{font-family:var(--sans);font-size:14.5px;font-weight:600;color:var(--slate);background:none;
@@ -134,16 +120,12 @@ h1{font-family:var(--ser);font-size:38px;font-weight:600;letter-spacing:-.4px;li
 .tab.on{background:var(--peach);border-color:var(--peach);color:var(--sienna)}
 .tab.on span{color:var(--sienna);opacity:.7}
 .sec{display:none}.sec.on{display:block}
-.blurb{font-size:16px;color:var(--slate);padding:20px 0 0}
-.jump{display:flex;flex-wrap:wrap;gap:6px;padding:14px 0 6px}
+.jump{display:flex;flex-wrap:wrap;gap:6px;padding:22px 0 6px}
 .jump a{font-size:12.5px;color:var(--slate);text-decoration:none;background:var(--mist);
  border-radius:9999px;padding:4px 11px}
 .jump a:hover{color:var(--ink)}
 h2.cat{font-family:var(--ser);font-size:25px;font-weight:600;margin:34px 0 16px;
- padding-bottom:8px;border-bottom:2px solid var(--ink);display:flex;align-items:baseline;gap:10px}
-h2.cat .day{margin-left:auto;font-family:var(--sans);font-size:11.5px;font-weight:600;
- letter-spacing:.06em;text-transform:uppercase;color:var(--sienna);background:var(--peach);
- padding:3px 10px;border-radius:9999px;white-space:nowrap}
+ padding-bottom:8px;border-bottom:2px solid var(--ink)}
 .e{border:1px solid var(--hair);border-radius:12px;padding:18px 20px;margin-bottom:14px}
 .e h3{font-size:18px;font-weight:600;margin-bottom:12px}
 .lbl{font-size:10.5px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ash);
@@ -179,14 +161,13 @@ footer{border-top:1px solid var(--hair);margin-top:44px;padding:20px 0 60px;colo
  color:var(--slate);border-radius:9999px;padding:8px 15px;font-size:13px;font-family:var(--sans);
  cursor:pointer;z-index:50}
 button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--sienna);outline-offset:2px}
-@media (max-width:640px){h1{font-size:29px}.wrap{padding:0 16px}h2.cat{flex-wrap:wrap}h2.cat .day{margin-left:0}}
+@media (max-width:640px){h1{font-size:29px}.wrap{padding:0 16px}h2.cat{flex-wrap:wrap}}
 """
 
 DOC = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Python &mdash; Student Reference</title>
-<meta name="description" content="Every Python topic from the course, with runnable examples and practice questions.">
+<title>Python, NumPy and pandas &mdash; Reference</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Inter:wght@400;500;600&display=swap">
@@ -197,16 +178,11 @@ DOC = """<!doctype html>
 <div class="wrap">
 <div class="brand"><img class="lg-d" src="%s" alt="TAP Academy"><img class="lg-l" src="%s" alt="TAP Academy"></div>
 <header>
- <h1>Python &mdash; Student Reference</h1>
- <p class="sub">Every topic from the course in one place, in the order you were taught it.
- <b>Every example on this page was executed to produce the output you see</b>, so if you type it
- in you will get the same thing. Each section ends with practice questions &mdash; try them before
- you open the answer.</p>
- <div class="batch">August B3 &amp; September B2</div>
+ <h1>Python &middot; NumPy &middot; pandas</h1>
  <div class="tabs">%s</div>
 </header>
 %s
-<footer>TAP Academy &mdash; Data Analytics &middot; %d entries and %d practice questions, all executed</footer>
+<footer>%d entries &middot; %d practice questions</footer>
 </div>
 <button class="tt" id="tt">Theme</button>
 <script>

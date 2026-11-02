@@ -1,0 +1,191 @@
+[
+ {
+  "cat": "Series and DataFrame",
+  "name": "pd.Series()",
+  "desc": "A single column of values. Pandas adds a numbered index on the left.",
+  "code": "import pandas as pd\ns = pd.Series([10, 20, 30])\nprint(s)",
+  "out": "0    10\n1    20\n2    30\ndtype: int64"
+ },
+ {
+  "cat": "Series and DataFrame",
+  "name": "A chosen index",
+  "desc": "The index can be any set of labels instead of 0, 1, 2.",
+  "code": "import pandas as pd\ns = pd.Series([10, 20, 30], index=[\"a\", \"b\", \"c\"])\nprint(s)\nprint(s[\"b\"])",
+  "out": "a    10\nb    20\nc    30\ndtype: int64\n20"
+ },
+ {
+  "cat": "Series and DataFrame",
+  "name": "pd.DataFrame()",
+  "desc": "A table. Built from a dictionary, each key becomes a column name.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\": [\"Rahul\", \"Priya\"],\n    \"dept\": [\"HR\", \"Tech\"]\n})\nprint(df)",
+  "out": "    name  dept\n0  Rahul    HR\n1  Priya  Tech"
+ },
+ {
+  "cat": "Series and DataFrame",
+  "name": "read_csv()",
+  "desc": "Loads a comma-separated file into a DataFrame.",
+  "code": "import pandas as pd\nopen(\"staff.csv\", \"w\").write(\"name,dept\\nRahul,HR\\nPriya,Tech\\n\")\n\ndf = pd.read_csv(\"staff.csv\")\nprint(df)",
+  "out": "    name  dept\n0  Rahul    HR\n1  Priya  Tech"
+ },
+ {
+  "cat": "Inspecting a DataFrame",
+  "name": "head() and tail()",
+  "desc": "The first or last rows. The default is five; pass a number for more or fewer.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df.head(3))\nprint()\nprint(df.tail(2))",
+  "out": "    name   dept  salary  exp\n0  Rahul     HR   47764    4\n1  Priya   Tech   62990    7\n2   Amit  Sales   51200    3\n\n    name  dept  salary  exp\n3  Kavya  Tech   58300    6\n4  Arjun    HR   45100    2"
+ },
+ {
+  "cat": "Inspecting a DataFrame",
+  "name": "shape, columns, dtypes",
+  "desc": "The number of rows and columns, the column names, and the type held in each.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df.shape)\nprint(list(df.columns))\nprint(df.dtypes)",
+  "out": "(5, 4)\n['name', 'dept', 'salary', 'exp']\nname      object\ndept      object\nsalary     int64\nexp        int64\ndtype: object"
+ },
+ {
+  "cat": "Inspecting a DataFrame",
+  "name": "info()",
+  "desc": "Column names, their types and how many non-empty values each one holds.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\ndf.info()",
+  "out": "<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 5 entries, 0 to 4\nData columns (total 4 columns):\n #   Column  Non-Null Count  Dtype \n---  ------  --------------  ----- \n 0   name    5 non-null      object\n 1   dept    5 non-null      object\n 2   salary  5 non-null      int64 \n 3   exp     5 non-null      int64 \ndtypes: int64(2), object(2)\nmemory usage: 288.0+ bytes"
+ },
+ {
+  "cat": "Inspecting a DataFrame",
+  "name": "describe()",
+  "desc": "Count, mean, standard deviation, minimum, quartiles and maximum for the numeric columns.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df.describe())",
+  "out": "             salary       exp\ncount      5.000000  5.000000\nmean   53070.800000  4.400000\nstd     7431.869428  2.073644\nmin    45100.000000  2.000000\n25%    47764.000000  3.000000\n50%    51200.000000  4.000000\n75%    58300.000000  6.000000\nmax    62990.000000  7.000000"
+ },
+ {
+  "cat": "Selecting columns",
+  "name": "One column",
+  "desc": "Square brackets with the column name return that column as a Series.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df[\"name\"])",
+  "out": "0    Rahul\n1    Priya\n2     Amit\n3    Kavya\n4    Arjun\nName: name, dtype: object"
+ },
+ {
+  "cat": "Selecting columns",
+  "name": "Several columns",
+  "desc": "Two or more column names must be passed as a list, so there are two sets of brackets.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df[[\"name\", \"salary\"]])",
+  "out": "    name  salary\n0  Rahul   47764\n1  Priya   62990\n2   Amit   51200\n3  Kavya   58300\n4  Arjun   45100"
+ },
+ {
+  "cat": "loc and iloc",
+  "name": "loc  —  by label",
+  "desc": "Selects rows by their index label.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df.loc[0])\nprint()\nprint(df.loc[0:2])",
+  "out": "name      Rahul\ndept         HR\nsalary    47764\nexp           4\nName: 0, dtype: object\n\n    name   dept  salary  exp\n0  Rahul     HR   47764    4\n1  Priya   Tech   62990    7\n2   Amit  Sales   51200    3"
+ },
+ {
+  "cat": "loc and iloc",
+  "name": "iloc  —  by position",
+  "desc": "Selects rows by their position. Unlike loc, the stop position is not included.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df.iloc[0:2])\nprint()\nprint(df.iloc[-1])",
+  "out": "    name  dept  salary  exp\n0  Rahul    HR   47764    4\n1  Priya  Tech   62990    7\n\nname      Arjun\ndept         HR\nsalary    45100\nexp           2\nName: 4, dtype: object"
+ },
+ {
+  "cat": "loc and iloc",
+  "name": "Rows and columns together",
+  "desc": "Give the rows first, then the columns.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df.loc[0:2, [\"name\", \"salary\"]])\nprint()\nprint(df.iloc[0:2, 0:2])",
+  "out": "    name  salary\n0  Rahul   47764\n1  Priya   62990\n2   Amit   51200\n\n    name  dept\n0  Rahul    HR\n1  Priya  Tech"
+ },
+ {
+  "cat": "loc and iloc",
+  "name": "at  —  a single cell",
+  "desc": "Reads one value, given the row label and the column name.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df.at[0, \"name\"])\nprint(df.at[3, \"salary\"])",
+  "out": "Rahul\n58300"
+ },
+ {
+  "cat": "loc and iloc",
+  "name": "iat  —  a single cell by position",
+  "desc": "The same as at, but both the row and the column are given as numbers.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df.iat[0, 0])\nprint(df.iat[3, 2])",
+  "out": "Rahul\n58300"
+ },
+ {
+  "cat": "Filtering rows",
+  "name": "A condition",
+  "desc": "Comparing a column to a value returns True or False for every row.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df[\"salary\"] > 50000)",
+  "out": "0    False\n1     True\n2     True\n3     True\n4    False\nName: salary, dtype: bool"
+ },
+ {
+  "cat": "Filtering rows",
+  "name": "Using the condition",
+  "desc": "Putting the condition inside the brackets keeps only the rows where it was True.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df[df[\"salary\"] > 50000])",
+  "out": "    name   dept  salary  exp\n1  Priya   Tech   62990    7\n2   Amit  Sales   51200    3\n3  Kavya   Tech   58300    6"
+ },
+ {
+  "cat": "Filtering rows",
+  "name": "Two conditions",
+  "desc": "Use & for and, | for or. Each condition must be inside its own brackets.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df[(df[\"dept\"] == \"Tech\") & (df[\"salary\"] > 55000)])\nprint()\nprint(df[(df[\"dept\"] == \"HR\") | (df[\"exp\"] > 5)])",
+  "out": "    name  dept  salary  exp\n1  Priya  Tech   62990    7\n3  Kavya  Tech   58300    6\n\n    name  dept  salary  exp\n0  Rahul    HR   47764    4\n1  Priya  Tech   62990    7\n3  Kavya  Tech   58300    6\n4  Arjun    HR   45100    2"
+ },
+ {
+  "cat": "Filtering rows",
+  "name": "and does not work here",
+  "desc": "The word and expects one True or False, not a whole column of them.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df[(df[\"dept\"] == \"Tech\") and (df[\"salary\"] > 55000)])",
+  "out": "ValueError: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all()."
+ },
+ {
+  "cat": "Filtering rows",
+  "name": "Counting the matches",
+  "desc": "A condition can be summed, because True counts as 1.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint((df[\"salary\"] > 50000).sum())\nprint(len(df[df[\"salary\"] > 50000]))",
+  "out": "3\n3"
+ },
+ {
+  "cat": "Sorting",
+  "name": "sort_values()",
+  "desc": "Orders the rows by a column. Smallest first unless told otherwise.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df.sort_values(\"salary\"))",
+  "out": "    name   dept  salary  exp\n4  Arjun     HR   45100    2\n0  Rahul     HR   47764    4\n2   Amit  Sales   51200    3\n3  Kavya   Tech   58300    6\n1  Priya   Tech   62990    7"
+ },
+ {
+  "cat": "Sorting",
+  "name": "ascending=False",
+  "desc": "Reverses the order, largest first.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df.sort_values(\"salary\", ascending=False))",
+  "out": "    name   dept  salary  exp\n1  Priya   Tech   62990    7\n3  Kavya   Tech   58300    6\n2   Amit  Sales   51200    3\n0  Rahul     HR   47764    4\n4  Arjun     HR   45100    2"
+ },
+ {
+  "cat": "Sorting",
+  "name": "More than one column",
+  "desc": "Pass a list. The second column breaks ties in the first.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df.sort_values([\"dept\", \"salary\"]))",
+  "out": "    name   dept  salary  exp\n4  Arjun     HR   45100    2\n0  Rahul     HR   47764    4\n2   Amit  Sales   51200    3\n3  Kavya   Tech   58300    6\n1  Priya   Tech   62990    7"
+ },
+ {
+  "cat": "Sorting",
+  "name": "The original is unchanged",
+  "desc": "Sorting returns a new table. Assign it if the order is to be kept.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\ndf.sort_values(\"salary\")\nprint(df[\"salary\"].tolist())\n\ndf = df.sort_values(\"salary\")\nprint(df[\"salary\"].tolist())",
+  "out": "[47764, 62990, 51200, 58300, 45100]\n[45100, 47764, 51200, 58300, 62990]"
+ },
+ {
+  "cat": "Counting values",
+  "name": "value_counts()",
+  "desc": "How many times each value appears in a column, most frequent first.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df[\"dept\"].value_counts())",
+  "out": "dept\nHR       2\nTech     2\nSales    1\nName: count, dtype: int64"
+ },
+ {
+  "cat": "Counting values",
+  "name": "unique() and nunique()",
+  "desc": "The distinct values in a column, and how many there are.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df[\"dept\"].unique())\nprint(df[\"dept\"].nunique())",
+  "out": "['HR' 'Tech' 'Sales']\n3"
+ },
+ {
+  "cat": "Counting values",
+  "name": "Column statistics",
+  "desc": "The same summaries as NumPy, applied to one column.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100],\n    \"exp\":    [4, 7, 3, 6, 2]\n})\n\nprint(df[\"salary\"].sum())\nprint(round(df[\"salary\"].mean(), 2))\nprint(df[\"salary\"].min(), df[\"salary\"].max())\nprint(df[\"salary\"].median())",
+  "out": "265354\n53070.8\n45100 62990\n51200.0"
+ }
+]

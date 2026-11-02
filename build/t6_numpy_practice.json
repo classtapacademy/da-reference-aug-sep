@@ -1,0 +1,74 @@
+[
+ {
+  "cat": "Creating arrays",
+  "q": "Create an array of every even number from 0 to 20, and a 3x3 array filled with 1.",
+  "code": "import numpy as np\nprint(np.arange(0, 21, 2))\nprint(np.ones((3, 3)))",
+  "out": "[ 0  2  4  6  8 10 12 14 16 18 20]\n[[1. 1. 1.]\n [1. 1. 1.]\n [1. 1. 1.]]"
+ },
+ {
+  "cat": "Inspecting an array",
+  "q": "For a 3x4 array of zeros, print its dimensions, shape, size and dtype.",
+  "code": "import numpy as np\na = np.zeros((3, 4))\nprint(a.ndim, a.shape, a.size, a.dtype)",
+  "out": "2 (3, 4) 12 float64"
+ },
+ {
+  "cat": "Accessing elements",
+  "q": "From [10,20,30,40,50,60] print the first three, the last two, and the array reversed.",
+  "code": "import numpy as np\na = np.array([10, 20, 30, 40, 50, 60])\nprint(a[:3])\nprint(a[-2:])\nprint(a[::-1])",
+  "out": "[10 20 30]\n[50 60]\n[60 50 40 30 20 10]"
+ },
+ {
+  "cat": "Accessing elements",
+  "q": "From a 3x3 array, print the middle column and the top-left 2x2 block.",
+  "code": "import numpy as np\nm = np.array([[1,2,3],[4,5,6],[7,8,9]])\nprint(m[:, 1])\nprint(m[0:2, 0:2])",
+  "out": "[2 5 8]\n[[1 2]\n [4 5]]"
+ },
+ {
+  "cat": "Array operations",
+  "q": "Give every value in [45000, 52000, 61000] a 10 percent increase.",
+  "code": "import numpy as np\ns = np.array([45000, 52000, 61000])\nprint(s * 1.10)",
+  "out": "[49500. 57200. 67100.]"
+ },
+ {
+  "cat": "Aggregation",
+  "q": "For [23, 45, 12, 67, 34, 89] print the total, average, highest and its position.",
+  "code": "import numpy as np\na = np.array([23, 45, 12, 67, 34, 89])\nprint(a.sum(), round(a.mean(), 2))\nprint(a.max(), a.argmax())",
+  "out": "270 45.0\n89 5"
+ },
+ {
+  "cat": "Aggregation",
+  "q": "For a 2x3 table print the total of each column and the average of each row.",
+  "code": "import numpy as np\nm = np.array([[10,20,30],[40,50,60]])\nprint(m.sum(axis=0))\nprint(m.mean(axis=1))",
+  "out": "[50 70 90]\n[20. 50.]"
+ },
+ {
+  "cat": "Broadcasting",
+  "q": "Add [1, 2, 3] to every row of a 3x3 table.",
+  "code": "import numpy as np\nm = np.array([[10,20,30],[40,50,60],[70,80,90]])\nprint(m + np.array([1, 2, 3]))",
+  "out": "[[11 22 33]\n [41 52 63]\n [71 82 93]]"
+ },
+ {
+  "cat": "Filtering",
+  "q": "From [12, 45, 7, 88, 23, 56] print the values above 20, and count how many there are.",
+  "code": "import numpy as np\na = np.array([12, 45, 7, 88, 23, 56])\nprint(a[a > 20])\nprint((a > 20).sum())",
+  "out": "[45 88 23 56]\n4"
+ },
+ {
+  "cat": "Filtering",
+  "q": "Label each value in [12, 45, 7, 88] as pass or fail at a cut-off of 40.",
+  "code": "import numpy as np\na = np.array([12, 45, 7, 88])\nprint(np.where(a >= 40, \"pass\", \"fail\"))",
+  "out": "['fail' 'pass' 'fail' 'pass']"
+ },
+ {
+  "cat": "Sorting",
+  "q": "Sort [5, 2, 9, 1, 7] and also print the positions that would sort it.",
+  "code": "import numpy as np\na = np.array([5, 2, 9, 1, 7])\nprint(np.sort(a))\nprint(np.argsort(a))",
+  "out": "[1 2 5 7 9]\n[3 1 0 4 2]"
+ },
+ {
+  "cat": "Changing shape",
+  "q": "Turn the numbers 1 to 12 into a 3x4 table, then flatten it back.",
+  "code": "import numpy as np\na = np.arange(1, 13)\nm = a.reshape(3, 4)\nprint(m)\nprint(m.flatten())",
+  "out": "[[ 1  2  3  4]\n [ 5  6  7  8]\n [ 9 10 11 12]]\n[ 1  2  3  4  5  6  7  8  9 10 11 12]"
+ }
+]
