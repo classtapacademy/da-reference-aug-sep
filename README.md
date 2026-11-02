@@ -1,8 +1,10 @@
-# Python — Student Reference
+# Data Analytics — Student Reference
+
+**August B3 + September B2**
 
 Student-facing reference for the **August B3 + September B2** Data Analytics batch.
 
-**Live:** https://classtapacademy.github.io/python-reference/
+**Live:** https://classtapacademy.github.io/da-reference-aug-sep/
 
 Covers every Python topic taught in sessions D01–D29, in teaching order, across five tabs:
 Basics · Loops & Collections · Functions · Strings & Regex · Files, Errors & OOP.
@@ -39,5 +41,9 @@ cp ../public/index.html ../index.html
 
 ## Scope
 
-Python only, as delivered to this batch up to D29 (15-10-2026). NumPy, pandas and
-statistics are not here yet.
+**Python only so far**, as delivered to this batch up to D29 (15-10-2026).
+
+NumPy and pandas tabs will be added once the recordings for *this* batch exist — the
+August and September playlists both end at D29 Pillars of OOPs, so there is nothing to
+build them from yet. The July B2 NumPy/pandas recordings are a different batch with
+different examples and are deliberately not used here.
