@@ -46,5 +46,77 @@
   "q": "Ask for a year and print whether it is a leap year. (Divisible by 4, but not by 100, unless also by 400.)",
   "code": "y = int(input(\"year: \"))\nif y % 400 == 0:\n    print(y, \"is a leap year\")\nelif y % 100 == 0:\n    print(y, \"is not a leap year\")\nelif y % 4 == 0:\n    print(y, \"is a leap year\")\nelse:\n    print(y, \"is not a leap year\")",
   "out": "year: 2024\n2024 is a leap year"
+ },
+ {
+  "cat": "Your first lines",
+  "q": "Print a line of 30 dashes, then your name, then another line of 30 dashes.",
+  "code": "print(\"-\" * 30)\nprint(\"Anita Raghavan\")\nprint(\"-\" * 30)",
+  "out": "------------------------------\nAnita Raghavan\n------------------------------"
+ },
+ {
+  "cat": "Your first lines",
+  "q": "Store a price and a quantity, then print the total on its own line with a label.",
+  "code": "price = 249\nqty   = 4\nprint(\"Total:\", price * qty)",
+  "out": "Total: 996"
+ },
+ {
+  "cat": "The data types",
+  "q": "Make one variable of each of the four basic types and print the value next to its type.",
+  "code": "count   = 42\naverage = 61.5\nname    = \"Kavya\"\npassed  = True\nfor v in [count, average, name, passed]:\n    print(v, type(v).__name__)",
+  "out": "42 int\n61.5 float\nKavya str\nTrue bool"
+ },
+ {
+  "cat": "The data types",
+  "q": "Show that True behaves like 1 and False like 0 when you add them up.",
+  "code": "results = [True, False, True, True, False]\nprint(\"passed:\", sum(results), \"out of\", len(results))",
+  "out": "passed: 3 out of 5"
+ },
+ {
+  "cat": "Type conversion",
+  "q": "Three marks arrive as text. Add them up and print the average to two decimal places.",
+  "code": "marks = [\"72\", \"85\", \"64\"]\ntotal = int(marks[0]) + int(marks[1]) + int(marks[2])\nprint(\"average:\", round(total / 3, 2))",
+  "out": "average: 73.67"
+ },
+ {
+  "cat": "Type conversion",
+  "q": "Turn the number 4599.6 into a whole number, then into text, and print the length of that text.",
+  "code": "amount = 4599.6\nwhole  = int(amount)\ntext   = str(whole)\nprint(whole, text, len(text))",
+  "out": "4599 4599 4"
+ },
+ {
+  "cat": "Taking input",
+  "q": "Ask for a name and a city, then print a one-line greeting.",
+  "code": "name = input(\"your name: \")\ncity = input(\"your city: \")\nprint(\"Hello\", name, \"from\", city)",
+  "out": "your name: Meena\nyour city: Coimbatore\nHello Meena from Coimbatore"
+ },
+ {
+  "cat": "Taking input",
+  "q": "Ask for a price and a quantity and print the bill. Remember input gives you text.",
+  "code": "price = float(input(\"price: \"))\nqty   = int(input(\"quantity: \"))\nprint(\"bill:\", price * qty)",
+  "out": "price: 249.5\nquantity: 3\nbill: 748.5"
+ },
+ {
+  "cat": "Operators",
+  "q": "Ask for a number and print its square, its cube, and whether it divides by 3.",
+  "code": "n = int(input(\"number: \"))\nprint(\"square:\", n ** 2)\nprint(\"cube  :\", n ** 3)\nprint(\"divides by 3:\", n % 3 == 0)",
+  "out": "number: 9\nsquare: 81\ncube  : 729\ndivides by 3: True"
+ },
+ {
+  "cat": "Operators",
+  "q": "Show the difference between / and // and % on 47 divided by 5.",
+  "code": "print(\"47 / 5  =\", 47 / 5)\nprint(\"47 // 5 =\", 47 // 5)\nprint(\"47 % 5  =\", 47 % 5)",
+  "out": "47 / 5  = 9.4\n47 // 5 = 9\n47 % 5  = 2"
+ },
+ {
+  "cat": "Making decisions",
+  "q": "A shop gives 20% off above 5000 and 10% off above 2000. Print the amount to pay for a 3200 bill.",
+  "code": "bill = 3200\nif bill > 5000:\n    discount = 20\nelif bill > 2000:\n    discount = 10\nelse:\n    discount = 0\npay = bill - bill * discount / 100\nprint(\"discount\", discount, \"percent -> pay\", pay)",
+  "out": "discount 10 percent -> pay 2880.0"
+ },
+ {
+  "cat": "Making decisions",
+  "q": "Ask for three marks and print the highest one without using max().",
+  "code": "a = int(input(\"mark 1: \"))\nb = int(input(\"mark 2: \"))\nc = int(input(\"mark 3: \"))\nhighest = a\nif b > highest:\n    highest = b\nif c > highest:\n    highest = c\nprint(\"highest is\", highest)",
+  "out": "mark 1: 72\nmark 2: 85\nmark 3: 64\nhighest is 85"
  }
 ]

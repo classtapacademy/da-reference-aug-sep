@@ -70,5 +70,65 @@
   "q": "Count how many times each letter appears in the word 'statistics'.",
   "code": "word = \"statistics\"\ncounts = {}\nfor ch in word:\n    counts[ch] = counts.get(ch, 0) + 1\nprint(counts)",
   "out": "{'s': 3, 't': 3, 'a': 1, 'i': 2, 'c': 1}"
+ },
+ {
+  "cat": "Loops",
+  "q": "Print the 7 times table from 7 x 1 to 7 x 10, one line each.",
+  "code": "for i in range(1, 11):\n    print(\"7 x\", i, \"=\", 7 * i)",
+  "out": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35\n7 x 6 = 42\n7 x 7 = 49\n7 x 8 = 56\n7 x 9 = 63\n7 x 10 = 70"
+ },
+ {
+  "cat": "Loops",
+  "q": "Add up the numbers from 1 to 100 using a loop, and print the total.",
+  "code": "total = 0\nfor n in range(1, 101):\n    total = total + n\nprint(\"total:\", total)",
+  "out": "total: 5050"
+ },
+ {
+  "cat": "Lists",
+  "q": "From a list of salaries, print how many are above 50,000 and what they add up to.",
+  "code": "salaries = [47764, 62990, 51200, 58300, 45100]\nhigh = [s for s in salaries if s > 50000]\nprint(\"count:\", len(high))\nprint(\"total:\", sum(high))",
+  "out": "count: 3\ntotal: 172490"
+ },
+ {
+  "cat": "Lists",
+  "q": "Reverse a list two ways, and show that only one of them changes the original.",
+  "code": "names = [\"Rahul\", \"Priya\", \"Amit\"]\nprint(\"copy    :\", names[::-1])\nprint(\"original:\", names)\nnames.reverse()\nprint(\"after reverse():\", names)",
+  "out": "copy    : ['Amit', 'Priya', 'Rahul']\noriginal: ['Rahul', 'Priya', 'Amit']\nafter reverse(): ['Amit', 'Priya', 'Rahul']"
+ },
+ {
+  "cat": "Tuples",
+  "q": "Store a city and its pin code in a tuple, then unpack it into two variables.",
+  "code": "place = (\"Coimbatore\", 641001)\ncity, pin = place\nprint(city, \"has pin code\", pin)",
+  "out": "Coimbatore has pin code 641001"
+ },
+ {
+  "cat": "Tuples",
+  "q": "Count how many times a value appears in a tuple and find its first position.",
+  "code": "grades = (\"B\", \"A\", \"C\", \"A\", \"B\", \"A\")\nprint(\"A appears\", grades.count(\"A\"), \"times\")\nprint(\"first A is at index\", grades.index(\"A\"))",
+  "out": "A appears 3 times\nfirst A is at index 1"
+ },
+ {
+  "cat": "Sets",
+  "q": "Two teams submitted name lists. Print who is in both, and who is only in the first.",
+  "code": "team_a = {\"Rahul\", \"Priya\", \"Amit\", \"Kavya\"}\nteam_b = {\"Priya\", \"Kavya\", \"Arjun\"}\nprint(\"in both     :\", sorted(team_a & team_b))\nprint(\"only team A :\", sorted(team_a - team_b))",
+  "out": "in both     : ['Kavya', 'Priya']\nonly team A : ['Amit', 'Rahul']"
+ },
+ {
+  "cat": "Sets",
+  "q": "Count how many different cities appear in a list that has repeats.",
+  "code": "cities = [\"Chennai\", \"Pune\", \"Chennai\", \"Delhi\", \"Pune\", \"Chennai\"]\nunique = set(cities)\nprint(\"entries:\", len(cities))\nprint(\"different cities:\", len(unique))\nprint(sorted(unique))",
+  "out": "entries: 6\ndifferent cities: 3\n['Chennai', 'Delhi', 'Pune']"
+ },
+ {
+  "cat": "Dictionaries",
+  "q": "Build a dictionary of three students and their marks, then print each on its own line.",
+  "code": "marks = {\"Rahul\": 72, \"Priya\": 85, \"Amit\": 64}\nfor name, mark in marks.items():\n    print(name, \"scored\", mark)",
+  "out": "Rahul scored 72\nPriya scored 85\nAmit scored 64"
+ },
+ {
+  "cat": "Dictionaries",
+  "q": "Count how many times each city appears in a list, using a dictionary.",
+  "code": "cities = [\"Chennai\", \"Pune\", \"Chennai\", \"Delhi\", \"Pune\", \"Chennai\"]\ncount = {}\nfor c in cities:\n    count[c] = count.get(c, 0) + 1\nfor city in sorted(count):\n    print(city, count[city])",
+  "out": "Chennai 3\nDelhi 1\nPune 2"
  }
 ]

@@ -35,6 +35,12 @@ def run(code, stdin=None):
         g["input"] = _input
     here = os.getcwd()
     tmp = tempfile.mkdtemp(prefix="sref-")
+    # Snippets run in THIS interpreter, so anything one of them changes about the
+    # interpreter leaks into every snippet after it. The recursion-limit row is a
+    # real example: it drops the limit to 100 to raise RecursionError on purpose,
+    # and without restoring it, later recursive snippets fail here while running
+    # fine in the fresh subprocess - which is how the determinism check found it.
+    limit = sys.getrecursionlimit()
     try:
         os.chdir(tmp)          # snippets that write files leave nothing behind
         with contextlib.redirect_stdout(buf), contextlib.redirect_stderr(buf):
@@ -43,10 +49,13 @@ def run(code, stdin=None):
         return buf.getvalue() + type(e).__name__ + ": " + str(e), True
     finally:
         os.chdir(here)
+        sys.setrecursionlimit(limit)
     return buf.getvalue(), False
 
 def build(rows, outfile):
     done, failed, unstable = [], [], []
+    # content rows are identified by `name`, practice rows by `q`
+    label = lambda r: r.get("name") or r.get("q", "?")[:60]
     for r in rows:
         out, err = run(r["code"], r.get("stdin"))
         out = out.rstrip("\n")
@@ -57,10 +66,10 @@ def build(rows, outfile):
                              input=json.dumps({"code": r["code"], "stdin": r.get("stdin")}),
                              capture_output=True, text=True)
         if chk.returncode == 0 and chk.stdout.rstrip("\n") != out:
-            unstable.append(r["name"])
+            unstable.append(label(r))
         # a row may declare that it is SUPPOSED to raise
         if err and not r.get("raises"):
-            failed.append((r["name"], out.splitlines()[-1] if out else "?"))
+            failed.append((label(r), out.splitlines()[-1] if out else "?"))
         r = dict(r); r["out"] = out
         r.pop("raises", None); r.pop("stdin", None)
         done.append(r)

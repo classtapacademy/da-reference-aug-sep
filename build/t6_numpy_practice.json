@@ -70,5 +70,113 @@
   "q": "Turn the numbers 1 to 12 into a 3x4 table, then flatten it back.",
   "code": "import numpy as np\na = np.arange(1, 13)\nm = a.reshape(3, 4)\nprint(m)\nprint(m.flatten())",
   "out": "[[ 1  2  3  4]\n [ 5  6  7  8]\n [ 9 10 11 12]]\n[ 1  2  3  4  5  6  7  8  9 10 11 12]"
+ },
+ {
+  "cat": "Creating arrays",
+  "q": "Make an array of the even numbers from 2 to 20, and an array of five evenly spaced numbers between 0 and 1.",
+  "code": "import numpy as np\nevens = np.arange(2, 21, 2)\nspaced = np.linspace(0, 1, 5)\nprint(evens)\nprint(spaced)",
+  "out": "[ 2  4  6  8 10 12 14 16 18 20]\n[0.   0.25 0.5  0.75 1.  ]"
+ },
+ {
+  "cat": "Creating arrays",
+  "q": "Make a 3 by 3 array of zeros, one of ones, and one filled with 7.",
+  "code": "import numpy as np\nprint(np.zeros((3, 3)))\nprint(np.ones((3, 3)))\nprint(np.full((3, 3), 7))",
+  "out": "[[0. 0. 0.]\n [0. 0. 0.]\n [0. 0. 0.]]\n[[1. 1. 1.]\n [1. 1. 1.]\n [1. 1. 1.]]\n[[7 7 7]\n [7 7 7]\n [7 7 7]]"
+ },
+ {
+  "cat": "Inspecting an array",
+  "q": "Build a 3 by 4 array and print how many dimensions, what shape, how many elements and what type.",
+  "code": "import numpy as np\na = np.arange(1, 13).reshape(3, 4)\nprint(a)\nprint(\"ndim :\", a.ndim)\nprint(\"shape:\", a.shape)\nprint(\"size :\", a.size)\nprint(\"dtype:\", a.dtype)",
+  "out": "[[ 1  2  3  4]\n [ 5  6  7  8]\n [ 9 10 11 12]]\nndim : 2\nshape: (3, 4)\nsize : 12\ndtype: int64"
+ },
+ {
+  "cat": "Inspecting an array",
+  "q": "Show that one decimal number turns a whole-number array into a decimal one.",
+  "code": "import numpy as np\nprint(np.array([1, 2, 3]).dtype)\nprint(np.array([1, 2, 3.0]).dtype)\nprint(np.array([1, 2, \"3\"]).dtype)",
+  "out": "int64\nfloat64\n<U21"
+ },
+ {
+  "cat": "Accessing elements",
+  "q": "From a 3 by 4 array print the first row, the last column, and the value in the middle.",
+  "code": "import numpy as np\na = np.arange(1, 13).reshape(3, 4)\nprint(\"first row :\", a[0])\nprint(\"last col  :\", a[:, -1])\nprint(\"row 1 col 2:\", a[1, 2])",
+  "out": "first row : [1 2 3 4]\nlast col  : [ 4  8 12]\nrow 1 col 2: 7"
+ },
+ {
+  "cat": "Accessing elements",
+  "q": "Take the middle two rows and the middle two columns of a 4 by 4 array.",
+  "code": "import numpy as np\na = np.arange(1, 17).reshape(4, 4)\nprint(a)\nprint(\"middle block:\")\nprint(a[1:3, 1:3])",
+  "out": "[[ 1  2  3  4]\n [ 5  6  7  8]\n [ 9 10 11 12]\n [13 14 15 16]]\nmiddle block:\n[[ 6  7]\n [10 11]]"
+ },
+ {
+  "cat": "Array operations",
+  "q": "Add, subtract, multiply and divide two arrays element by element.",
+  "code": "import numpy as np\na = np.array([10, 20, 30, 40])\nb = np.array([2, 4, 5, 8])\nprint(\"add:\", a + b)\nprint(\"sub:\", a - b)\nprint(\"mul:\", a * b)\nprint(\"div:\", a / b)",
+  "out": "add: [12 24 35 48]\nsub: [ 8 16 25 32]\nmul: [ 20  80 150 320]\ndiv: [5. 5. 6. 5.]"
+ },
+ {
+  "cat": "Array operations",
+  "q": "A list of prices is in rupees. Add 18% GST to every price in one line.",
+  "code": "import numpy as np\nprices = np.array([249, 1200, 599, 4999])\nprint(np.round(prices * 1.18, 2))",
+  "out": "[ 293.82 1416.    706.82 5898.82]"
+ },
+ {
+  "cat": "Aggregation",
+  "q": "For an array of marks print the total, the average, the highest and the lowest.",
+  "code": "import numpy as np\nmarks = np.array([72, 85, 64, 91, 55])\nprint(\"total  :\", marks.sum())\nprint(\"average:\", marks.mean())\nprint(\"highest:\", marks.max())\nprint(\"lowest :\", marks.min())",
+  "out": "total  : 367\naverage: 73.4\nhighest: 91\nlowest : 55"
+ },
+ {
+  "cat": "Aggregation",
+  "q": "For a 3 by 4 array print the total of each column and the total of each row.",
+  "code": "import numpy as np\na = np.arange(1, 13).reshape(3, 4)\nprint(a)\nprint(\"column totals:\", a.sum(axis=0))\nprint(\"row totals   :\", a.sum(axis=1))",
+  "out": "[[ 1  2  3  4]\n [ 5  6  7  8]\n [ 9 10 11 12]]\ncolumn totals: [15 18 21 24]\nrow totals   : [10 26 42]"
+ },
+ {
+  "cat": "Broadcasting",
+  "q": "Add a different bonus to each column of a 3 by 4 salary table in one line.",
+  "code": "import numpy as np\nsal = np.array([[40000, 45000, 50000, 55000],\n                [42000, 47000, 52000, 57000],\n                [44000, 49000, 54000, 59000]])\nbonus = np.array([1000, 2000, 3000, 4000])\nprint(sal + bonus)",
+  "out": "[[41000 47000 53000 59000]\n [43000 49000 55000 61000]\n [45000 51000 57000 63000]]"
+ },
+ {
+  "cat": "Broadcasting",
+  "q": "Give each row of a table its own increase by reshaping the increase into a column.",
+  "code": "import numpy as np\na = np.arange(1, 13).reshape(3, 4)\nrow_add = np.array([100, 200, 300]).reshape(3, 1)\nprint(a + row_add)",
+  "out": "[[101 102 103 104]\n [205 206 207 208]\n [309 310 311 312]]"
+ },
+ {
+  "cat": "Filtering",
+  "q": "From an array of salaries print only those above 50,000, and how many there are.",
+  "code": "import numpy as np\nsal = np.array([47764, 62990, 51200, 58300, 45100])\nhigh = sal[sal > 50000]\nprint(high)\nprint(\"count:\", high.size)",
+  "out": "[62990 51200 58300]\ncount: 3"
+ },
+ {
+  "cat": "Filtering",
+  "q": "Replace every mark below 40 with 40, leaving the rest as they are.",
+  "code": "import numpy as np\nmarks = np.array([72, 35, 64, 28, 91])\nprint(np.where(marks < 40, 40, marks))",
+  "out": "[72 40 64 40 91]"
+ },
+ {
+  "cat": "Sorting",
+  "q": "Sort an array of salaries, and also print the names in order of salary.",
+  "code": "import numpy as np\nnames = np.array([\"Rahul\", \"Priya\", \"Amit\", \"Kavya\"])\nsal   = np.array([47764, 62990, 51200, 45100])\norder = np.argsort(sal)\nprint(\"sorted salaries:\", np.sort(sal))\nprint(\"names in order :\", names[order])",
+  "out": "sorted salaries: [45100 47764 51200 62990]\nnames in order : ['Kavya' 'Rahul' 'Amit' 'Priya']"
+ },
+ {
+  "cat": "Changing shape",
+  "q": "Turn a 12-element array into 3 by 4, then into 4 by 3, then flatten it back.",
+  "code": "import numpy as np\na = np.arange(1, 13)\nprint(a.reshape(3, 4))\nprint(a.reshape(4, 3))\nprint(a.reshape(3, 4).flatten())",
+  "out": "[[ 1  2  3  4]\n [ 5  6  7  8]\n [ 9 10 11 12]]\n[[ 1  2  3]\n [ 4  5  6]\n [ 7  8  9]\n [10 11 12]]\n[ 1  2  3  4  5  6  7  8  9 10 11 12]"
+ },
+ {
+  "cat": "Sorting",
+  "q": "Sort a 3 by 4 array along each row, then along each column.",
+  "code": "import numpy as np\na = np.array([[9, 2, 7, 4],\n              [5, 8, 1, 6],\n              [3, 0, 2, 9]])\nprint(\"along each row:\")\nprint(np.sort(a, axis=1))\nprint(\"along each column:\")\nprint(np.sort(a, axis=0))",
+  "out": "along each row:\n[[2 4 7 9]\n [1 5 6 8]\n [0 2 3 9]]\nalong each column:\n[[3 0 1 4]\n [5 2 2 6]\n [9 8 7 9]]"
+ },
+ {
+  "cat": "Changing shape",
+  "q": "Stack two arrays on top of each other, then side by side.",
+  "code": "import numpy as np\na = np.array([[1, 2], [3, 4]])\nb = np.array([[5, 6], [7, 8]])\nprint(\"stacked vertically:\")\nprint(np.vstack([a, b]))\nprint(\"stacked horizontally:\")\nprint(np.hstack([a, b]))",
+  "out": "stacked vertically:\n[[1 2]\n [3 4]\n [5 6]\n [7 8]]\nstacked horizontally:\n[[1 2 5 6]\n [3 4 7 8]]"
  }
 ]

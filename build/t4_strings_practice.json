@@ -64,5 +64,65 @@
   "q": "Check which of these are valid employee IDs in the form EMP followed by exactly four digits.",
   "code": "import re\nfor x in [\"EMP1001\", \"EMP10\", \"emp1001\", \"EMP12345\"]:\n    print(x.ljust(10), bool(re.match(r\"^EMP\\d{4}$\", x)))",
   "out": "EMP1001    True\nEMP10      False\nemp1001    False\nEMP12345   False"
+ },
+ {
+  "cat": "Strings and slicing",
+  "q": "Print the first three and the last three characters of a word.",
+  "code": "word = \"analytics\"\nprint(\"first three:\", word[:3])\nprint(\"last three :\", word[-3:])",
+  "out": "first three: ana\nlast three : ics"
+ },
+ {
+  "cat": "Strings and slicing",
+  "q": "Check whether a word reads the same forwards and backwards.",
+  "code": "for word in [\"malayalam\", \"chennai\"]:\n    print(word, \"->\", word == word[::-1])",
+  "out": "malayalam -> True\nchennai -> False"
+ },
+ {
+  "cat": "Strings and slicing",
+  "q": "Print every second letter of a word, starting from the first.",
+  "code": "word = \"statistics\"\nprint(word[::2])",
+  "out": "saitc"
+ },
+ {
+  "cat": "String methods",
+  "q": "Clean up a name that has extra spaces and the wrong case.",
+  "code": "raw = \"   rAHUL sHARMA   \"\nprint(\"raw   :\", repr(raw))\nprint(\"clean :\", repr(raw.strip().title()))",
+  "out": "raw   : '   rAHUL sHARMA   '\nclean : 'Rahul Sharma'"
+ },
+ {
+  "cat": "String methods",
+  "q": "Count how many vowels are in a piece of text.",
+  "code": "text = \"data analytics\"\nvowels = 0\nfor ch in text:\n    if ch in \"aeiou\":\n        vowels = vowels + 1\nprint(\"vowels:\", vowels)",
+  "out": "vowels: 5"
+ },
+ {
+  "cat": "String methods",
+  "q": "Split a full name into parts and print the surname and the initials.",
+  "code": "full = \"Anita Raghavan Iyer\"\nparts = full.split()\nprint(\"surname :\", parts[-1])\nprint(\"initials:\", \".\".join(p[0] for p in parts))",
+  "out": "surname : Iyer\ninitials: A.R.I"
+ },
+ {
+  "cat": "String formatting",
+  "q": "Print a small table of three names and marks, lined up in columns.",
+  "code": "rows = [(\"Rahul\", 72), (\"Priya\", 85), (\"Amit\", 64)]\nfor name, mark in rows:\n    print(f\"{name:<8} {mark:>4}\")",
+  "out": "Rahul      72\nPriya      85\nAmit       64"
+ },
+ {
+  "cat": "String formatting",
+  "q": "Print a salary with two decimal places and a percentage with one.",
+  "code": "salary = 47764\nrate   = 0.0825\nprint(f\"salary: {salary:.2f}\")\nprint(f\"rate  : {rate * 100:.1f}%\")",
+  "out": "salary: 47764.00\nrate  : 8.2%"
+ },
+ {
+  "cat": "Regular expressions",
+  "q": "Pull every number out of a line of text.",
+  "code": "import re\nline = \"Order 1043 had 3 items costing 2499 rupees\"\nprint(re.findall(r\"[0-9]+\", line))",
+  "out": "['1043', '3', '2499']"
+ },
+ {
+  "cat": "Regular expressions",
+  "q": "Check whether each phone number is exactly ten digits.",
+  "code": "import re\nfor phone in [\"9876543210\", \"98765\", \"98765432101\"]:\n    ok = re.fullmatch(r\"[0-9]{10}\", phone) is not None\n    print(phone, \"->\", ok)",
+  "out": "9876543210 -> True\n98765 -> False\n98765432101 -> False"
  }
 ]
