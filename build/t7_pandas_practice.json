@@ -148,5 +148,167 @@
   "q": "Print the average salary for each department.",
   "code": "import pandas as pd\ndf = pd.DataFrame({\"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n                   \"salary\": [47764, 62990, 51200, 58300, 45100]})\nprint(df.groupby(\"dept\")[\"salary\"].mean().round(0))",
   "out": "dept\nHR       46432.0\nSales    51200.0\nTech     60645.0\nName: salary, dtype: float64"
+ },
+ {
+  "cat": "Series and DataFrame",
+  "q": "Make a Series of four salaries and print it with its own index of names.",
+  "code": "import pandas as pd\ns = pd.Series([47764, 62990, 51200, 58300],\n              index=[\"Rahul\", \"Priya\", \"Amit\", \"Kavya\"])\nprint(s)",
+  "out": "Rahul    47764\nPriya    62990\nAmit     51200\nKavya    58300\ndtype: int64"
+ },
+ {
+  "cat": "Series and DataFrame",
+  "q": "From that Series, print one person's salary and the mean of all of them.",
+  "code": "import pandas as pd\ns = pd.Series([47764, 62990, 51200, 58300],\n              index=[\"Rahul\", \"Priya\", \"Amit\", \"Kavya\"])\nprint(s[\"Priya\"])\nprint(round(s.mean(), 2))",
+  "out": "62990\n55063.5"
+ },
+ {
+  "cat": "Series and DataFrame",
+  "q": "Build a DataFrame from a dictionary of lists and print the column names and the row count.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\": [\"Rahul\", \"Priya\", \"Amit\"],\n    \"dept\": [\"HR\", \"Tech\", \"Sales\"],\n    \"exp\":  [4, 7, 3]\n})\nprint(df)\nprint(list(df.columns), len(df))",
+  "out": "    name   dept  exp\n0  Rahul     HR    4\n1  Priya   Tech    7\n2   Amit  Sales    3\n['name', 'dept', 'exp'] 3"
+ },
+ {
+  "cat": "Series and DataFrame",
+  "q": "Write a small CSV, read it back with read_csv() and print it.",
+  "code": "import pandas as pd\nwith open(\"pay.csv\", \"w\") as f:\n    f.write(\"name,dept,salary\\nRahul,HR,47764\\nPriya,Tech,62990\\nAmit,Sales,51200\\n\")\n\ndf = pd.read_csv(\"pay.csv\")\nprint(df)",
+  "out": "    name   dept  salary\n0  Rahul     HR   47764\n1  Priya   Tech   62990\n2   Amit  Sales   51200"
+ },
+ {
+  "cat": "Inspecting a DataFrame",
+  "q": "Print the first two rows and the last two rows of a table.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df.head(2))\nprint(df.tail(2))",
+  "out": "    name  salary\n0  Rahul   47764\n1  Priya   62990\n    name  salary\n3  Kavya   58300\n4  Arjun   45100"
+ },
+ {
+  "cat": "Inspecting a DataFrame",
+  "q": "Print how many rows and columns a table has, and the type of each column.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\"],\n    \"salary\": [47764, 62990, 51200],\n    \"exp\":    [4, 7, 3]\n})\nprint(\"rows:\", df.shape[0], \"columns:\", df.shape[1])\nprint(df.dtypes)",
+  "out": "rows: 3 columns: 4\nname      object\ndept      object\nsalary     int64\nexp        int64\ndtype: object"
+ },
+ {
+  "cat": "Inspecting a DataFrame",
+  "q": "Print describe() for one numeric column only, rather than the whole table.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df[\"salary\"].describe())",
+  "out": "count        5.000000\nmean     53070.800000\nstd       7431.869428\nmin      45100.000000\n25%      47764.000000\n50%      51200.000000\n75%      58300.000000\nmax      62990.000000\nName: salary, dtype: float64"
+ },
+ {
+  "cat": "Inspecting a DataFrame",
+  "q": "Print the mean and the median of a column side by side and say which is larger.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\"salary\": [47764, 62990, 51200, 58300, 45100, 520000]})\nmean   = round(df[\"salary\"].mean(), 2)\nmedian = df[\"salary\"].median()\nprint(\"mean  :\", mean)\nprint(\"median:\", median)\nprint(\"mean is bigger:\", mean > median)",
+  "out": "mean  : 130892.33\nmedian: 54750.0\nmean is bigger: True"
+ },
+ {
+  "cat": "Selecting columns",
+  "q": "Print one column as a Series and the same column as a one-column table.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\"],\n    \"salary\": [47764, 62990, 51200]\n})\nprint(df[\"salary\"])\nprint(df[[\"salary\"]])",
+  "out": "0    47764\n1    62990\n2    51200\nName: salary, dtype: int64\n   salary\n0   47764\n1   62990\n2   51200"
+ },
+ {
+  "cat": "Selecting columns",
+  "q": "Print three chosen columns in a different order from the original table.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\"],\n    \"salary\": [47764, 62990, 51200],\n    \"exp\":    [4, 7, 3]\n})\nprint(df[[\"salary\", \"name\", \"dept\"]])",
+  "out": "   salary   name   dept\n0   47764  Rahul     HR\n1   62990  Priya   Tech\n2   51200   Amit  Sales"
+ },
+ {
+  "cat": "Selecting columns",
+  "q": "Add a new column that holds the salary after a 10% rise, then print the table.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\"],\n    \"salary\": [47764, 62990, 51200]\n})\ndf[\"after_rise\"] = (df[\"salary\"] * 1.10).round(2)\nprint(df)",
+  "out": "    name  salary  after_rise\n0  Rahul   47764     52540.4\n1  Priya   62990     69289.0\n2   Amit   51200     56320.0"
+ },
+ {
+  "cat": "loc and iloc",
+  "q": "Print rows 1 to 3 by position, and the same rows by label, and compare the two.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df.iloc[1:3])\nprint(df.loc[1:3])",
+  "out": "    name  salary\n1  Priya   62990\n2   Amit   51200\n    name  salary\n1  Priya   62990\n2   Amit   51200\n3  Kavya   58300"
+ },
+ {
+  "cat": "loc and iloc",
+  "q": "Use loc to print the name and salary of the first three rows only.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df.loc[0:2, [\"name\", \"salary\"]])",
+  "out": "    name  salary\n0  Rahul   47764\n1  Priya   62990\n2   Amit   51200"
+ },
+ {
+  "cat": "loc and iloc",
+  "q": "Use iloc to print the last two rows and the first two columns.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df.iloc[-2:, 0:2])",
+  "out": "    name  dept\n3  Kavya  Tech\n4  Arjun    HR"
+ },
+ {
+  "cat": "loc and iloc",
+  "q": "Read one cell with at and the same cell with iat, and show they agree.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\"],\n    \"salary\": [47764, 62990, 51200]\n})\nprint(df.at[1, \"salary\"])\nprint(df.iat[1, 1])",
+  "out": "62990\n62990"
+ },
+ {
+  "cat": "Filtering rows",
+  "q": "Print only the employees who earn more than 50000.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df[df[\"salary\"] > 50000])",
+  "out": "    name   dept  salary\n1  Priya   Tech   62990\n2   Amit  Sales   51200\n3  Kavya   Tech   58300"
+ },
+ {
+  "cat": "Filtering rows",
+  "q": "Print the employees in Tech who also have more than five years of experience.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"exp\":    [4, 7, 3, 6, 2],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df[(df[\"dept\"] == \"Tech\") & (df[\"exp\"] > 5)])",
+  "out": "    name  dept  exp  salary\n1  Priya  Tech    7   62990\n3  Kavya  Tech    6   58300"
+ },
+ {
+  "cat": "Filtering rows",
+  "q": "Print the employees who are in either HR or Sales.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df[(df[\"dept\"] == \"HR\") | (df[\"dept\"] == \"Sales\")])",
+  "out": "    name   dept  salary\n0  Rahul     HR   47764\n2   Amit  Sales   51200\n4  Arjun     HR   45100"
+ },
+ {
+  "cat": "Filtering rows",
+  "q": "Count how many employees earn above the average salary.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\navg = df[\"salary\"].mean()\nprint(\"average:\", round(avg, 2))\nprint(\"above it:\", (df[\"salary\"] > avg).sum())",
+  "out": "average: 53070.8\nabove it: 2"
+ },
+ {
+  "cat": "Sorting",
+  "q": "Sort a table by salary, highest first, and print the top two rows.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df.sort_values(\"salary\", ascending=False).head(2))",
+  "out": "    name  salary\n1  Priya   62990\n3  Kavya   58300"
+ },
+ {
+  "cat": "Sorting",
+  "q": "Sort by department first and then by salary within each department.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df.sort_values([\"dept\", \"salary\"], ascending=[True, False]))",
+  "out": "    name   dept  salary\n0  Rahul     HR   47764\n4  Arjun     HR   45100\n2   Amit  Sales   51200\n1  Priya   Tech   62990\n3  Kavya   Tech   58300"
+ },
+ {
+  "cat": "Sorting",
+  "q": "Sort a table and show that the original is unchanged unless you assign the result.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\"],\n    \"salary\": [47764, 62990, 51200]\n})\ndf.sort_values(\"salary\")\nprint(\"still the original order:\")\nprint(df)\ndf = df.sort_values(\"salary\")\nprint(\"now assigned:\")\nprint(df)",
+  "out": "still the original order:\n    name  salary\n0  Rahul   47764\n1  Priya   62990\n2   Amit   51200\nnow assigned:\n    name  salary\n0  Rahul   47764\n2   Amit   51200\n1  Priya   62990"
+ },
+ {
+  "cat": "Sorting",
+  "q": "Sort names into alphabetical order and reset the index so it counts from zero again.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\"],\n    \"salary\": [47764, 62990, 51200, 58300]\n})\nprint(df.sort_values(\"name\").reset_index(drop=True))",
+  "out": "    name  salary\n0   Amit   51200\n1  Kavya   58300\n2  Priya   62990\n3  Rahul   47764"
+ },
+ {
+  "cat": "Counting values",
+  "q": "Count how many employees are in each department.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\": [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\", \"Meena\"],\n    \"dept\": [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\", \"Tech\"]\n})\nprint(df[\"dept\"].value_counts())",
+  "out": "dept\nTech     3\nHR       2\nSales    1\nName: count, dtype: int64"
+ },
+ {
+  "cat": "Counting values",
+  "q": "Print how many different cities appear in a column, and list them.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"city\": [\"Chennai\", \"Pune\", \"Chennai\", \"Delhi\", \"Pune\", \"Chennai\"]\n})\nprint(\"how many:\", df[\"city\"].nunique())\nprint(sorted(df[\"city\"].unique()))",
+  "out": "how many: 3\n['Chennai', 'Delhi', 'Pune']"
+ },
+ {
+  "cat": "Counting values",
+  "q": "Show each department as a share of the whole table rather than a count.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"dept\": [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\", \"Tech\"]\n})\nprint(df[\"dept\"].value_counts(normalize=True).round(3))",
+  "out": "dept\nTech     0.500\nHR       0.333\nSales    0.167\nName: proportion, dtype: float64"
+ },
+ {
+  "cat": "Counting values",
+  "q": "Print the total, the highest and the lowest salary in one block.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(\"total  :\", df[\"salary\"].sum())\nprint(\"highest:\", df[\"salary\"].max())\nprint(\"lowest :\", df[\"salary\"].min())",
+  "out": "total  : 265354\nhighest: 62990\nlowest : 45100"
  }
 ]

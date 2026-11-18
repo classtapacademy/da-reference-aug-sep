@@ -178,5 +178,185 @@
   "q": "Stack two arrays on top of each other, then side by side.",
   "code": "import numpy as np\na = np.array([[1, 2], [3, 4]])\nb = np.array([[5, 6], [7, 8]])\nprint(\"stacked vertically:\")\nprint(np.vstack([a, b]))\nprint(\"stacked horizontally:\")\nprint(np.hstack([a, b]))",
   "out": "stacked vertically:\n[[1 2]\n [3 4]\n [5 6]\n [7 8]]\nstacked horizontally:\n[[1 2 5 6]\n [3 4 7 8]]"
+ },
+ {
+  "cat": "Creating arrays",
+  "q": "Make an array of five salaries and print it next to its type.",
+  "code": "import numpy as np\nsalaries = np.array([47764, 62990, 51200, 58300, 45100])\nprint(salaries)\nprint(type(salaries))",
+  "out": "[47764 62990 51200 58300 45100]\n<class 'numpy.ndarray'>"
+ },
+ {
+  "cat": "Creating arrays",
+  "q": "Build a 3 by 4 table of zeros and a 2 by 3 table filled with 9.",
+  "code": "import numpy as np\nprint(np.zeros((3, 4)))\nprint(np.full((2, 3), 9))",
+  "out": "[[0. 0. 0. 0.]\n [0. 0. 0. 0.]\n [0. 0. 0. 0.]]\n[[9 9 9]\n [9 9 9]]"
+ },
+ {
+  "cat": "Creating arrays",
+  "q": "Make an array of every multiple of 5 from 5 to 50 using arange().",
+  "code": "import numpy as np\nprint(np.arange(5, 51, 5))",
+  "out": "[ 5 10 15 20 25 30 35 40 45 50]"
+ },
+ {
+  "cat": "Creating arrays",
+  "q": "Produce six evenly spaced values between 0 and 1 with linspace().",
+  "code": "import numpy as np\nprint(np.linspace(0, 1, 6))",
+  "out": "[0.  0.2 0.4 0.6 0.8 1. ]"
+ },
+ {
+  "cat": "Inspecting an array",
+  "q": "Print the dimensions, shape and size of a 2 by 4 array.",
+  "code": "import numpy as np\na = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])\nprint(\"ndim :\", a.ndim)\nprint(\"shape:\", a.shape)\nprint(\"size :\", a.size)",
+  "out": "ndim : 2\nshape: (2, 4)\nsize : 8"
+ },
+ {
+  "cat": "Inspecting an array",
+  "q": "Make an array of floats, convert it to whole numbers, and print both dtypes.",
+  "code": "import numpy as np\na = np.array([47.9, 62.1, 51.5])\nb = a.astype(int)\nprint(a, a.dtype)\nprint(b, b.dtype)",
+  "out": "[47.9 62.1 51.5] float64\n[47 62 51] int64"
+ },
+ {
+  "cat": "Inspecting an array",
+  "q": "Show that mixing a number and some text in one array turns everything into text.",
+  "code": "import numpy as np\na = np.array([1, 2, \"three\"])\nprint(a)\nprint(a.dtype)",
+  "out": "['1' '2' 'three']\n<U21"
+ },
+ {
+  "cat": "Accessing elements",
+  "q": "Print the first, the last and the middle three elements of an array.",
+  "code": "import numpy as np\na = np.array([10, 20, 30, 40, 50, 60, 70])\nprint(\"first :\", a[0])\nprint(\"last  :\", a[-1])\nprint(\"middle:\", a[2:5])",
+  "out": "first : 10\nlast  : 70\nmiddle: [30 40 50]"
+ },
+ {
+  "cat": "Accessing elements",
+  "q": "From a 3 by 3 table, print one row, one column and one single cell.",
+  "code": "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])\nprint(\"row 1   :\", a[1])\nprint(\"column 2:\", a[:, 2])\nprint(\"cell    :\", a[2, 0])",
+  "out": "row 1   : [4 5 6]\ncolumn 2: [3 6 9]\ncell    : 7"
+ },
+ {
+  "cat": "Accessing elements",
+  "q": "Print every second element of an array, and then the array backwards.",
+  "code": "import numpy as np\na = np.arange(1, 11)\nprint(a[::2])\nprint(a[::-1])",
+  "out": "[1 3 5 7 9]\n[10  9  8  7  6  5  4  3  2  1]"
+ },
+ {
+  "cat": "Array operations",
+  "q": "Add a 500 bonus to every salary, then take 10% tax off, in two steps.",
+  "code": "import numpy as np\nsalaries = np.array([47764, 62990, 51200])\nwith_bonus = salaries + 500\nafter_tax  = np.round(with_bonus * 0.90, 2)\nprint(with_bonus)\nprint(after_tax)",
+  "out": "[48264 63490 51700]\n[43437.6 57141.  46530. ]"
+ },
+ {
+  "cat": "Array operations",
+  "q": "Multiply two arrays together element by element and print the result.",
+  "code": "import numpy as np\nprice = np.array([249, 60, 15])\nqty   = np.array([2, 4, 10])\nprint(price * qty)\nprint(\"bill:\", (price * qty).sum())",
+  "out": "[498 240 150]\nbill: 888"
+ },
+ {
+  "cat": "Array operations",
+  "q": "Take the square root of an array and round the answers to two decimal places.",
+  "code": "import numpy as np\na = np.array([16, 45, 81, 120])\nprint(np.round(np.sqrt(a), 2))",
+  "out": "[ 4.    6.71  9.   10.95]"
+ },
+ {
+  "cat": "Aggregation",
+  "q": "Print the total, the mean, the median and the highest of a salary array.",
+  "code": "import numpy as np\ns = np.array([47764, 62990, 51200, 58300, 45100])\nprint(\"total :\", s.sum())\nprint(\"mean  :\", round(s.mean(), 2))\nprint(\"median:\", np.median(s))\nprint(\"max   :\", s.max())",
+  "out": "total : 265354\nmean  : 53070.8\nmedian: 51200.0\nmax   : 62990"
+ },
+ {
+  "cat": "Aggregation",
+  "q": "Find which position holds the highest salary and which holds the lowest.",
+  "code": "import numpy as np\ns = np.array([47764, 62990, 51200, 58300, 45100])\nprint(\"highest at position\", s.argmax(), \"->\", s[s.argmax()])\nprint(\"lowest  at position\", s.argmin(), \"->\", s[s.argmin()])",
+  "out": "highest at position 1 -> 62990\nlowest  at position 4 -> 45100"
+ },
+ {
+  "cat": "Aggregation",
+  "q": "On a 2 by 3 table, print the column totals and the row totals.",
+  "code": "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(\"column totals:\", a.sum(axis=0))\nprint(\"row totals   :\", a.sum(axis=1))",
+  "out": "column totals: [5 7 9]\nrow totals   : [ 6 15]"
+ },
+ {
+  "cat": "Aggregation",
+  "q": "Print a running total of monthly sales with cumsum().",
+  "code": "import numpy as np\nsales = np.array([120, 90, 150, 110])\nprint(np.cumsum(sales))",
+  "out": "[120 210 360 470]"
+ },
+ {
+  "cat": "Broadcasting",
+  "q": "Give every salary in a 1-D array the same 2000 rise, without writing a loop.",
+  "code": "import numpy as np\ns = np.array([47764, 62990, 51200])\nprint(s + 2000)",
+  "out": "[49764 64990 53200]"
+ },
+ {
+  "cat": "Broadcasting",
+  "q": "Subtract a row of targets from every row of a results table.",
+  "code": "import numpy as np\nresults = np.array([[72, 85, 64], [91, 58, 77]])\ntarget  = np.array([70, 70, 70])\nprint(results - target)",
+  "out": "[[  2  15  -6]\n [ 21 -12   7]]"
+ },
+ {
+  "cat": "Broadcasting",
+  "q": "Show what happens when two shapes do not line up.",
+  "code": "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nb = np.array([1, 2])\ntry:\n    print(a + b)\nexcept ValueError as e:\n    print(\"ValueError:\", e)",
+  "out": "ValueError: operands could not be broadcast together with shapes (2,3) (2,) "
+ },
+ {
+  "cat": "Filtering",
+  "q": "Print only the salaries above 50000 and say how many there are.",
+  "code": "import numpy as np\ns = np.array([47764, 62990, 51200, 58300, 45100])\nhigh = s[s > 50000]\nprint(high)\nprint(\"count:\", (s > 50000).sum())",
+  "out": "[62990 51200 58300]\ncount: 3"
+ },
+ {
+  "cat": "Filtering",
+  "q": "Keep only the salaries that are between 46000 and 60000.",
+  "code": "import numpy as np\ns = np.array([47764, 62990, 51200, 58300, 45100])\nprint(s[(s > 46000) & (s < 60000)])",
+  "out": "[47764 51200 58300]"
+ },
+ {
+  "cat": "Filtering",
+  "q": "Label every salary as \"high\" or \"low\" with np.where().",
+  "code": "import numpy as np\ns = np.array([47764, 62990, 51200, 58300, 45100])\nprint(np.where(s > 50000, \"high\", \"low\"))",
+  "out": "['low' 'high' 'high' 'high' 'low']"
+ },
+ {
+  "cat": "Filtering",
+  "q": "Replace every negative value in an array with zero.",
+  "code": "import numpy as np\na = np.array([5, -3, 8, -1, 0, 12])\nprint(np.where(a < 0, 0, a))",
+  "out": "[ 5  0  8  0  0 12]"
+ },
+ {
+  "cat": "Sorting",
+  "q": "Sort an array of marks, then sort it from highest to lowest.",
+  "code": "import numpy as np\nm = np.array([72, 85, 64, 91, 58])\nprint(np.sort(m))\nprint(np.sort(m)[::-1])",
+  "out": "[58 64 72 85 91]\n[91 85 72 64 58]"
+ },
+ {
+  "cat": "Sorting",
+  "q": "Use argsort() to find the positions that would put an array in order.",
+  "code": "import numpy as np\nm = np.array([72, 85, 64, 91, 58])\norder = np.argsort(m)\nprint(\"positions:\", order)\nprint(\"in order :\", m[order])",
+  "out": "positions: [4 2 0 1 3]\nin order : [58 64 72 85 91]"
+ },
+ {
+  "cat": "Sorting",
+  "q": "Print the different departments in an array and how many of each there are.",
+  "code": "import numpy as np\nd = np.array([\"HR\", \"Tech\", \"HR\", \"Sales\", \"Tech\", \"HR\"])\nvalues, counts = np.unique(d, return_counts=True)\nprint(values)\nprint(counts)",
+  "out": "['HR' 'Sales' 'Tech']\n[3 1 2]"
+ },
+ {
+  "cat": "Changing shape",
+  "q": "Turn twelve numbers into a 3 by 4 table and then into a 4 by 3 one.",
+  "code": "import numpy as np\na = np.arange(1, 13)\nprint(a.reshape(3, 4))\nprint(a.reshape(4, 3))",
+  "out": "[[ 1  2  3  4]\n [ 5  6  7  8]\n [ 9 10 11 12]]\n[[ 1  2  3]\n [ 4  5  6]\n [ 7  8  9]\n [10 11 12]]"
+ },
+ {
+  "cat": "Changing shape",
+  "q": "Flatten a 2-D table back into one long row.",
+  "code": "import numpy as np\na = np.array([[1, 2, 3], [4, 5, 6]])\nprint(a.flatten())\nprint(\"shape was\", a.shape, \"now\", a.flatten().shape)",
+  "out": "[1 2 3 4 5 6]\nshape was (2, 3) now (6,)"
+ },
+ {
+  "cat": "Changing shape",
+  "q": "Show what happens when a reshape does not fit the number of elements.",
+  "code": "import numpy as np\na = np.arange(1, 11)\ntry:\n    print(a.reshape(3, 4))\nexcept ValueError as e:\n    print(\"ValueError:\", e)",
+  "out": "ValueError: cannot reshape array of size 10 into shape (3,4)"
  }
 ]

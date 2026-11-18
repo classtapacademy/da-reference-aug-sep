@@ -146,6 +146,37 @@ qty   = <span class="o">4</span>
 <span class="k">print</span>("Total:", price * qty)</code></pre>
 <div class="lbl mt">Output</div><div class="out">Total: 996</div>
 </details></div>
+<div class="pq"><div class="qn"><b>4.</b> Print a two-line address block using one print() for each line.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">print</span>("Anita Raghavan")
+<span class="k">print</span>("<span class="o">14</span> Mount Road, Chennai <span class="o">600002</span>")</code></pre>
+<div class="lbl mt">Output</div><div class="out">Anita Raghavan
+14 Mount Road, Chennai 600002</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Store a first name and a surname separately, then print the full name with a space between them.</div>
+<details><summary>Show one way to do it</summary><pre><code>first = "Kavya"
+last  = "Menon"
+<span class="k">print</span>(first, last)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Kavya Menon</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Swap the values of two variables and print them before and after.</div>
+<details><summary>Show one way to do it</summary><pre><code>a = <span class="o">10</span>
+b = <span class="o">25</span>
+<span class="k">print</span>("before:", a, b)
+a, b = b, a
+<span class="k">print</span>("after :", a, b)</code></pre>
+<div class="lbl mt">Output</div><div class="out">before: 10 25
+after : 25 10</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Print a small receipt: a heading, two item lines and a total, using one print() per line.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">print</span>("RECEIPT")
+<span class="k">print</span>("Notebook   <span class="o">60</span>")
+<span class="k">print</span>("Pen        <span class="o">15</span>")
+<span class="k">print</span>("Total      <span class="o">75</span>")</code></pre>
+<div class="lbl mt">Output</div><div class="out">RECEIPT
+Notebook   60
+Pen        15
+Total      75</div>
+</details></div>
 </div>
 <h2 class="cat" id="data-types">Data types</h2>
 <article class="e"><h3>int</h3>
@@ -220,6 +251,38 @@ True bool</div>
 <span class="k">print</span>("passed:", sum(results), "out of", <span class="k">len</span>(results))</code></pre>
 <div class="lbl mt">Output</div><div class="out">passed: 3 out of 5</div>
 </details></div>
+<div class="pq"><div class="qn"><b>4.</b> Check whether a value is a whole number using type() and a comparison.</div>
+<details><summary>Show one way to do it</summary><pre><code>value = <span class="o">42</span>
+<span class="k">print</span>(type(value) == int)
+<span class="k">print</span>(type(value) == float)</code></pre>
+<div class="lbl mt">Output</div><div class="out">True
+False</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Print the type of an empty string, an empty list and the number zero.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">print</span>(type(""))
+<span class="k">print</span>(type([]))
+<span class="k">print</span>(type(<span class="o">0</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">&lt;class 'str'&gt;
+&lt;class 'list'&gt;
+&lt;class 'int'&gt;</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Store a price as a float and a quantity as an int, multiply them, and print the type of the answer.</div>
+<details><summary>Show one way to do it</summary><pre><code>price = <span class="o">24.5</span>
+qty   = <span class="o">4</span>
+total = price * qty
+<span class="k">print</span>(total, type(total).__name__)</code></pre>
+<div class="lbl mt">Output</div><div class="out">98.0 float</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Show that a number written with a decimal point is a float even when the decimal part is zero.</div>
+<details><summary>Show one way to do it</summary><pre><code>a = <span class="o">7</span>
+b = <span class="o">7.0</span>
+<span class="k">print</span>(a, type(a).__name__)
+<span class="k">print</span>(b, type(b).__name__)
+<span class="k">print</span>("equal?", a == b)</code></pre>
+<div class="lbl mt">Output</div><div class="out">7 int
+7.0 float
+equal? True</div>
+</details></div>
 </div>
 <h2 class="cat" id="type-conversion">Type conversion</h2>
 <article class="e"><h3>int()</h3>
@@ -274,6 +337,32 @@ text   = str(whole)
 <span class="k">print</span>(whole, text, <span class="k">len</span>(text))</code></pre>
 <div class="lbl mt">Output</div><div class="out">4599 4599 4</div>
 </details></div>
+<div class="pq"><div class="qn"><b>4.</b> A quantity arrives as the text "12" and a price as the text "24.5". Print the bill as a number.</div>
+<details><summary>Show one way to do it</summary><pre><code>qty   = "<span class="o">12</span>"
+price = "<span class="o">24.5</span>"
+<span class="k">print</span>(int(qty) * float(price))</code></pre>
+<div class="lbl mt">Output</div><div class="out">294.0</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Round 68.7 down to a whole number with int(), and explain in a comment why it is not 69.</div>
+<details><summary>Show one way to do it</summary><pre><code>value = <span class="o">68.7</span>
+<span class="k">print</span>(int(value))        <span class="c"># int() cuts the decimal off, it does not round</span>
+<span class="k">print</span>(round(value))</code></pre>
+<div class="lbl mt">Output</div><div class="out">68
+69</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Join a number onto a sentence. Do it the way that fails, then the way that works.</div>
+<details><summary>Show one way to do it</summary><pre><code>age = <span class="o">22</span>
+<span class="c"># print("age " + age)   &lt;- this raises TypeError</span>
+<span class="k">print</span>("age " + str(age))</code></pre>
+<div class="lbl mt">Output</div><div class="out">age 22</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Convert the text "0", the empty string and the text "47" to bool and print each result.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">for</span> t <span class="k">in</span> ["<span class="o">0</span>", "", "<span class="o">47</span>"]:
+    <span class="k">print</span>(repr(t), "-&gt;", bool(t))</code></pre>
+<div class="lbl mt">Output</div><div class="out">'0' -&gt; True
+'' -&gt; False
+'47' -&gt; True</div>
+</details></div>
 </div>
 <h2 class="cat" id="input">Input</h2>
 <article class="e"><h3>input()</h3>
@@ -323,6 +412,40 @@ qty   = int(input("quantity: "))
 <div class="lbl mt">Output</div><div class="out">price: 249.5
 quantity: 3
 bill: 748.5</div>
+</details></div>
+<div class="pq"><div class="qn"><b>4.</b> Ask for a temperature in Celsius and print it in Fahrenheit.</div>
+<details><summary>Show one way to do it</summary><pre><code>c = float(input("celsius: "))
+f = c * <span class="o">9</span> / <span class="o">5</span> + <span class="o">32</span>
+<span class="k">print</span>(c, "C <span class="k">is</span>", f, "F")</code></pre>
+<div class="lbl mt">Output</div><div class="out">celsius: 37
+37.0 C is 98.6 F</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Ask for a word and print it along with how many letters it has.</div>
+<details><summary>Show one way to do it</summary><pre><code>word = input("a word: ")
+<span class="k">print</span>(word, "has", <span class="k">len</span>(word), "letters")</code></pre>
+<div class="lbl mt">Output</div><div class="out">a word: Chennai
+Chennai has 7 letters</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Ask for an employee id and a salary, then print them as one labelled line.</div>
+<details><summary>Show one way to do it</summary><pre><code>emp = input("employee id: ")
+sal = int(input("salary: "))
+<span class="k">print</span>("employee", emp, "earns", sal)</code></pre>
+<div class="lbl mt">Output</div><div class="out">employee id: 1004
+salary: 62990
+employee 1004 earns 62990</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Ask for two numbers and print which one is larger, or say they are equal.</div>
+<details><summary>Show one way to do it</summary><pre><code>a = int(input("first: "))
+b = int(input("second: "))
+<span class="k">if</span> a &gt; b:
+    <span class="k">print</span>(a, "<span class="k">is</span> larger")
+<span class="k">elif</span> b &gt; a:
+    <span class="k">print</span>(b, "<span class="k">is</span> larger")
+<span class="k">else</span>:
+    <span class="k">print</span>("they are equal")</code></pre>
+<div class="lbl mt">Output</div><div class="out">first: 45
+second: 45
+they are equal</div>
 </details></div>
 </div>
 <h2 class="cat" id="operators">Operators</h2>
@@ -412,6 +535,37 @@ divides by 3: True</div>
 <div class="lbl mt">Output</div><div class="out">47 / 5  = 9.4
 47 // 5 = 9
 47 % 5  = 2</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Print whether 2024 divides exactly by 4, by 7 and by 100.</div>
+<details><summary>Show one way to do it</summary><pre><code>year = <span class="o">2024</span>
+<span class="k">print</span>("by <span class="o">4</span>  :", year % <span class="o">4</span> == <span class="o">0</span>)
+<span class="k">print</span>("by <span class="o">7</span>  :", year % <span class="o">7</span> == <span class="o">0</span>)
+<span class="k">print</span>("by <span class="o">100</span>:", year % <span class="o">100</span> == <span class="o">0</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">by 4  : True
+by 7  : False
+by 100: False</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> A seat holds 4 people. Work out how many full cars 23 people need and how many are left over.</div>
+<details><summary>Show one way to do it</summary><pre><code>people = <span class="o">23</span>
+<span class="k">print</span>("full cars:", people // <span class="o">4</span>)
+<span class="k">print</span>("left over:", people % <span class="o">4</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">full cars: 5
+left over: 3</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Use not to flip a condition, and print both the original and the flipped answer.</div>
+<details><summary>Show one way to do it</summary><pre><code>salary = <span class="o">48000</span>
+high = salary &gt; <span class="o">50000</span>
+<span class="k">print</span>("high earner :", high)
+<span class="k">print</span>("<span class="k">not</span> a high earner:", <span class="k">not</span> high)</code></pre>
+<div class="lbl mt">Output</div><div class="out">high earner : False
+not a high earner: True</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Print the last digit of 47764 and the number without its last digit.</div>
+<details><summary>Show one way to do it</summary><pre><code>n = <span class="o">47764</span>
+<span class="k">print</span>("last digit:", n % <span class="o">10</span>)
+<span class="k">print</span>("the rest :", n // <span class="o">10</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">last digit: 4
+the rest : 4776</div>
 </details></div>
 </div>
 <h2 class="cat" id="conditional-statements">Conditional statements</h2>
@@ -528,6 +682,49 @@ highest = a
 mark 2: 85
 mark 3: 64
 highest is 85</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Print whether a number is positive, negative or zero. Test it with -8.</div>
+<details><summary>Show one way to do it</summary><pre><code>n = -<span class="o">8</span>
+<span class="k">if</span> n &gt; <span class="o">0</span>:
+    <span class="k">print</span>("positive")
+<span class="k">elif</span> n &lt; <span class="o">0</span>:
+    <span class="k">print</span>("negative")
+<span class="k">else</span>:
+    <span class="k">print</span>("zero")</code></pre>
+<div class="lbl mt">Output</div><div class="out">negative</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> A password must be at least 8 characters and contain a digit. Check "chennai24" and print one verdict.</div>
+<details><summary>Show one way to do it</summary><pre><code>pw = "chennai24"
+long_enough = <span class="k">len</span>(pw) &gt;= <span class="o">8</span>
+has_digit   = any(ch.isdigit() <span class="k">for</span> ch <span class="k">in</span> pw)
+<span class="k">if</span> long_enough <span class="k">and</span> has_digit:
+    <span class="k">print</span>("accepted")
+<span class="k">else</span>:
+    <span class="k">print</span>("rejected")</code></pre>
+<div class="lbl mt">Output</div><div class="out">accepted</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Decide a bus fare: under 5 free, under 18 half of 40, otherwise full. Print the fare for age 16.</div>
+<details><summary>Show one way to do it</summary><pre><code>age = <span class="o">16</span>
+<span class="k">if</span> age &lt; <span class="o">5</span>:
+    fare = <span class="o">0</span>
+<span class="k">elif</span> age &lt; <span class="o">18</span>:
+    fare = <span class="o">40</span> / <span class="o">2</span>
+<span class="k">else</span>:
+    fare = <span class="o">40</span>
+<span class="k">print</span>("age", age, "pays", fare)</code></pre>
+<div class="lbl mt">Output</div><div class="out">age 16 pays 20.0</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Use a nested if to check a department first and then a salary, and print one sentence.</div>
+<details><summary>Show one way to do it</summary><pre><code>dept   = "Tech"
+salary = <span class="o">62990</span>
+<span class="k">if</span> dept == "Tech":
+    <span class="k">if</span> salary &gt; <span class="o">60000</span>:
+        <span class="k">print</span>("senior Tech")
+    <span class="k">else</span>:
+        <span class="k">print</span>("Tech")
+<span class="k">else</span>:
+    <span class="k">print</span>("<span class="k">not</span> Tech")</code></pre>
+<div class="lbl mt">Output</div><div class="out">senior Tech</div>
 </details></div>
 </div></section>
 <section class="sec" id="collections"><nav class="jump"><a href="#loops">Loops</a><a href="#lists">Lists</a><a href="#tuples">Tuples</a><a href="#sets">Sets</a><a href="#dictionaries">Dictionaries</a></nav><h2 class="cat" id="loops">Loops</h2>
@@ -662,6 +859,70 @@ found one over 30: 40</div>
     total = total + n
 <span class="k">print</span>("total:", total)</code></pre>
 <div class="lbl mt">Output</div><div class="out">total: 5050</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Print the 7 times table from 7 x 1 to 7 x 10, one line each.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">11</span>):
+    <span class="k">print</span>("<span class="o">7</span> x", i, "=", <span class="o">7</span> * i)</code></pre>
+<div class="lbl mt">Output</div><div class="out">7 x 1 = 7
+7 x 2 = 14
+7 x 3 = 21
+7 x 4 = 28
+7 x 5 = 35
+7 x 6 = 42
+7 x 7 = 49
+7 x 8 = 56
+7 x 9 = 63
+7 x 10 = 70</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Add up the numbers from 1 to 100 with a loop and print the total.</div>
+<details><summary>Show one way to do it</summary><pre><code>total = <span class="o">0</span>
+<span class="k">for</span> n <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">101</span>):
+    total += n
+<span class="k">print</span>("total:", total)</code></pre>
+<div class="lbl mt">Output</div><div class="out">total: 5050</div>
+</details></div>
+<div class="pq"><div class="qn"><b>9.</b> Count down from 5 to 1 with a while loop, then print "go".</div>
+<details><summary>Show one way to do it</summary><pre><code>n = <span class="o">5</span>
+<span class="k">while</span> n &gt; <span class="o">0</span>:
+    <span class="k">print</span>(n)
+    n -= <span class="o">1</span>
+<span class="k">print</span>("go")</code></pre>
+<div class="lbl mt">Output</div><div class="out">5
+4
+3
+2
+1
+go</div>
+</details></div>
+<div class="pq"><div class="qn"><b>10.</b> Loop over a list of salaries and stop at the first one above 60000, printing which one stopped it.</div>
+<details><summary>Show one way to do it</summary><pre><code>salaries = [<span class="o">47764</span>, <span class="o">51200</span>, <span class="o">62990</span>, <span class="o">58300</span>]
+<span class="k">for</span> s <span class="k">in</span> salaries:
+    <span class="k">if</span> s &gt; <span class="o">60000</span>:
+        <span class="k">print</span>("stopped at", s)
+        <span class="k">break</span>
+    <span class="k">print</span>("checked", s)</code></pre>
+<div class="lbl mt">Output</div><div class="out">checked 47764
+checked 51200
+stopped at 62990</div>
+</details></div>
+<div class="pq"><div class="qn"><b>11.</b> Print every number from 1 to 20 that is not a multiple of 3, using continue.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">for</span> n <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">21</span>):
+    <span class="k">if</span> n % <span class="o">3</span> == <span class="o">0</span>:
+        <span class="k">continue</span>
+    <span class="k">print</span>(n, end=" ")
+<span class="k">print</span>()</code></pre>
+<div class="lbl mt">Output</div><div class="out">1 2 4 5 7 8 10 11 13 14 16 17 19 20 </div>
+</details></div>
+<div class="pq"><div class="qn"><b>12.</b> Use a nested loop to print a right-angled triangle of stars, 5 rows tall.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">for</span> row <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">6</span>):
+    <span class="k">for</span> star <span class="k">in</span> <span class="k">range</span>(row):
+        <span class="k">print</span>("*", end="")
+    <span class="k">print</span>()</code></pre>
+<div class="lbl mt">Output</div><div class="out">*
+**
+***
+****
+*****</div>
 </details></div>
 </div>
 <h2 class="cat" id="lists">Lists</h2>
@@ -800,6 +1061,49 @@ names.reverse()
 original: ['Rahul', 'Priya', 'Amit']
 after reverse(): ['Amit', 'Priya', 'Rahul']</div>
 </details></div>
+<div class="pq"><div class="qn"><b>6.</b> Build a list of the first six even numbers with a loop, then print its length and its last item.</div>
+<details><summary>Show one way to do it</summary><pre><code>evens = []
+<span class="k">for</span> n <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">13</span>):
+    <span class="k">if</span> n % <span class="o">2</span> == <span class="o">0</span>:
+        evens.append(n)
+<span class="k">print</span>(evens)
+<span class="k">print</span>("length:", <span class="k">len</span>(evens), "last:", evens[-<span class="o">1</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">[2, 4, 6, 8, 10, 12]
+length: 6 last: 12</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Take a list of marks and print the top three using slicing after sorting.</div>
+<details><summary>Show one way to do it</summary><pre><code>marks = [<span class="o">72</span>, <span class="o">85</span>, <span class="o">64</span>, <span class="o">91</span>, <span class="o">58</span>, <span class="o">77</span>]
+marks.sort(reverse=<span class="k">True</span>)
+<span class="k">print</span>("sorted :", marks)
+<span class="k">print</span>("top <span class="o">3</span>  :", marks[:<span class="o">3</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">sorted : [91, 85, 77, 72, 64, 58]
+top 3  : [91, 85, 77]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Reverse a list two ways: with reverse() and with a slice. Show the original is only changed by one of them.</div>
+<details><summary>Show one way to do it</summary><pre><code>nums = [<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>, <span class="o">4</span>, <span class="o">5</span>]
+<span class="k">print</span>("slice  :", nums[::-<span class="o">1</span>])
+<span class="k">print</span>("still  :", nums)
+nums.reverse()
+<span class="k">print</span>("changed:", nums)</code></pre>
+<div class="lbl mt">Output</div><div class="out">slice  : [5, 4, 3, 2, 1]
+still  : [1, 2, 3, 4, 5]
+changed: [5, 4, 3, 2, 1]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>9.</b> Remove every item below 50 from a list of marks and print what is left.</div>
+<details><summary>Show one way to do it</summary><pre><code>marks = [<span class="o">72</span>, <span class="o">45</span>, <span class="o">85</span>, <span class="o">38</span>, <span class="o">64</span>, <span class="o">91</span>]
+kept = []
+<span class="k">for</span> m <span class="k">in</span> marks:
+    <span class="k">if</span> m &gt;= <span class="o">50</span>:
+        kept.append(m)
+<span class="k">print</span>(kept)</code></pre>
+<div class="lbl mt">Output</div><div class="out">[72, 85, 64, 91]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>10.</b> Print the average of a list of salaries, rounded to two decimal places.</div>
+<details><summary>Show one way to do it</summary><pre><code>salaries = [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>]
+avg = sum(salaries) / <span class="k">len</span>(salaries)
+<span class="k">print</span>("average:", round(avg, <span class="o">2</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">average: 53070.8</div>
+</details></div>
 </div>
 <h2 class="cat" id="tuples">Tuples</h2>
 <article class="e"><h3>Creating a tuple</h3>
@@ -850,6 +1154,39 @@ city, pin = place
 <span class="k">print</span>("first A <span class="k">is</span> at index", grades.index("A"))</code></pre>
 <div class="lbl mt">Output</div><div class="out">A appears 3 times
 first A is at index 1</div>
+</details></div>
+<div class="pq"><div class="qn"><b>4.</b> Store a city and its pin code as a tuple, then unpack it into two variables and print them.</div>
+<details><summary>Show one way to do it</summary><pre><code>place = ("Chennai", <span class="o">600002</span>)
+city, pin = place
+<span class="k">print</span>(city, "has pin code", pin)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Chennai has pin code 600002</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Make a tuple of marks and print how many times 72 appears and where it first appears.</div>
+<details><summary>Show one way to do it</summary><pre><code>marks = (<span class="o">72</span>, <span class="o">85</span>, <span class="o">64</span>, <span class="o">72</span>, <span class="o">91</span>)
+<span class="k">print</span>("count of <span class="o">72</span>:", marks.count(<span class="o">72</span>))
+<span class="k">print</span>("first at   :", marks.index(<span class="o">72</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">count of 72: 2
+first at   : 0</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Show that a tuple can be turned into a list, changed, and turned back.</div>
+<details><summary>Show one way to do it</summary><pre><code>t = ("HR", "Tech", "Sales")
+lst = list(t)
+lst.append("Marketing")
+t2 = tuple(lst)
+<span class="k">print</span>(t)
+<span class="k">print</span>(t2)</code></pre>
+<div class="lbl mt">Output</div><div class="out">('HR', 'Tech', 'Sales')
+('HR', 'Tech', 'Sales', 'Marketing')</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Return two values from a calculation as a tuple and print each one separately.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> high_low(nums):
+    <span class="k">return</span> max(nums), min(nums)
+
+result = high_low([<span class="o">72</span>, <span class="o">85</span>, <span class="o">64</span>, <span class="o">91</span>])
+<span class="k">print</span>(result)
+<span class="k">print</span>("highest:", result[<span class="o">0</span>], "lowest:", result[<span class="o">1</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">(91, 64)
+highest: 91 lowest: 64</div>
 </details></div>
 </div>
 <h2 class="cat" id="sets">Sets</h2>
@@ -930,6 +1267,35 @@ unique = set(cities)
 <div class="lbl mt">Output</div><div class="out">entries: 6
 different cities: 3
 ['Chennai', 'Delhi', 'Pune']</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Count how many different departments appear in a list, then print them in order.</div>
+<details><summary>Show one way to do it</summary><pre><code>depts = ["HR", "Tech", "HR", "Sales", "Tech", "HR"]
+unique = set(depts)
+<span class="k">print</span>("how many:", <span class="k">len</span>(unique))
+<span class="k">print</span>(sorted(unique))</code></pre>
+<div class="lbl mt">Output</div><div class="out">how many: 3
+['HR', 'Sales', 'Tech']</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Two teams submit attendance lists. Print who attended both, in alphabetical order.</div>
+<details><summary>Show one way to do it</summary><pre><code>monday  = {"Rahul", "Priya", "Amit", "Kavya"}
+tuesday = {"Priya", "Kavya", "Arjun"}
+<span class="k">print</span>(sorted(monday &amp; tuesday))</code></pre>
+<div class="lbl mt">Output</div><div class="out">['Kavya', 'Priya']</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Print who was present on Monday but not on Tuesday, in alphabetical order.</div>
+<details><summary>Show one way to do it</summary><pre><code>monday  = {"Rahul", "Priya", "Amit", "Kavya"}
+tuesday = {"Priya", "Kavya", "Arjun"}
+<span class="k">print</span>(sorted(monday - tuesday))</code></pre>
+<div class="lbl mt">Output</div><div class="out">['Amit', 'Rahul']</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Add a name to a set twice and show that the size does not change.</div>
+<details><summary>Show one way to do it</summary><pre><code>team = {"Rahul", "Priya"}
+team.add("Amit")
+team.add("Amit")
+<span class="k">print</span>(sorted(team))
+<span class="k">print</span>("size:", <span class="k">len</span>(team))</code></pre>
+<div class="lbl mt">Output</div><div class="out">['Amit', 'Priya', 'Rahul']
+size: 3</div>
 </details></div>
 </div>
 <h2 class="cat" id="dictionaries">Dictionaries</h2>
@@ -1027,6 +1393,47 @@ count = {}
 <div class="lbl mt">Output</div><div class="out">Chennai 3
 Delhi 1
 Pune 2</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Store three employees and their salaries, then print each one on its own line.</div>
+<details><summary>Show one way to do it</summary><pre><code>pay = {"Rahul": <span class="o">47764</span>, "Priya": <span class="o">62990</span>, "Amit": <span class="o">51200</span>}
+<span class="k">for</span> name, salary <span class="k">in</span> pay.items():
+    <span class="k">print</span>(name, "earns", salary)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul earns 47764
+Priya earns 62990
+Amit earns 51200</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Look up a name that is not in a dictionary with get() and print a sensible fallback.</div>
+<details><summary>Show one way to do it</summary><pre><code>pay = {"Rahul": <span class="o">47764</span>, "Priya": <span class="o">62990</span>}
+<span class="k">print</span>(pay.get("Rahul"))
+<span class="k">print</span>(pay.get("Meena", "<span class="k">not</span> on record"))</code></pre>
+<div class="lbl mt">Output</div><div class="out">47764
+not on record</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Count how many times each letter appears in the word "mississippi".</div>
+<details><summary>Show one way to do it</summary><pre><code>word = "mississippi"
+counts = {}
+<span class="k">for</span> ch <span class="k">in</span> word:
+    counts[ch] = counts.get(ch, <span class="o">0</span>) + <span class="o">1</span>
+<span class="k">print</span>(counts)</code></pre>
+<div class="lbl mt">Output</div><div class="out">{'m': 1, 'i': 4, 's': 4, 'p': 2}</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Find the highest-paid employee in a dictionary and print the name and the amount.</div>
+<details><summary>Show one way to do it</summary><pre><code>pay = {"Rahul": <span class="o">47764</span>, "Priya": <span class="o">62990</span>, "Amit": <span class="o">51200</span>}
+top = ""
+best = <span class="o">0</span>
+<span class="k">for</span> name, salary <span class="k">in</span> pay.items():
+    <span class="k">if</span> salary &gt; best:
+        best = salary
+        top = name
+<span class="k">print</span>(top, "earns the most:", best)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Priya earns the most: 62990</div>
+</details></div>
+<div class="pq"><div class="qn"><b>9.</b> Give everyone in a salary dictionary a 10% rise and print the updated table.</div>
+<details><summary>Show one way to do it</summary><pre><code>pay = {"Rahul": <span class="o">47764</span>, "Priya": <span class="o">62990</span>, "Amit": <span class="o">51200</span>}
+<span class="k">for</span> name <span class="k">in</span> pay:
+    pay[name] = round(pay[name] * <span class="o">1.10</span>, <span class="o">2</span>)
+<span class="k">print</span>(pay)</code></pre>
+<div class="lbl mt">Output</div><div class="out">{'Rahul': 52540.4, 'Priya': 69289.0, 'Amit': 56320.0}</div>
 </details></div>
 </div></section>
 <section class="sec" id="functions"><nav class="jump"><a href="#defining-functions">Defining functions</a><a href="#function-arguments">Function arguments</a><a href="#lambda-map-filter-and-reduce">Lambda, map, filter and reduce</a><a href="#recursion">Recursion</a><a href="#comprehensions">Comprehensions</a></nav><h2 class="cat" id="defining-functions">Defining functions</h2>
@@ -1135,6 +1542,56 @@ hi, lo = high_low([<span class="o">47764</span>, <span class="o">62990</span>, <
 <div class="lbl mt">Output</div><div class="out">highest: 62990
 lowest : 45100</div>
 </details></div>
+<div class="pq"><div class="qn"><b>6.</b> Write a function that takes a salary and returns it after a 10% rise. Print the result for 47764.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> after_rise(salary):
+    <span class="k">return</span> round(salary * <span class="o">1.10</span>, <span class="o">2</span>)
+
+<span class="k">print</span>(after_rise(<span class="o">47764</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">52540.4</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Write a function that takes a list of marks and returns the average. Print it for two different lists.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> average(marks):
+    <span class="k">return</span> round(sum(marks) / <span class="k">len</span>(marks), <span class="o">2</span>)
+
+<span class="k">print</span>(average([<span class="o">72</span>, <span class="o">85</span>, <span class="o">64</span>]))
+<span class="k">print</span>(average([<span class="o">91</span>, <span class="o">58</span>]))</code></pre>
+<div class="lbl mt">Output</div><div class="out">73.67
+74.5</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Write a function that returns the highest and the lowest of a list, and unpack both when you call it.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> high_low(nums):
+    <span class="k">return</span> max(nums), min(nums)
+
+best, worst = high_low([<span class="o">72</span>, <span class="o">85</span>, <span class="o">64</span>, <span class="o">91</span>, <span class="o">58</span>])
+<span class="k">print</span>("highest:", best)
+<span class="k">print</span>("lowest :", worst)</code></pre>
+<div class="lbl mt">Output</div><div class="out">highest: 91
+lowest : 58</div>
+</details></div>
+<div class="pq"><div class="qn"><b>9.</b> Write a function that returns True if a number is even, then use it inside a loop.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> is_even(n):
+    <span class="k">return</span> n % <span class="o">2</span> == <span class="o">0</span>
+
+<span class="k">for</span> n <span class="k">in</span> [<span class="o">3</span>, <span class="o">8</span>, <span class="o">11</span>, <span class="o">14</span>]:
+    <span class="k">print</span>(n, is_even(n))</code></pre>
+<div class="lbl mt">Output</div><div class="out">3 False
+8 True
+11 False
+14 True</div>
+</details></div>
+<div class="pq"><div class="qn"><b>10.</b> Show the difference between a function that prints and a function that returns, by trying to use both answers.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> shows(n):
+    <span class="k">print</span>(n * <span class="o">2</span>)
+
+<span class="k">def</span> gives(n):
+    <span class="k">return</span> n * <span class="o">2</span>
+
+<span class="k">print</span>("shows gave back:", shows(<span class="o">5</span>))
+<span class="k">print</span>("gives gave back:", gives(<span class="o">5</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">10
+shows gave back: None
+gives gave back: 10</div>
+</details></div>
 </div>
 <h2 class="cat" id="function-arguments">Function arguments</h2>
 <article class="e"><h3>Positional arguments</h3>
@@ -1241,6 +1698,57 @@ average(<span class="o">90</span>, <span class="o">55</span>)</code></pre>
 <div class="lbl mt">Output</div><div class="out">count: 3 average: 73.67
 count: 2 average: 72.5</div>
 </details></div>
+<div class="pq"><div class="qn"><b>5.</b> Write a greeting function with a default city, and call it once with the default and once without.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> greet(name, city="Chennai"):
+    <span class="k">print</span>("Hello", name, "<span class="k">from</span>", city)
+
+greet("Rahul")
+greet("Priya", "Pune")</code></pre>
+<div class="lbl mt">Output</div><div class="out">Hello Rahul from Chennai
+Hello Priya from Pune</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Call a function using keyword arguments in a different order from the definition.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> bill(price, qty, discount):
+    <span class="k">return</span> price * qty - discount
+
+<span class="k">print</span>(bill(qty=<span class="o">4</span>, discount=<span class="o">50</span>, price=<span class="o">249</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">946</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Write a function that adds up any number of marks using *args.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> total(*marks):
+    <span class="k">return</span> sum(marks)
+
+<span class="k">print</span>(total(<span class="o">72</span>, <span class="o">85</span>))
+<span class="k">print</span>(total(<span class="o">72</span>, <span class="o">85</span>, <span class="o">64</span>, <span class="o">91</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">157
+312</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Write a function that takes **kwargs and prints each detail on its own line.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> details(**info):
+    <span class="k">for</span> key, value <span class="k">in</span> info.items():
+        <span class="k">print</span>(key, ":", value)
+
+details(name="Kavya", dept="Tech", salary=<span class="o">58300</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">name : Kavya
+dept : Tech
+salary : 58300</div>
+</details></div>
+<div class="pq"><div class="qn"><b>9.</b> Write one function that uses a positional, a default, *args and **kwargs together, in the correct order.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> report(title, sep="-", *rows, **extra):
+    <span class="k">print</span>(title)
+    <span class="k">print</span>(sep * <span class="o">20</span>)
+    <span class="k">for</span> r <span class="k">in</span> rows:
+        <span class="k">print</span>(r)
+    <span class="k">for</span> k, v <span class="k">in</span> extra.items():
+        <span class="k">print</span>(k, "=", v)
+
+report("Team", "=", "Rahul", "Priya", dept="Tech")</code></pre>
+<div class="lbl mt">Output</div><div class="out">Team
+====================
+Rahul
+Priya
+dept = Tech</div>
+</details></div>
 </div>
 <h2 class="cat" id="lambda-map-filter-and-reduce">Lambda, map, filter and reduce</h2>
 <article class="e"><h3>lambda</h3>
@@ -1324,6 +1832,28 @@ bonus = list(map(<span class="k">lambda</span> m: m + <span class="o">10</span>,
 long_names = list(filter(<span class="k">lambda</span> n: <span class="k">len</span>(n) &gt; <span class="o">4</span>, names))
 <span class="k">print</span>(long_names)</code></pre>
 <div class="lbl mt">Output</div><div class="out">['Priya', 'Kavya']</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Use map() to add 500 to every salary in a list.</div>
+<details><summary>Show one way to do it</summary><pre><code>salaries = [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>]
+<span class="k">print</span>(list(map(<span class="k">lambda</span> s: s + <span class="o">500</span>, salaries)))</code></pre>
+<div class="lbl mt">Output</div><div class="out">[48264, 63490, 51700]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Use filter() to keep only the names longer than four letters.</div>
+<details><summary>Show one way to do it</summary><pre><code>names = ["Amit", "Priya", "Raj", "Kavya"]
+<span class="k">print</span>(list(filter(<span class="k">lambda</span> n: <span class="k">len</span>(n) &gt; <span class="o">4</span>, names)))</code></pre>
+<div class="lbl mt">Output</div><div class="out">['Priya', 'Kavya']</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Use reduce() to multiply a list of numbers together.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">from</span> functools <span class="k">import</span> reduce
+nums = [<span class="o">2</span>, <span class="o">3</span>, <span class="o">4</span>, <span class="o">5</span>]
+<span class="k">print</span>(reduce(<span class="k">lambda</span> a, b: a * b, nums))</code></pre>
+<div class="lbl mt">Output</div><div class="out">120</div>
+</details></div>
+<div class="pq"><div class="qn"><b>9.</b> Chain filter() and map(): keep the salaries above 50000, then show them in thousands.</div>
+<details><summary>Show one way to do it</summary><pre><code>salaries = [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">45100</span>, <span class="o">58300</span>]
+high = filter(<span class="k">lambda</span> s: s &gt; <span class="o">50000</span>, salaries)
+<span class="k">print</span>(list(map(<span class="k">lambda</span> s: round(s / <span class="o">1000</span>, <span class="o">1</span>), high)))</code></pre>
+<div class="lbl mt">Output</div><div class="out">[63.0, 51.2, 58.3]</div>
 </details></div>
 </div>
 <h2 class="cat" id="recursion">Recursion</h2>
@@ -1412,6 +1942,50 @@ forever(<span class="o">5</span>)</code></pre>
 <span class="k">print</span>(reverse("analytics"))</code></pre>
 <div class="lbl mt">Output</div><div class="out">scitylana</div>
 </details></div>
+<div class="pq"><div class="qn"><b>5.</b> Write a recursive function that adds up the numbers from 1 to n. Print it for 10.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> total(n):
+    <span class="k">if</span> n == <span class="o">1</span>:
+        <span class="k">return</span> <span class="o">1</span>
+    <span class="k">return</span> n + total(n - <span class="o">1</span>)
+
+<span class="k">print</span>(total(<span class="o">10</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">55</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Write a recursive function that counts down from a number and prints each step.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> countdown(n):
+    <span class="k">if</span> n == <span class="o">0</span>:
+        <span class="k">print</span>("go")
+        <span class="k">return</span>
+    <span class="k">print</span>(n)
+    countdown(n - <span class="o">1</span>)
+
+countdown(<span class="o">4</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">4
+3
+2
+1
+go</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Write a recursive function that reverses a string.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> backwards(s):
+    <span class="k">if</span> s == "":
+        <span class="k">return</span> ""
+    <span class="k">return</span> backwards(s[<span class="o">1</span>:]) + s[<span class="o">0</span>]
+
+<span class="k">print</span>(backwards("Chennai"))</code></pre>
+<div class="lbl mt">Output</div><div class="out">iannehC</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Print the first eight Fibonacci numbers using a recursive function.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> fib(n):
+    <span class="k">if</span> n &lt;= <span class="o">1</span>:
+        <span class="k">return</span> n
+    <span class="k">return</span> fib(n - <span class="o">1</span>) + fib(n - <span class="o">2</span>)
+
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(<span class="o">8</span>):
+    <span class="k">print</span>(fib(i), end=" ")
+<span class="k">print</span>()</code></pre>
+<div class="lbl mt">Output</div><div class="out">0 1 1 2 3 5 8 13 </div>
+</details></div>
 </div>
 <h2 class="cat" id="comprehensions">Comprehensions</h2>
 <article class="e"><h3>Basic syntax</h3>
@@ -1481,6 +2055,30 @@ squares = [n * n <span class="k">for</span> n <span class="k">in</span> <span cl
 raised = [round(s * <span class="o">1.05</span>) <span class="k">for</span> s <span class="k">in</span> salaries <span class="k">if</span> s &gt; <span class="o">50000</span>]
 <span class="k">print</span>(raised)</code></pre>
 <div class="lbl mt">Output</div><div class="out">[66140, 53760, 61215]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Build a list of the squares of 1 to 10 in one line.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">print</span>([n ** <span class="o">2</span> <span class="k">for</span> n <span class="k">in</span> <span class="k">range</span>(<span class="o">1</span>, <span class="o">11</span>)])</code></pre>
+<div class="lbl mt">Output</div><div class="out">[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> From a list of salaries, build a list of only those above 50000.</div>
+<details><summary>Show one way to do it</summary><pre><code>salaries = [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">45100</span>, <span class="o">58300</span>]
+<span class="k">print</span>([s <span class="k">for</span> s <span class="k">in</span> salaries <span class="k">if</span> s &gt; <span class="o">50000</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">[62990, 51200, 58300]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Label each mark as "pass" or "fail" in one line using if and else inside a comprehension.</div>
+<details><summary>Show one way to do it</summary><pre><code>marks = [<span class="o">72</span>, <span class="o">38</span>, <span class="o">64</span>, <span class="o">45</span>, <span class="o">91</span>]
+<span class="k">print</span>(["<span class="k">pass</span>" <span class="k">if</span> m &gt;= <span class="o">50</span> <span class="k">else</span> "fail" <span class="k">for</span> m <span class="k">in</span> marks])</code></pre>
+<div class="lbl mt">Output</div><div class="out">['pass', 'fail', 'pass', 'fail', 'pass']</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Take a list of names and build a list of their initials.</div>
+<details><summary>Show one way to do it</summary><pre><code>names = ["Rahul Sharma", "Priya Nair", "Amit Rao"]
+<span class="k">print</span>([n[<span class="o">0</span>] + n.split()[<span class="o">1</span>][<span class="o">0</span>] <span class="k">for</span> n <span class="k">in</span> names])</code></pre>
+<div class="lbl mt">Output</div><div class="out">['RS', 'PN', 'AR']</div>
+</details></div>
+<div class="pq"><div class="qn"><b>9.</b> Build a dictionary of each name and its length in one line.</div>
+<details><summary>Show one way to do it</summary><pre><code>names = ["Rahul", "Priya", "Amit", "Kavya"]
+<span class="k">print</span>({n: <span class="k">len</span>(n) <span class="k">for</span> n <span class="k">in</span> names})</code></pre>
+<div class="lbl mt">Output</div><div class="out">{'Rahul': 5, 'Priya': 5, 'Amit': 4, 'Kavya': 5}</div>
 </details></div>
 </div></section>
 <section class="sec" id="strings"><nav class="jump"><a href="#string-indexing-and-slicing">String indexing and slicing</a><a href="#string-methods">String methods</a><a href="#string-formatting">String formatting</a><a href="#regular-expressions">Regular expressions</a></nav><h2 class="cat" id="string-indexing-and-slicing">String indexing and slicing</h2>
@@ -1587,6 +2185,40 @@ chennai -&gt; False</div>
 <details><summary>Show one way to do it</summary><pre><code>word = "statistics"
 <span class="k">print</span>(word[::<span class="o">2</span>])</code></pre>
 <div class="lbl mt">Output</div><div class="out">saitc</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Print the first three and the last three characters of a string.</div>
+<details><summary>Show one way to do it</summary><pre><code>s = "Coimbatore"
+<span class="k">print</span>(s[:<span class="o">3</span>])
+<span class="k">print</span>(s[-<span class="o">3</span>:])</code></pre>
+<div class="lbl mt">Output</div><div class="out">Coi
+ore</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Print every second character of a string, then the whole string backwards.</div>
+<details><summary>Show one way to do it</summary><pre><code>s = "Hyderabad"
+<span class="k">print</span>(s[::<span class="o">2</span>])
+<span class="k">print</span>(s[::-<span class="o">1</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">Hdrbd
+dabaredyH</div>
+</details></div>
+<div class="pq"><div class="qn"><b>9.</b> Check whether a string is a palindrome. Test it with "malayalam".</div>
+<details><summary>Show one way to do it</summary><pre><code>word = "malayalam"
+<span class="k">print</span>(word, "-&gt;", word == word[::-<span class="o">1</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">malayalam -&gt; True</div>
+</details></div>
+<div class="pq"><div class="qn"><b>10.</b> Build a new string with the first letter changed, since a string cannot be changed in place.</div>
+<details><summary>Show one way to do it</summary><pre><code>s = "chennai"
+fixed = "C" + s[<span class="o">1</span>:]
+<span class="k">print</span>(s)
+<span class="k">print</span>(fixed)</code></pre>
+<div class="lbl mt">Output</div><div class="out">chennai
+Chennai</div>
+</details></div>
+<div class="pq"><div class="qn"><b>11.</b> Print whether "Tech" appears in a job title, and whether the title ends in "Analyst".</div>
+<details><summary>Show one way to do it</summary><pre><code>title = "Tech Data Analyst"
+<span class="k">print</span>("Tech" <span class="k">in</span> title)
+<span class="k">print</span>(title.endswith("Analyst"))</code></pre>
+<div class="lbl mt">Output</div><div class="out">True
+True</div>
 </details></div>
 </div>
 <h2 class="cat" id="string-methods">String methods</h2>
@@ -1721,6 +2353,40 @@ parts = full.split()
 <div class="lbl mt">Output</div><div class="out">surname : Iyer
 initials: A.R.I</div>
 </details></div>
+<div class="pq"><div class="qn"><b>7.</b> Clean up a messy name: strip the spaces and put it in title case.</div>
+<details><summary>Show one way to do it</summary><pre><code>raw = "   priya   NAIR  "
+<span class="k">print</span>(repr(raw))
+<span class="k">print</span>(repr(raw.strip().title()))</code></pre>
+<div class="lbl mt">Output</div><div class="out">'   priya   NAIR  '
+'Priya   Nair'</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Count how many times the letter "a" appears in a sentence, ignoring case.</div>
+<details><summary>Show one way to do it</summary><pre><code>text = "Chennai <span class="k">and</span> Bangalore are large cities"
+<span class="k">print</span>(text.lower().count("a"))</code></pre>
+<div class="lbl mt">Output</div><div class="out">6</div>
+</details></div>
+<div class="pq"><div class="qn"><b>9.</b> Split a comma-separated row into fields, then join them back with a pipe.</div>
+<details><summary>Show one way to do it</summary><pre><code>row = "<span class="o">1004</span>,Lakshmi Kumar,Tech,Chennai"
+fields = row.split(",")
+<span class="k">print</span>(fields)
+<span class="k">print</span>(" | ".join(fields))</code></pre>
+<div class="lbl mt">Output</div><div class="out">['1004', 'Lakshmi Kumar', 'Tech', 'Chennai']
+1004 | Lakshmi Kumar | Tech | Chennai</div>
+</details></div>
+<div class="pq"><div class="qn"><b>10.</b> Replace every double space in a sentence with a single space.</div>
+<details><summary>Show one way to do it</summary><pre><code>text = "Tech  <span class="k">and</span>  Sales  teams"
+<span class="k">print</span>(repr(text))
+<span class="k">print</span>(repr(text.replace("  ", " ")))</code></pre>
+<div class="lbl mt">Output</div><div class="out">'Tech  and  Sales  teams'
+'Tech and Sales teams'</div>
+</details></div>
+<div class="pq"><div class="qn"><b>11.</b> Check whether a piece of text is all digits, so you know it is safe to convert.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">for</span> value <span class="k">in</span> ["<span class="o">47764</span>", "47a64", ""]:
+    <span class="k">print</span>(repr(value), "-&gt;", value.isdigit())</code></pre>
+<div class="lbl mt">Output</div><div class="out">'47764' -&gt; True
+'47a64' -&gt; False
+'' -&gt; False</div>
+</details></div>
 </div>
 <h2 class="cat" id="string-formatting">String formatting</h2>
 <article class="e"><h3>f-strings</h3>
@@ -1792,6 +2458,29 @@ rate   = <span class="o">0.0825</span>
 <span class="k">print</span>(f"rate  : {rate * <span class="o">100</span>:.1f}%")</code></pre>
 <div class="lbl mt">Output</div><div class="out">salary: 47764.00
 rate  : 8.2%</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Print a name and a salary in one f-string with the salary to two decimal places.</div>
+<details><summary>Show one way to do it</summary><pre><code>name, salary = "Priya", <span class="o">62990.5</span>
+<span class="k">print</span>(f"{name} earns {salary:.2f}")</code></pre>
+<div class="lbl mt">Output</div><div class="out">Priya earns 62990.50</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Print a three-column table of names and salaries lined up neatly.</div>
+<details><summary>Show one way to do it</summary><pre><code>rows = [("Rahul", <span class="o">47764</span>), ("Priya", <span class="o">62990</span>), ("Amit", <span class="o">51200</span>)]
+<span class="k">for</span> name, salary <span class="k">in</span> rows:
+    <span class="k">print</span>(f"{name:&lt;<span class="o">10</span>}{salary:&gt;<span class="o">10</span>}")</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul          47764
+Priya          62990
+Amit           51200</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Print a percentage from two numbers, rounded to one decimal place, inside an f-string.</div>
+<details><summary>Show one way to do it</summary><pre><code>passed, total = <span class="o">158</span>, <span class="o">200</span>
+<span class="k">print</span>(f"{passed} of {total} <span class="k">is</span> {passed / total * <span class="o">100</span>:.1f}%")</code></pre>
+<div class="lbl mt">Output</div><div class="out">158 of 200 is 79.0%</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Print a salary with a thousands separator inside an f-string.</div>
+<details><summary>Show one way to do it</summary><pre><code>salary = <span class="o">1897427</span>
+<span class="k">print</span>(f"{salary:,}")</code></pre>
+<div class="lbl mt">Output</div><div class="out">1,897,427</div>
 </details></div>
 </div>
 <h2 class="cat" id="regular-expressions">Regular expressions</h2>
@@ -1917,6 +2606,42 @@ line = "Order <span class="o">1043</span> had <span class="o">3</span> items cos
 <div class="lbl mt">Output</div><div class="out">9876543210 -&gt; True
 98765 -&gt; False
 98765432101 -&gt; False</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Pull every number out of a sentence with re.findall().</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> re
+text = "Order <span class="o">1004</span> shipped on <span class="o">12</span> units at <span class="o">249</span> each"
+<span class="k">print</span>(re.findall(r"\d+", text))</code></pre>
+<div class="lbl mt">Output</div><div class="out">['1004', '12', '249']</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Find every word that starts with a capital letter.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> re
+text = "Priya moved <span class="k">from</span> Chennai to Pune last March"
+<span class="k">print</span>(re.findall(r"[A-Z][a-z]+", text))</code></pre>
+<div class="lbl mt">Output</div><div class="out">['Priya', 'Chennai', 'Pune', 'March']</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Use re.search() to check whether a line contains a six-digit pin code, and print the match.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> re
+line = "<span class="o">14</span> Mount Road, Chennai <span class="o">600002</span>"
+m = re.search(r"\d{<span class="o">6</span>}", line)
+<span class="k">if</span> m:
+    <span class="k">print</span>("found:", m.group())
+<span class="k">else</span>:
+    <span class="k">print</span>("no pin code")</code></pre>
+<div class="lbl mt">Output</div><div class="out">found: 600002</div>
+</details></div>
+<div class="pq"><div class="qn"><b>9.</b> Hide every digit in a phone number with re.sub().</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> re
+phone = "<span class="o">9876543210</span>"
+<span class="k">print</span>(re.sub(r"\d", "x", phone))
+<span class="k">print</span>(re.sub(r"\d(?=\d{<span class="o">4</span>})", "x", phone))</code></pre>
+<div class="lbl mt">Output</div><div class="out">xxxxxxxxxx
+xxxxxx3210</div>
+</details></div>
+<div class="pq"><div class="qn"><b>10.</b> Split a line on any run of spaces, commas or semicolons.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> re
+line = "HR, Tech;  Sales ,Marketing"
+<span class="k">print</span>(re.split(r"[,;\s]+", line))</code></pre>
+<div class="lbl mt">Output</div><div class="out">['HR', 'Tech', 'Sales', 'Marketing']</div>
 </details></div>
 </div></section>
 <section class="sec" id="oop"><nav class="jump"><a href="#file-handling">File handling</a><a href="#exception-handling">Exception handling</a><a href="#classes-and-objects">Classes and objects</a><a href="#the-four-pillars-of-oop">The four pillars of OOP</a></nav><h2 class="cat" id="file-handling">File handling</h2>
@@ -2053,6 +2778,62 @@ second</div>
 <span class="k">print</span>("words:", <span class="k">len</span>(text.split()))</code></pre>
 <div class="lbl mt">Output</div><div class="out">lines: 2
 words: 6</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Write three lines to a file, then read the whole thing back and print it.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">with</span> open("notes.txt", "w") <span class="k">as</span> f:
+    f.write("HR\nTech\nSales\n")
+
+<span class="k">with</span> open("notes.txt") <span class="k">as</span> f:
+    <span class="k">print</span>(f.read())</code></pre>
+<div class="lbl mt">Output</div><div class="out">HR
+Tech
+Sales</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Append two more lines to an existing file and show that nothing was lost.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">with</span> open("team.txt", "w") <span class="k">as</span> f:
+    f.write("Rahul\nPriya\n")
+
+<span class="k">with</span> open("team.txt", "a") <span class="k">as</span> f:
+    f.write("Amit\nKavya\n")
+
+<span class="k">with</span> open("team.txt") <span class="k">as</span> f:
+    <span class="k">print</span>(f.read())</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul
+Priya
+Amit
+Kavya</div>
+</details></div>
+<div class="pq"><div class="qn"><b>9.</b> Read a file line by line and print each line with its number.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">with</span> open("team.txt", "w") <span class="k">as</span> f:
+    f.write("Rahul\nPriya\nAmit\n")
+
+<span class="k">with</span> open("team.txt") <span class="k">as</span> f:
+    <span class="k">for</span> i, line <span class="k">in</span> enumerate(f, start=<span class="o">1</span>):
+        <span class="k">print</span>(i, line.strip())</code></pre>
+<div class="lbl mt">Output</div><div class="out">1 Rahul
+2 Priya
+3 Amit</div>
+</details></div>
+<div class="pq"><div class="qn"><b>10.</b> Count how many lines a file has without loading it all into memory at once.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">with</span> open("log.txt", "w") <span class="k">as</span> f:
+    f.write("a\nb\nc\nd\ne\n")
+
+count = <span class="o">0</span>
+<span class="k">with</span> open("log.txt") <span class="k">as</span> f:
+    <span class="k">for</span> line <span class="k">in</span> f:
+        count += <span class="o">1</span>
+<span class="k">print</span>("lines:", count)</code></pre>
+<div class="lbl mt">Output</div><div class="out">lines: 5</div>
+</details></div>
+<div class="pq"><div class="qn"><b>11.</b> Write a small CSV by hand, read it back, and print only the second field of each row.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">with</span> open("staff.csv", "w") <span class="k">as</span> f:
+    f.write("<span class="o">1004</span>,Lakshmi,Tech\n1008,Manoj,HR\n")
+
+<span class="k">with</span> open("staff.csv") <span class="k">as</span> f:
+    <span class="k">for</span> line <span class="k">in</span> f:
+        <span class="k">print</span>(line.strip().split(",")[<span class="o">1</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">Lakshmi
+Manoj</div>
 </details></div>
 </div>
 <h2 class="cat" id="exception-handling">Exception handling</h2>
@@ -2197,6 +2978,59 @@ that was not a number</div>
     <span class="k">print</span>("done")</code></pre>
 <div class="lbl mt">Output</div><div class="out">file not found - carrying on
 done</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Ask for a number and handle the case where the text cannot be converted.</div>
+<details><summary>Show one way to do it</summary><pre><code>value = input("a number: ")
+<span class="k">try</span>:
+    <span class="k">print</span>("doubled:", int(value) * <span class="o">2</span>)
+<span class="k">except</span> ValueError:
+    <span class="k">print</span>("that was <span class="k">not</span> a number")</code></pre>
+<div class="lbl mt">Output</div><div class="out">a number: abc
+that was not a number</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Catch a division by zero and print a clear message instead of crashing.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">def</span> divide(a, b):
+    <span class="k">try</span>:
+        <span class="k">return</span> a / b
+    <span class="k">except</span> ZeroDivisionError:
+        <span class="k">return</span> "cannot divide by zero"
+
+<span class="k">print</span>(divide(<span class="o">10</span>, <span class="o">2</span>))
+<span class="k">print</span>(divide(<span class="o">10</span>, <span class="o">0</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">5.0
+cannot divide by zero</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Catch two different errors from the same block with two except clauses.</div>
+<details><summary>Show one way to do it</summary><pre><code>data = {"Rahul": <span class="o">47764</span>}
+<span class="k">for</span> attempt <span class="k">in</span> ["Rahul", "Meena"]:
+    <span class="k">try</span>:
+        <span class="k">print</span>(attempt, data[attempt])
+    <span class="k">except</span> KeyError:
+        <span class="k">print</span>(attempt, "<span class="k">is</span> <span class="k">not</span> on record")
+    <span class="k">except</span> TypeError:
+        <span class="k">print</span>("wrong type")</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul 47764
+Meena is not on record</div>
+</details></div>
+<div class="pq"><div class="qn"><b>9.</b> Use else and finally to show what runs when nothing goes wrong and what runs every time.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">try</span>:
+    total = <span class="o">100</span> / <span class="o">4</span>
+<span class="k">except</span> ZeroDivisionError:
+    <span class="k">print</span>("bad divisor")
+<span class="k">else</span>:
+    <span class="k">print</span>("worked, total <span class="k">is</span>", total)
+<span class="k">finally</span>:
+    <span class="k">print</span>("this always runs")</code></pre>
+<div class="lbl mt">Output</div><div class="out">worked, total is 25.0
+this always runs</div>
+</details></div>
+<div class="pq"><div class="qn"><b>10.</b> Open a file that does not exist and handle the error instead of crashing.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">try</span>:
+    <span class="k">with</span> open("missing.txt") <span class="k">as</span> f:
+        <span class="k">print</span>(f.read())
+<span class="k">except</span> FileNotFoundError:
+    <span class="k">print</span>("that file <span class="k">is</span> <span class="k">not</span> there")</code></pre>
+<div class="lbl mt">Output</div><div class="out">that file is not there</div>
 </details></div>
 </div>
 <h2 class="cat" id="classes-and-objects">Classes and objects</h2>
@@ -2382,6 +3216,79 @@ Priya 5000</div>
 <span class="k">print</span>(Employee("Arjun", "Tech"))</code></pre>
 <div class="lbl mt">Output</div><div class="out">Arjun (Tech)</div>
 </details></div>
+<div class="pq"><div class="qn"><b>7.</b> Write an Employee class with a name and a salary, make two objects and print their details.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+a = Employee("Rahul", <span class="o">47764</span>)
+b = Employee("Priya", <span class="o">62990</span>)
+<span class="k">print</span>(a.name, a.salary)
+<span class="k">print</span>(b.name, b.salary)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul 47764
+Priya 62990</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Add a method that gives an employee a rise, and show the object changing.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    <span class="k">def</span> give_rise(self, percent):
+        self.salary = round(self.salary * (<span class="o">1</span> + percent / <span class="o">100</span>), <span class="o">2</span>)
+
+e = Employee("Amit", <span class="o">51200</span>)
+<span class="k">print</span>("before:", e.salary)
+e.give_rise(<span class="o">10</span>)
+<span class="k">print</span>("after :", e.salary)</code></pre>
+<div class="lbl mt">Output</div><div class="out">before: 51200
+after : 56320.0</div>
+</details></div>
+<div class="pq"><div class="qn"><b>9.</b> Make a list of three objects and print the name of each one in a loop.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name, dept):
+        self.name = name
+        self.dept = dept
+
+team = [Employee("Rahul", "HR"), Employee("Priya", "Tech"), Employee("Amit", "Sales")]
+<span class="k">for</span> e <span class="k">in</span> team:
+    <span class="k">print</span>(e.name, "-", e.dept)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul - HR
+Priya - Tech
+Amit - Sales</div>
+</details></div>
+<div class="pq"><div class="qn"><b>10.</b> Filter a list of objects and print only the ones in Tech.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name, dept, salary):
+        self.name = name
+        self.dept = dept
+        self.salary = salary
+
+team = [Employee("Rahul", "HR", <span class="o">47764</span>),
+        Employee("Priya", "Tech", <span class="o">62990</span>),
+        Employee("Kavya", "Tech", <span class="o">58300</span>)]
+
+<span class="k">for</span> e <span class="k">in</span> team:
+    <span class="k">if</span> e.dept == "Tech":
+        <span class="k">print</span>(e.name, e.salary)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Priya 62990
+Kavya 58300</div>
+</details></div>
+<div class="pq"><div class="qn"><b>11.</b> Add a method that returns a formatted line, and use it to print a small table.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+    <span class="k">def</span> line(self):
+        <span class="k">return</span> f"{self.name:&lt;<span class="o">8</span>}{self.salary:&gt;<span class="o">8</span>}"
+
+<span class="k">for</span> e <span class="k">in</span> [Employee("Rahul", <span class="o">47764</span>), Employee("Priya", <span class="o">62990</span>)]:
+    <span class="k">print</span>(e.line())</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul      47764
+Priya      62990</div>
+</details></div>
 </div>
 <h2 class="cat" id="the-four-pillars-of-oop">The four pillars of OOP</h2>
 <article class="e"><h3>Encapsulation</h3>
@@ -2548,6 +3455,90 @@ Meera leads 6 people</div>
 <div class="lbl mt">Output</div><div class="out">Circle area: 28.27
 Square area: 16</div>
 </details></div>
+<div class="pq"><div class="qn"><b>5.</b> Use inheritance: a Manager that is an Employee but also has a team size.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+<span class="k">class</span> Manager(Employee):
+    <span class="k">def</span> __init__(self, name, salary, team_size):
+        <span class="k">super</span>().__init__(name, salary)
+        self.team_size = team_size
+
+m = Manager("Priya", <span class="o">92000</span>, <span class="o">6</span>)
+<span class="k">print</span>(m.name, m.salary, "leads", m.team_size)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Priya 92000 leads 6</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Override a method in a child class and show both versions running.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> describe(self):
+        <span class="k">return</span> "an employee"
+
+<span class="k">class</span> Manager(Employee):
+    <span class="k">def</span> describe(self):
+        <span class="k">return</span> "a manager"
+
+<span class="k">for</span> person <span class="k">in</span> [Employee(), Manager()]:
+    <span class="k">print</span>(person.describe())</code></pre>
+<div class="lbl mt">Output</div><div class="out">an employee
+a manager</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Show polymorphism by calling the same method on three different classes in one loop.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">class</span> Circle:
+    <span class="k">def</span> area(self):
+        <span class="k">return</span> round(<span class="o">3.14159</span> * <span class="o">5</span> * <span class="o">5</span>, <span class="o">2</span>)
+
+<span class="k">class</span> Square:
+    <span class="k">def</span> area(self):
+        <span class="k">return</span> <span class="o">4</span> * <span class="o">4</span>
+
+<span class="k">class</span> Rectangle:
+    <span class="k">def</span> area(self):
+        <span class="k">return</span> <span class="o">3</span> * <span class="o">7</span>
+
+<span class="k">for</span> shape <span class="k">in</span> [Circle(), Square(), Rectangle()]:
+    <span class="k">print</span>(type(shape).__name__, shape.area())</code></pre>
+<div class="lbl mt">Output</div><div class="out">Circle 78.54
+Square 16
+Rectangle 21</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Use encapsulation: keep a balance private and only change it through a method.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">class</span> Account:
+    <span class="k">def</span> __init__(self, owner, balance):
+        self.owner = owner
+        self.__balance = balance
+
+    <span class="k">def</span> deposit(self, amount):
+        <span class="k">if</span> amount &gt; <span class="o">0</span>:
+            self.__balance += amount
+
+    <span class="k">def</span> show(self):
+        <span class="k">return</span> self.__balance
+
+a = Account("Rahul", <span class="o">1000</span>)
+a.deposit(<span class="o">500</span>)
+<span class="k">print</span>(a.show())
+a.deposit(-<span class="o">999</span>)
+<span class="k">print</span>(a.show())</code></pre>
+<div class="lbl mt">Output</div><div class="out">1500
+1500</div>
+</details></div>
+<div class="pq"><div class="qn"><b>9.</b> Use super() to extend a parent method rather than replace it entirely.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">class</span> Employee:
+    <span class="k">def</span> __init__(self, name):
+        self.name = name
+
+    <span class="k">def</span> describe(self):
+        <span class="k">return</span> "Employee " + self.name
+
+<span class="k">class</span> Manager(Employee):
+    <span class="k">def</span> describe(self):
+        <span class="k">return</span> <span class="k">super</span>().describe() + " (manager)"
+
+<span class="k">print</span>(Manager("Priya").describe())</code></pre>
+<div class="lbl mt">Output</div><div class="out">Employee Priya (manager)</div>
+</details></div>
 </div></section>
 <section class="sec" id="numpy"><nav class="jump"><a href="#creating-arrays">Creating arrays</a><a href="#inspecting-an-array">Inspecting an array</a><a href="#accessing-elements">Accessing elements</a><a href="#array-operations">Array operations</a><a href="#aggregation">Aggregation</a><a href="#broadcasting">Broadcasting</a><a href="#filtering">Filtering</a><a href="#sorting">Sorting</a><a href="#changing-shape">Changing shape</a></nav><h2 class="cat" id="creating-arrays">Creating arrays</h2>
 <article class="e"><h3>np.array()</h3>
@@ -2649,6 +3640,34 @@ spaced = np.linspace(<span class="o">0</span>, <span class="o">1</span>, <span c
  [7 7 7]
  [7 7 7]]</div>
 </details></div>
+<div class="pq"><div class="qn"><b>4.</b> Make an array of five salaries and print it next to its type.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+salaries = np.array([<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>])
+<span class="k">print</span>(salaries)
+<span class="k">print</span>(type(salaries))</code></pre>
+<div class="lbl mt">Output</div><div class="out">[47764 62990 51200 58300 45100]
+&lt;class 'numpy.ndarray'&gt;</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Build a 3 by 4 table of zeros and a 2 by 3 table filled with 9.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">print</span>(np.zeros((<span class="o">3</span>, <span class="o">4</span>)))
+<span class="k">print</span>(np.full((<span class="o">2</span>, <span class="o">3</span>), <span class="o">9</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">[[0. 0. 0. 0.]
+ [0. 0. 0. 0.]
+ [0. 0. 0. 0.]]
+[[9 9 9]
+ [9 9 9]]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Make an array of every multiple of 5 from 5 to 50 using arange().</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">print</span>(np.arange(<span class="o">5</span>, <span class="o">51</span>, <span class="o">5</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">[ 5 10 15 20 25 30 35 40 45 50]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Produce six evenly spaced values between 0 and 1 with linspace().</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+<span class="k">print</span>(np.linspace(<span class="o">0</span>, <span class="o">1</span>, <span class="o">6</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">[0.  0.2 0.4 0.6 0.8 1. ]</div>
+</details></div>
 </div>
 <h2 class="cat" id="inspecting-an-array">Inspecting an array</h2>
 <article class="e"><h3>ndim, shape, size</h3>
@@ -2712,6 +3731,33 @@ dtype: int64</div>
 <span class="k">print</span>(np.array([<span class="o">1</span>, <span class="o">2</span>, "<span class="o">3</span>"]).dtype)</code></pre>
 <div class="lbl mt">Output</div><div class="out">int64
 float64
+&lt;U21</div>
+</details></div>
+<div class="pq"><div class="qn"><b>4.</b> Print the dimensions, shape and size of a 2 by 4 array.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+a = np.array([[<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>, <span class="o">4</span>], [<span class="o">5</span>, <span class="o">6</span>, <span class="o">7</span>, <span class="o">8</span>]])
+<span class="k">print</span>("ndim :", a.ndim)
+<span class="k">print</span>("shape:", a.shape)
+<span class="k">print</span>("size :", a.size)</code></pre>
+<div class="lbl mt">Output</div><div class="out">ndim : 2
+shape: (2, 4)
+size : 8</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Make an array of floats, convert it to whole numbers, and print both dtypes.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+a = np.array([<span class="o">47.9</span>, <span class="o">62.1</span>, <span class="o">51.5</span>])
+b = a.astype(int)
+<span class="k">print</span>(a, a.dtype)
+<span class="k">print</span>(b, b.dtype)</code></pre>
+<div class="lbl mt">Output</div><div class="out">[47.9 62.1 51.5] float64
+[47 62 51] int64</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Show that mixing a number and some text in one array turns everything into text.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+a = np.array([<span class="o">1</span>, <span class="o">2</span>, "three"])
+<span class="k">print</span>(a)
+<span class="k">print</span>(a.dtype)</code></pre>
+<div class="lbl mt">Output</div><div class="out">['1' '2' 'three']
 &lt;U21</div>
 </details></div>
 </div>
@@ -2811,6 +3857,34 @@ middle block:
 [[ 6  7]
  [10 11]]</div>
 </details></div>
+<div class="pq"><div class="qn"><b>5.</b> Print the first, the last and the middle three elements of an array.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+a = np.array([<span class="o">10</span>, <span class="o">20</span>, <span class="o">30</span>, <span class="o">40</span>, <span class="o">50</span>, <span class="o">60</span>, <span class="o">70</span>])
+<span class="k">print</span>("first :", a[<span class="o">0</span>])
+<span class="k">print</span>("last  :", a[-<span class="o">1</span>])
+<span class="k">print</span>("middle:", a[<span class="o">2</span>:<span class="o">5</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">first : 10
+last  : 70
+middle: [30 40 50]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> From a 3 by 3 table, print one row, one column and one single cell.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+a = np.array([[<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>], [<span class="o">4</span>, <span class="o">5</span>, <span class="o">6</span>], [<span class="o">7</span>, <span class="o">8</span>, <span class="o">9</span>]])
+<span class="k">print</span>("row <span class="o">1</span>   :", a[<span class="o">1</span>])
+<span class="k">print</span>("column <span class="o">2</span>:", a[:, <span class="o">2</span>])
+<span class="k">print</span>("cell    :", a[<span class="o">2</span>, <span class="o">0</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">row 1   : [4 5 6]
+column 2: [3 6 9]
+cell    : 7</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Print every second element of an array, and then the array backwards.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+a = np.arange(<span class="o">1</span>, <span class="o">11</span>)
+<span class="k">print</span>(a[::<span class="o">2</span>])
+<span class="k">print</span>(a[::-<span class="o">1</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">[1 3 5 7 9]
+[10  9  8  7  6  5  4  3  2  1]</div>
+</details></div>
 </div>
 <h2 class="cat" id="array-operations">Array operations</h2>
 <article class="e"><h3>Arithmetic</h3>
@@ -2883,6 +3957,31 @@ div: [5. 5. 6. 5.]</div>
 prices = np.array([<span class="o">249</span>, <span class="o">1200</span>, <span class="o">599</span>, <span class="o">4999</span>])
 <span class="k">print</span>(np.round(prices * <span class="o">1.18</span>, <span class="o">2</span>))</code></pre>
 <div class="lbl mt">Output</div><div class="out">[ 293.82 1416.    706.82 5898.82]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>4.</b> Add a 500 bonus to every salary, then take 10% tax off, in two steps.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+salaries = np.array([<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>])
+with_bonus = salaries + <span class="o">500</span>
+after_tax  = np.round(with_bonus * <span class="o">0.90</span>, <span class="o">2</span>)
+<span class="k">print</span>(with_bonus)
+<span class="k">print</span>(after_tax)</code></pre>
+<div class="lbl mt">Output</div><div class="out">[48264 63490 51700]
+[43437.6 57141.  46530. ]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Multiply two arrays together element by element and print the result.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+price = np.array([<span class="o">249</span>, <span class="o">60</span>, <span class="o">15</span>])
+qty   = np.array([<span class="o">2</span>, <span class="o">4</span>, <span class="o">10</span>])
+<span class="k">print</span>(price * qty)
+<span class="k">print</span>("bill:", (price * qty).sum())</code></pre>
+<div class="lbl mt">Output</div><div class="out">[498 240 150]
+bill: 888</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Take the square root of an array and round the answers to two decimal places.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+a = np.array([<span class="o">16</span>, <span class="o">45</span>, <span class="o">81</span>, <span class="o">120</span>])
+<span class="k">print</span>(np.round(np.sqrt(a), <span class="o">2</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">[ 4.    6.71  9.   10.95]</div>
 </details></div>
 </div>
 <h2 class="cat" id="aggregation">Aggregation</h2>
@@ -2988,6 +4087,40 @@ a = np.arange(<span class="o">1</span>, <span class="o">13</span>).reshape(<span
 column totals: [15 18 21 24]
 row totals   : [10 26 42]</div>
 </details></div>
+<div class="pq"><div class="qn"><b>5.</b> Print the total, the mean, the median and the highest of a salary array.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+s = np.array([<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>])
+<span class="k">print</span>("total :", s.sum())
+<span class="k">print</span>("mean  :", round(s.mean(), <span class="o">2</span>))
+<span class="k">print</span>("median:", np.median(s))
+<span class="k">print</span>("max   :", s.max())</code></pre>
+<div class="lbl mt">Output</div><div class="out">total : 265354
+mean  : 53070.8
+median: 51200.0
+max   : 62990</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Find which position holds the highest salary and which holds the lowest.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+s = np.array([<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>])
+<span class="k">print</span>("highest at position", s.argmax(), "-&gt;", s[s.argmax()])
+<span class="k">print</span>("lowest  at position", s.argmin(), "-&gt;", s[s.argmin()])</code></pre>
+<div class="lbl mt">Output</div><div class="out">highest at position 1 -&gt; 62990
+lowest  at position 4 -&gt; 45100</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> On a 2 by 3 table, print the column totals and the row totals.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+a = np.array([[<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>], [<span class="o">4</span>, <span class="o">5</span>, <span class="o">6</span>]])
+<span class="k">print</span>("column totals:", a.sum(axis=<span class="o">0</span>))
+<span class="k">print</span>("row totals   :", a.sum(axis=<span class="o">1</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">column totals: [5 7 9]
+row totals   : [ 6 15]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Print a running total of monthly sales with cumsum().</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+sales = np.array([<span class="o">120</span>, <span class="o">90</span>, <span class="o">150</span>, <span class="o">110</span>])
+<span class="k">print</span>(np.cumsum(sales))</code></pre>
+<div class="lbl mt">Output</div><div class="out">[120 210 360 470]</div>
+</details></div>
 </div>
 <h2 class="cat" id="broadcasting">Broadcasting</h2>
 <article class="e"><h3>With a single value</h3>
@@ -3045,6 +4178,30 @@ row_add = np.array([<span class="o">100</span>, <span class="o">200</span>, <spa
 <div class="lbl mt">Output</div><div class="out">[[101 102 103 104]
  [205 206 207 208]
  [309 310 311 312]]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>4.</b> Give every salary in a 1-D array the same 2000 rise, without writing a loop.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+s = np.array([<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>])
+<span class="k">print</span>(s + <span class="o">2000</span>)</code></pre>
+<div class="lbl mt">Output</div><div class="out">[49764 64990 53200]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Subtract a row of targets from every row of a results table.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+results = np.array([[<span class="o">72</span>, <span class="o">85</span>, <span class="o">64</span>], [<span class="o">91</span>, <span class="o">58</span>, <span class="o">77</span>]])
+target  = np.array([<span class="o">70</span>, <span class="o">70</span>, <span class="o">70</span>])
+<span class="k">print</span>(results - target)</code></pre>
+<div class="lbl mt">Output</div><div class="out">[[  2  15  -6]
+ [ 21 -12   7]]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Show what happens when two shapes do not line up.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+a = np.array([[<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>], [<span class="o">4</span>, <span class="o">5</span>, <span class="o">6</span>]])
+b = np.array([<span class="o">1</span>, <span class="o">2</span>])
+<span class="k">try</span>:
+    <span class="k">print</span>(a + b)
+<span class="k">except</span> ValueError <span class="k">as</span> e:
+    <span class="k">print</span>("ValueError:", e)</code></pre>
+<div class="lbl mt">Output</div><div class="out">ValueError: operands could not be broadcast together with shapes (2,3) (2,) </div>
 </details></div>
 </div>
 <h2 class="cat" id="filtering">Filtering</h2>
@@ -3119,6 +4276,33 @@ marks = np.array([<span class="o">72</span>, <span class="o">35</span>, <span cl
 <span class="k">print</span>(np.where(marks &lt; <span class="o">40</span>, <span class="o">40</span>, marks))</code></pre>
 <div class="lbl mt">Output</div><div class="out">[72 40 64 40 91]</div>
 </details></div>
+<div class="pq"><div class="qn"><b>5.</b> Print only the salaries above 50000 and say how many there are.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+s = np.array([<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>])
+high = s[s &gt; <span class="o">50000</span>]
+<span class="k">print</span>(high)
+<span class="k">print</span>("count:", (s &gt; <span class="o">50000</span>).sum())</code></pre>
+<div class="lbl mt">Output</div><div class="out">[62990 51200 58300]
+count: 3</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Keep only the salaries that are between 46000 and 60000.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+s = np.array([<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>])
+<span class="k">print</span>(s[(s &gt; <span class="o">46000</span>) &amp; (s &lt; <span class="o">60000</span>)])</code></pre>
+<div class="lbl mt">Output</div><div class="out">[47764 51200 58300]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Label every salary as "high" or "low" with np.where().</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+s = np.array([<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>])
+<span class="k">print</span>(np.where(s &gt; <span class="o">50000</span>, "high", "low"))</code></pre>
+<div class="lbl mt">Output</div><div class="out">['low' 'high' 'high' 'high' 'low']</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Replace every negative value in an array with zero.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+a = np.array([<span class="o">5</span>, -<span class="o">3</span>, <span class="o">8</span>, -<span class="o">1</span>, <span class="o">0</span>, <span class="o">12</span>])
+<span class="k">print</span>(np.where(a &lt; <span class="o">0</span>, <span class="o">0</span>, a))</code></pre>
+<div class="lbl mt">Output</div><div class="out">[ 5  0  8  0  0 12]</div>
+</details></div>
 </div>
 <h2 class="cat" id="sorting">Sorting</h2>
 <article class="e"><h3>np.sort()</h3>
@@ -3182,6 +4366,32 @@ along each column:
 [[3 0 1 4]
  [5 2 2 6]
  [9 8 7 9]]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>4.</b> Sort an array of marks, then sort it from highest to lowest.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+m = np.array([<span class="o">72</span>, <span class="o">85</span>, <span class="o">64</span>, <span class="o">91</span>, <span class="o">58</span>])
+<span class="k">print</span>(np.sort(m))
+<span class="k">print</span>(np.sort(m)[::-<span class="o">1</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">[58 64 72 85 91]
+[91 85 72 64 58]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Use argsort() to find the positions that would put an array in order.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+m = np.array([<span class="o">72</span>, <span class="o">85</span>, <span class="o">64</span>, <span class="o">91</span>, <span class="o">58</span>])
+order = np.argsort(m)
+<span class="k">print</span>("positions:", order)
+<span class="k">print</span>("<span class="k">in</span> order :", m[order])</code></pre>
+<div class="lbl mt">Output</div><div class="out">positions: [4 2 0 1 3]
+in order : [58 64 72 85 91]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Print the different departments in an array and how many of each there are.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+d = np.array(["HR", "Tech", "HR", "Sales", "Tech", "HR"])
+values, counts = np.unique(d, return_counts=<span class="k">True</span>)
+<span class="k">print</span>(values)
+<span class="k">print</span>(counts)</code></pre>
+<div class="lbl mt">Output</div><div class="out">['HR' 'Sales' 'Tech']
+[3 1 2]</div>
 </details></div>
 </div>
 <h2 class="cat" id="changing-shape">Changing shape</h2>
@@ -3257,6 +4467,36 @@ b = np.array([[<span class="o">5</span>, <span class="o">6</span>], [<span class
 stacked horizontally:
 [[1 2 5 6]
  [3 4 7 8]]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>4.</b> Turn twelve numbers into a 3 by 4 table and then into a 4 by 3 one.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+a = np.arange(<span class="o">1</span>, <span class="o">13</span>)
+<span class="k">print</span>(a.reshape(<span class="o">3</span>, <span class="o">4</span>))
+<span class="k">print</span>(a.reshape(<span class="o">4</span>, <span class="o">3</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">[[ 1  2  3  4]
+ [ 5  6  7  8]
+ [ 9 10 11 12]]
+[[ 1  2  3]
+ [ 4  5  6]
+ [ 7  8  9]
+ [10 11 12]]</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Flatten a 2-D table back into one long row.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+a = np.array([[<span class="o">1</span>, <span class="o">2</span>, <span class="o">3</span>], [<span class="o">4</span>, <span class="o">5</span>, <span class="o">6</span>]])
+<span class="k">print</span>(a.flatten())
+<span class="k">print</span>("shape was", a.shape, "now", a.flatten().shape)</code></pre>
+<div class="lbl mt">Output</div><div class="out">[1 2 3 4 5 6]
+shape was (2, 3) now (6,)</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Show what happens when a reshape does not fit the number of elements.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> numpy <span class="k">as</span> np
+a = np.arange(<span class="o">1</span>, <span class="o">11</span>)
+<span class="k">try</span>:
+    <span class="k">print</span>(a.reshape(<span class="o">3</span>, <span class="o">4</span>))
+<span class="k">except</span> ValueError <span class="k">as</span> e:
+    <span class="k">print</span>("ValueError:", e)</code></pre>
+<div class="lbl mt">Output</div><div class="out">ValueError: cannot reshape array of size 10 into shape (3,4)</div>
 </details></div>
 </div></section>
 <section class="sec" id="pandas"><nav class="jump"><a href="#series-and-dataframe">Series and DataFrame</a><a href="#inspecting-a-dataframe">Inspecting a DataFrame</a><a href="#selecting-columns">Selecting columns</a><a href="#loc-and-iloc">loc and iloc</a><a href="#filtering-rows">Filtering rows</a><a href="#sorting">Sorting</a><a href="#counting-values">Counting values</a></nav><h2 class="cat" id="series-and-dataframe">Series and DataFrame</h2>
@@ -3356,6 +4596,53 @@ df["monthly"] = (df["salary"] / <span class="o">12</span>).round(<span class="o"
 0  Rahul   47764   3980.0
 1  Priya   62990   5249.0
 2   Amit   51200   4267.0</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Make a Series of four salaries and print it with its own index of names.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+s = pd.Series([<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>],
+              index=["Rahul", "Priya", "Amit", "Kavya"])
+<span class="k">print</span>(s)</code></pre>
+<div class="lbl mt">Output</div><div class="out">Rahul    47764
+Priya    62990
+Amit     51200
+Kavya    58300
+dtype: int64</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> From that Series, print one person's salary and the mean of all of them.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+s = pd.Series([<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>],
+              index=["Rahul", "Priya", "Amit", "Kavya"])
+<span class="k">print</span>(s["Priya"])
+<span class="k">print</span>(round(s.mean(), <span class="o">2</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">62990
+55063.5</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Build a DataFrame from a dictionary of lists and print the column names and the row count.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name": ["Rahul", "Priya", "Amit"],
+    "dept": ["HR", "Tech", "Sales"],
+    "exp":  [<span class="o">4</span>, <span class="o">7</span>, <span class="o">3</span>]
+})
+<span class="k">print</span>(df)
+<span class="k">print</span>(list(df.columns), <span class="k">len</span>(df))</code></pre>
+<div class="lbl mt">Output</div><div class="out">    name   dept  exp
+0  Rahul     HR    4
+1  Priya   Tech    7
+2   Amit  Sales    3
+['name', 'dept', 'exp'] 3</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Write a small CSV, read it back with read_csv() and print it.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+<span class="k">with</span> open("pay.csv", "w") <span class="k">as</span> f:
+    f.write("name,dept,salary\nRahul,HR,<span class="o">47764</span>\nPriya,Tech,<span class="o">62990</span>\nAmit,Sales,<span class="o">51200</span>\n")
+
+df = pd.read_csv("pay.csv")
+<span class="k">print</span>(df)</code></pre>
+<div class="lbl mt">Output</div><div class="out">    name   dept  salary
+0  Rahul     HR   47764
+1  Priya   Tech   62990
+2   Amit  Sales   51200</div>
 </details></div>
 </div>
 <h2 class="cat" id="inspecting-a-dataframe">Inspecting a DataFrame</h2>
@@ -3514,6 +4801,67 @@ salary    2
 city      1
 dtype: int64</div>
 </details></div>
+<div class="pq"><div class="qn"><b>4.</b> Print the first two rows and the last two rows of a table.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit", "Kavya", "Arjun"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>]
+})
+<span class="k">print</span>(df.head(<span class="o">2</span>))
+<span class="k">print</span>(df.tail(<span class="o">2</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">    name  salary
+0  Rahul   47764
+1  Priya   62990
+    name  salary
+3  Kavya   58300
+4  Arjun   45100</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Print how many rows and columns a table has, and the type of each column.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit"],
+    "dept":   ["HR", "Tech", "Sales"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>],
+    "exp":    [<span class="o">4</span>, <span class="o">7</span>, <span class="o">3</span>]
+})
+<span class="k">print</span>("rows:", df.shape[<span class="o">0</span>], "columns:", df.shape[<span class="o">1</span>])
+<span class="k">print</span>(df.dtypes)</code></pre>
+<div class="lbl mt">Output</div><div class="out">rows: 3 columns: 4
+name      object
+dept      object
+salary     int64
+exp        int64
+dtype: object</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Print describe() for one numeric column only, rather than the whole table.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit", "Kavya", "Arjun"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>]
+})
+<span class="k">print</span>(df["salary"].describe())</code></pre>
+<div class="lbl mt">Output</div><div class="out">count        5.000000
+mean     53070.800000
+std       7431.869428
+min      45100.000000
+25%      47764.000000
+50%      51200.000000
+75%      58300.000000
+max      62990.000000
+Name: salary, dtype: float64</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Print the mean and the median of a column side by side and say which is larger.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({"salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>, <span class="o">520000</span>]})
+mean   = round(df["salary"].mean(), <span class="o">2</span>)
+median = df["salary"].median()
+<span class="k">print</span>("mean  :", mean)
+<span class="k">print</span>("median:", median)
+<span class="k">print</span>("mean <span class="k">is</span> bigger:", mean &gt; median)</code></pre>
+<div class="lbl mt">Output</div><div class="out">mean  : 130892.33
+median: 54750.0
+mean is bigger: True</div>
+</details></div>
 </div>
 <h2 class="cat" id="selecting-columns">Selecting columns</h2>
 <article class="e"><h3>One column</h3>
@@ -3596,6 +4944,50 @@ smaller = df.drop(columns=["dept"])
 1  Priya   62990
 
 original still has: ['name', 'dept', 'salary']</div>
+</details></div>
+<div class="pq"><div class="qn"><b>4.</b> Print one column as a Series and the same column as a one-column table.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>]
+})
+<span class="k">print</span>(df["salary"])
+<span class="k">print</span>(df[["salary"]])</code></pre>
+<div class="lbl mt">Output</div><div class="out">0    47764
+1    62990
+2    51200
+Name: salary, dtype: int64
+   salary
+0   47764
+1   62990
+2   51200</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Print three chosen columns in a different order from the original table.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit"],
+    "dept":   ["HR", "Tech", "Sales"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>],
+    "exp":    [<span class="o">4</span>, <span class="o">7</span>, <span class="o">3</span>]
+})
+<span class="k">print</span>(df[["salary", "name", "dept"]])</code></pre>
+<div class="lbl mt">Output</div><div class="out">   salary   name   dept
+0   47764  Rahul     HR
+1   62990  Priya   Tech
+2   51200   Amit  Sales</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Add a new column that holds the salary after a 10% rise, then print the table.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>]
+})
+df["after_rise"] = (df["salary"] * <span class="o">1.10</span>).round(<span class="o">2</span>)
+<span class="k">print</span>(df)</code></pre>
+<div class="lbl mt">Output</div><div class="out">    name  salary  after_rise
+0  Rahul   47764     52540.4
+1  Priya   62990     69289.0
+2   Amit   51200     56320.0</div>
 </details></div>
 </div>
 <h2 class="cat" id="loc-and-iloc">loc and iloc</h2>
@@ -3751,6 +5143,58 @@ df.loc[df["name"] == "Amit", "salary"] = <span class="o">55000</span>
 1  Priya   62990
 2   Amit   55000</div>
 </details></div>
+<div class="pq"><div class="qn"><b>5.</b> Print rows 1 to 3 by position, and the same rows by label, and compare the two.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit", "Kavya", "Arjun"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>]
+})
+<span class="k">print</span>(df.iloc[<span class="o">1</span>:<span class="o">3</span>])
+<span class="k">print</span>(df.loc[<span class="o">1</span>:<span class="o">3</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">    name  salary
+1  Priya   62990
+2   Amit   51200
+    name  salary
+1  Priya   62990
+2   Amit   51200
+3  Kavya   58300</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Use loc to print the name and salary of the first three rows only.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit", "Kavya", "Arjun"],
+    "dept":   ["HR", "Tech", "Sales", "Tech", "HR"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>]
+})
+<span class="k">print</span>(df.loc[<span class="o">0</span>:<span class="o">2</span>, ["name", "salary"]])</code></pre>
+<div class="lbl mt">Output</div><div class="out">    name  salary
+0  Rahul   47764
+1  Priya   62990
+2   Amit   51200</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Use iloc to print the last two rows and the first two columns.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit", "Kavya", "Arjun"],
+    "dept":   ["HR", "Tech", "Sales", "Tech", "HR"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>]
+})
+<span class="k">print</span>(df.iloc[-<span class="o">2</span>:, <span class="o">0</span>:<span class="o">2</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">    name  dept
+3  Kavya  Tech
+4  Arjun    HR</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Read one cell with at and the same cell with iat, and show they agree.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>]
+})
+<span class="k">print</span>(df.at[<span class="o">1</span>, "salary"])
+<span class="k">print</span>(df.iat[<span class="o">1</span>, <span class="o">1</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">62990
+62990</div>
+</details></div>
 </div>
 <h2 class="cat" id="filtering-rows">Filtering rows</h2>
 <article class="e"><h3>A condition</h3>
@@ -3891,6 +5335,57 @@ df = pd.DataFrame({"name":   ["Rahul", "Priya", "Amit", "Kavya", "Arjun"],
 2   Amit  Sales   51200
 4  Arjun     HR   45100</div>
 </details></div>
+<div class="pq"><div class="qn"><b>5.</b> Print only the employees who earn more than 50000.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit", "Kavya", "Arjun"],
+    "dept":   ["HR", "Tech", "Sales", "Tech", "HR"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>]
+})
+<span class="k">print</span>(df[df["salary"] &gt; <span class="o">50000</span>])</code></pre>
+<div class="lbl mt">Output</div><div class="out">    name   dept  salary
+1  Priya   Tech   62990
+2   Amit  Sales   51200
+3  Kavya   Tech   58300</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Print the employees in Tech who also have more than five years of experience.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit", "Kavya", "Arjun"],
+    "dept":   ["HR", "Tech", "Sales", "Tech", "HR"],
+    "exp":    [<span class="o">4</span>, <span class="o">7</span>, <span class="o">3</span>, <span class="o">6</span>, <span class="o">2</span>],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>]
+})
+<span class="k">print</span>(df[(df["dept"] == "Tech") &amp; (df["exp"] &gt; <span class="o">5</span>)])</code></pre>
+<div class="lbl mt">Output</div><div class="out">    name  dept  exp  salary
+1  Priya  Tech    7   62990
+3  Kavya  Tech    6   58300</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Print the employees who are in either HR or Sales.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit", "Kavya", "Arjun"],
+    "dept":   ["HR", "Tech", "Sales", "Tech", "HR"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>]
+})
+<span class="k">print</span>(df[(df["dept"] == "HR") | (df["dept"] == "Sales")])</code></pre>
+<div class="lbl mt">Output</div><div class="out">    name   dept  salary
+0  Rahul     HR   47764
+2   Amit  Sales   51200
+4  Arjun     HR   45100</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Count how many employees earn above the average salary.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit", "Kavya", "Arjun"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>]
+})
+avg = df["salary"].mean()
+<span class="k">print</span>("average:", round(avg, <span class="o">2</span>))
+<span class="k">print</span>("above it:", (df["salary"] &gt; avg).sum())</code></pre>
+<div class="lbl mt">Output</div><div class="out">average: 53070.8
+above it: 2</div>
+</details></div>
 </div>
 <h2 class="cat" id="sorting">Sorting</h2>
 <article class="e"><h3>sort_values()</h3>
@@ -4017,6 +5512,68 @@ df = pd.DataFrame({"name":   ["Rahul", "Priya", "Amit", "Kavya", "Arjun"],
 1  Priya   62990
 3  Kavya   58300</div>
 </details></div>
+<div class="pq"><div class="qn"><b>5.</b> Sort a table by salary, highest first, and print the top two rows.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit", "Kavya", "Arjun"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>]
+})
+<span class="k">print</span>(df.sort_values("salary", ascending=<span class="k">False</span>).head(<span class="o">2</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">    name  salary
+1  Priya   62990
+3  Kavya   58300</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Sort by department first and then by salary within each department.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit", "Kavya", "Arjun"],
+    "dept":   ["HR", "Tech", "Sales", "Tech", "HR"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>]
+})
+<span class="k">print</span>(df.sort_values(["dept", "salary"], ascending=[<span class="k">True</span>, <span class="k">False</span>]))</code></pre>
+<div class="lbl mt">Output</div><div class="out">    name   dept  salary
+0  Rahul     HR   47764
+4  Arjun     HR   45100
+2   Amit  Sales   51200
+1  Priya   Tech   62990
+3  Kavya   Tech   58300</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Sort a table and show that the original is unchanged unless you assign the result.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>]
+})
+df.sort_values("salary")
+<span class="k">print</span>("still the original order:")
+<span class="k">print</span>(df)
+df = df.sort_values("salary")
+<span class="k">print</span>("now assigned:")
+<span class="k">print</span>(df)</code></pre>
+<div class="lbl mt">Output</div><div class="out">still the original order:
+    name  salary
+0  Rahul   47764
+1  Priya   62990
+2   Amit   51200
+now assigned:
+    name  salary
+0  Rahul   47764
+2   Amit   51200
+1  Priya   62990</div>
+</details></div>
+<div class="pq"><div class="qn"><b>8.</b> Sort names into alphabetical order and reset the index so it counts from zero again.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit", "Kavya"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>]
+})
+<span class="k">print</span>(df.sort_values("name").reset_index(drop=<span class="k">True</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">    name  salary
+0   Amit   51200
+1  Kavya   58300
+2  Priya   62990
+3  Rahul   47764</div>
+</details></div>
 </div>
 <h2 class="cat" id="counting-values">Counting values</h2>
 <article class="e"><h3>value_counts()</h3>
@@ -4118,8 +5675,56 @@ Sales    51200.0
 Tech     60645.0
 Name: salary, dtype: float64</div>
 </details></div>
+<div class="pq"><div class="qn"><b>4.</b> Count how many employees are in each department.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name": ["Rahul", "Priya", "Amit", "Kavya", "Arjun", "Meena"],
+    "dept": ["HR", "Tech", "Sales", "Tech", "HR", "Tech"]
+})
+<span class="k">print</span>(df["dept"].value_counts())</code></pre>
+<div class="lbl mt">Output</div><div class="out">dept
+Tech     3
+HR       2
+Sales    1
+Name: count, dtype: int64</div>
+</details></div>
+<div class="pq"><div class="qn"><b>5.</b> Print how many different cities appear in a column, and list them.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "city": ["Chennai", "Pune", "Chennai", "Delhi", "Pune", "Chennai"]
+})
+<span class="k">print</span>("how many:", df["city"].nunique())
+<span class="k">print</span>(sorted(df["city"].unique()))</code></pre>
+<div class="lbl mt">Output</div><div class="out">how many: 3
+['Chennai', 'Delhi', 'Pune']</div>
+</details></div>
+<div class="pq"><div class="qn"><b>6.</b> Show each department as a share of the whole table rather than a count.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "dept": ["HR", "Tech", "Sales", "Tech", "HR", "Tech"]
+})
+<span class="k">print</span>(df["dept"].value_counts(normalize=<span class="k">True</span>).round(<span class="o">3</span>))</code></pre>
+<div class="lbl mt">Output</div><div class="out">dept
+Tech     0.500
+HR       0.333
+Sales    0.167
+Name: proportion, dtype: float64</div>
+</details></div>
+<div class="pq"><div class="qn"><b>7.</b> Print the total, the highest and the lowest salary in one block.</div>
+<details><summary>Show one way to do it</summary><pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+df = pd.DataFrame({
+    "name":   ["Rahul", "Priya", "Amit", "Kavya", "Arjun"],
+    "salary": [<span class="o">47764</span>, <span class="o">62990</span>, <span class="o">51200</span>, <span class="o">58300</span>, <span class="o">45100</span>]
+})
+<span class="k">print</span>("total  :", df["salary"].sum())
+<span class="k">print</span>("highest:", df["salary"].max())
+<span class="k">print</span>("lowest :", df["salary"].min())</code></pre>
+<div class="lbl mt">Output</div><div class="out">total  : 265354
+highest: 62990
+lowest : 45100</div>
+</details></div>
 </div></section>
-<footer>188 entries &middot; 161 practice questions</footer>
+<footer>188 entries &middot; 328 practice questions</footer>
 </div>
 <button class="tt" id="tt">Theme</button>
 <script>

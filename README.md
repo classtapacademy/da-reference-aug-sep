@@ -8,7 +8,7 @@ Student-facing reference for the **August B3 + September B2** Data Analytics bat
 
 Seven tabs: Basics · Collections · Functions · Strings · Files & Classes · NumPy · pandas.
 
-188 entries and 76 practice questions. Each section ends with practice questions and a
+188 entries and 328 practice questions. Each section ends with practice questions and a
 collapsible worked answer.
 
 The page itself carries no course framing — no batch names, no session numbers, no

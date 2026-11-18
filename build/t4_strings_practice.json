@@ -124,5 +124,119 @@
   "q": "Check whether each phone number is exactly ten digits.",
   "code": "import re\nfor phone in [\"9876543210\", \"98765\", \"98765432101\"]:\n    ok = re.fullmatch(r\"[0-9]{10}\", phone) is not None\n    print(phone, \"->\", ok)",
   "out": "9876543210 -> True\n98765 -> False\n98765432101 -> False"
+ },
+ {
+  "cat": "Strings and slicing",
+  "q": "Print the first three and the last three characters of a string.",
+  "code": "s = \"Coimbatore\"\nprint(s[:3])\nprint(s[-3:])",
+  "out": "Coi\nore"
+ },
+ {
+  "cat": "Strings and slicing",
+  "q": "Print every second character of a string, then the whole string backwards.",
+  "code": "s = \"Hyderabad\"\nprint(s[::2])\nprint(s[::-1])",
+  "out": "Hdrbd\ndabaredyH"
+ },
+ {
+  "cat": "Strings and slicing",
+  "q": "Check whether a string is a palindrome. Test it with \"malayalam\".",
+  "code": "word = \"malayalam\"\nprint(word, \"->\", word == word[::-1])",
+  "out": "malayalam -> True"
+ },
+ {
+  "cat": "Strings and slicing",
+  "q": "Build a new string with the first letter changed, since a string cannot be changed in place.",
+  "code": "s = \"chennai\"\nfixed = \"C\" + s[1:]\nprint(s)\nprint(fixed)",
+  "out": "chennai\nChennai"
+ },
+ {
+  "cat": "Strings and slicing",
+  "q": "Print whether \"Tech\" appears in a job title, and whether the title ends in \"Analyst\".",
+  "code": "title = \"Tech Data Analyst\"\nprint(\"Tech\" in title)\nprint(title.endswith(\"Analyst\"))",
+  "out": "True\nTrue"
+ },
+ {
+  "cat": "String methods",
+  "q": "Clean up a messy name: strip the spaces and put it in title case.",
+  "code": "raw = \"   priya   NAIR  \"\nprint(repr(raw))\nprint(repr(raw.strip().title()))",
+  "out": "'   priya   NAIR  '\n'Priya   Nair'"
+ },
+ {
+  "cat": "String methods",
+  "q": "Count how many times the letter \"a\" appears in a sentence, ignoring case.",
+  "code": "text = \"Chennai and Bangalore are large cities\"\nprint(text.lower().count(\"a\"))",
+  "out": "6"
+ },
+ {
+  "cat": "String methods",
+  "q": "Split a comma-separated row into fields, then join them back with a pipe.",
+  "code": "row = \"1004,Lakshmi Kumar,Tech,Chennai\"\nfields = row.split(\",\")\nprint(fields)\nprint(\" | \".join(fields))",
+  "out": "['1004', 'Lakshmi Kumar', 'Tech', 'Chennai']\n1004 | Lakshmi Kumar | Tech | Chennai"
+ },
+ {
+  "cat": "String methods",
+  "q": "Replace every double space in a sentence with a single space.",
+  "code": "text = \"Tech  and  Sales  teams\"\nprint(repr(text))\nprint(repr(text.replace(\"  \", \" \")))",
+  "out": "'Tech  and  Sales  teams'\n'Tech and Sales teams'"
+ },
+ {
+  "cat": "String methods",
+  "q": "Check whether a piece of text is all digits, so you know it is safe to convert.",
+  "code": "for value in [\"47764\", \"47a64\", \"\"]:\n    print(repr(value), \"->\", value.isdigit())",
+  "out": "'47764' -> True\n'47a64' -> False\n'' -> False"
+ },
+ {
+  "cat": "String formatting",
+  "q": "Print a name and a salary in one f-string with the salary to two decimal places.",
+  "code": "name, salary = \"Priya\", 62990.5\nprint(f\"{name} earns {salary:.2f}\")",
+  "out": "Priya earns 62990.50"
+ },
+ {
+  "cat": "String formatting",
+  "q": "Print a three-column table of names and salaries lined up neatly.",
+  "code": "rows = [(\"Rahul\", 47764), (\"Priya\", 62990), (\"Amit\", 51200)]\nfor name, salary in rows:\n    print(f\"{name:<10}{salary:>10}\")",
+  "out": "Rahul          47764\nPriya          62990\nAmit           51200"
+ },
+ {
+  "cat": "String formatting",
+  "q": "Print a percentage from two numbers, rounded to one decimal place, inside an f-string.",
+  "code": "passed, total = 158, 200\nprint(f\"{passed} of {total} is {passed / total * 100:.1f}%\")",
+  "out": "158 of 200 is 79.0%"
+ },
+ {
+  "cat": "String formatting",
+  "q": "Print a salary with a thousands separator inside an f-string.",
+  "code": "salary = 1897427\nprint(f\"{salary:,}\")",
+  "out": "1,897,427"
+ },
+ {
+  "cat": "Regular expressions",
+  "q": "Pull every number out of a sentence with re.findall().",
+  "code": "import re\ntext = \"Order 1004 shipped on 12 units at 249 each\"\nprint(re.findall(r\"\\d+\", text))",
+  "out": "['1004', '12', '249']"
+ },
+ {
+  "cat": "Regular expressions",
+  "q": "Find every word that starts with a capital letter.",
+  "code": "import re\ntext = \"Priya moved from Chennai to Pune last March\"\nprint(re.findall(r\"[A-Z][a-z]+\", text))",
+  "out": "['Priya', 'Chennai', 'Pune', 'March']"
+ },
+ {
+  "cat": "Regular expressions",
+  "q": "Use re.search() to check whether a line contains a six-digit pin code, and print the match.",
+  "code": "import re\nline = \"14 Mount Road, Chennai 600002\"\nm = re.search(r\"\\d{6}\", line)\nif m:\n    print(\"found:\", m.group())\nelse:\n    print(\"no pin code\")",
+  "out": "found: 600002"
+ },
+ {
+  "cat": "Regular expressions",
+  "q": "Hide every digit in a phone number with re.sub().",
+  "code": "import re\nphone = \"9876543210\"\nprint(re.sub(r\"\\d\", \"x\", phone))\nprint(re.sub(r\"\\d(?=\\d{4})\", \"x\", phone))",
+  "out": "xxxxxxxxxx\nxxxxxx3210"
+ },
+ {
+  "cat": "Regular expressions",
+  "q": "Split a line on any run of spaces, commas or semicolons.",
+  "code": "import re\nline = \"HR, Tech;  Sales ,Marketing\"\nprint(re.split(r\"[,;\\s]+\", line))",
+  "out": "['HR', 'Tech', 'Sales', 'Marketing']"
  }
 ]
