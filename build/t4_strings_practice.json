@@ -127,9 +127,9 @@
  },
  {
   "cat": "Strings and slicing",
-  "q": "Print the first three and the last three characters of a string.",
-  "code": "s = \"Coimbatore\"\nprint(s[:3])\nprint(s[-3:])",
-  "out": "Coi\nore"
+  "q": "Print the middle character of a word, or the middle two if the length is even.",
+  "code": "for word in [\"Chennai\", \"Delhi\"]:\n    n = len(word)\n    if n % 2 == 1:\n        print(word, \"->\", word[n // 2])\n    else:\n        print(word, \"->\", word[n // 2 - 1:n // 2 + 1])",
+  "out": "Chennai -> n\nDelhi -> l"
  },
  {
   "cat": "Strings and slicing",
@@ -163,9 +163,9 @@
  },
  {
   "cat": "String methods",
-  "q": "Count how many times the letter \"a\" appears in a sentence, ignoring case.",
-  "code": "text = \"Chennai and Bangalore are large cities\"\nprint(text.lower().count(\"a\"))",
-  "out": "6"
+  "q": "Check whether a line starts with a given department name and ends with a city, ignoring case.",
+  "code": "line = \"Tech team moved to chennai\"\nprint(line.lower().startswith(\"tech\"))\nprint(line.lower().endswith(\"chennai\"))",
+  "out": "True\nTrue"
  },
  {
   "cat": "String methods",
@@ -229,9 +229,9 @@
  },
  {
   "cat": "Regular expressions",
-  "q": "Hide every digit in a phone number with re.sub().",
-  "code": "import re\nphone = \"9876543210\"\nprint(re.sub(r\"\\d\", \"x\", phone))\nprint(re.sub(r\"\\d(?=\\d{4})\", \"x\", phone))",
-  "out": "xxxxxxxxxx\nxxxxxx3210"
+  "q": "Pull the email addresses out of a block of text with re.findall().",
+  "code": "import re\ntext = \"write to priya@tap.com or rahul.k@mail.co.in before Friday\"\nprint(re.findall(r\"[\\w.]+@[\\w.]+\\.\\w+\", text))",
+  "out": "['priya@tap.com', 'rahul.k@mail.co.in']"
  },
  {
   "cat": "Regular expressions",

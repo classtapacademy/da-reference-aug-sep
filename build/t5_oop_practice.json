@@ -91,15 +91,15 @@
  },
  {
   "cat": "Error handling",
-  "q": "Open a file that does not exist and handle it without the program stopping.",
-  "code": "try:\n    with open(\"missing.txt\") as f:\n        print(f.read())\nexcept FileNotFoundError:\n    print(\"file not found - carrying on\")\nfinally:\n    print(\"done\")",
-  "out": "file not found - carrying on\ndone"
+  "q": "Raise your own error when a salary is negative, and catch it.",
+  "code": "def check(salary):\n    if salary < 0:\n        raise ValueError(\"salary cannot be negative\")\n    return salary\n\nfor s in [47764, -500]:\n    try:\n        print(\"accepted:\", check(s))\n    except ValueError as e:\n        print(\"rejected:\", e)",
+  "out": "accepted: 47764\nrejected: salary cannot be negative"
  },
  {
   "cat": "Classes and objects",
-  "q": "Write a Student class that stores a name and three marks and reports the average.",
-  "code": "class Student:\n    def __init__(self, name, marks):\n        self.name  = name\n        self.marks = marks\n\n    def average(self):\n        return round(sum(self.marks) / len(self.marks), 2)\n\ns = Student(\"Kavya\", [72, 85, 64])\nprint(s.name, \"average:\", s.average())",
-  "out": "Kavya average: 73.67"
+  "q": "Write a BankAccount class with a deposit and a withdraw method that refuses to overdraw.",
+  "code": "class BankAccount:\n    def __init__(self, owner, balance=0):\n        self.owner = owner\n        self.balance = balance\n\n    def deposit(self, amount):\n        self.balance += amount\n\n    def withdraw(self, amount):\n        if amount > self.balance:\n            print(\"not enough funds\")\n        else:\n            self.balance -= amount\n\na = BankAccount(\"Rahul\", 1000)\na.deposit(500)\na.withdraw(2000)\na.withdraw(300)\nprint(a.owner, a.balance)",
+  "out": "not enough funds\nRahul 1200"
  },
  {
   "cat": "Classes and objects",
@@ -115,9 +115,9 @@
  },
  {
   "cat": "The four pillars",
-  "q": "Write a Manager class that inherits from Employee and adds a team size.",
-  "code": "class Employee:\n    def __init__(self, name):\n        self.name = name\n\n    def describe(self):\n        return self.name + \" works here\"\n\nclass Manager(Employee):\n    def __init__(self, name, team):\n        super().__init__(name)\n        self.team = team\n\n    def describe(self):\n        return self.name + \" leads \" + str(self.team) + \" people\"\n\nprint(Employee(\"Amit\").describe())\nprint(Manager(\"Meera\", 6).describe())",
-  "out": "Amit works here\nMeera leads 6 people"
+  "q": "Build a Shape parent with an area() that children must replace, and call it on two children.",
+  "code": "class Shape:\n    def area(self):\n        return 0\n\nclass Square(Shape):\n    def __init__(self, side):\n        self.side = side\n    def area(self):\n        return self.side ** 2\n\nclass Rect(Shape):\n    def __init__(self, w, h):\n        self.w, self.h = w, h\n    def area(self):\n        return self.w * self.h\n\nfor s in [Square(4), Rect(3, 7)]:\n    print(type(s).__name__, s.area())",
+  "out": "Square 16\nRect 21"
  },
  {
   "cat": "The four pillars",
@@ -127,9 +127,9 @@
  },
  {
   "cat": "File handling",
-  "q": "Write three lines to a file, then read the whole thing back and print it.",
-  "code": "with open(\"notes.txt\", \"w\") as f:\n    f.write(\"HR\\nTech\\nSales\\n\")\n\nwith open(\"notes.txt\") as f:\n    print(f.read())",
-  "out": "HR\nTech\nSales"
+  "q": "Write a file, then read it back and print only the lines that contain a given word.",
+  "code": "with open(\"log.txt\", \"w\") as f:\n    f.write(\"Tech deploy ok\\nHR payroll run\\nTech rollback\\n\")\n\nwith open(\"log.txt\") as f:\n    for line in f:\n        if \"Tech\" in line:\n            print(line.strip())",
+  "out": "Tech deploy ok\nTech rollback"
  },
  {
   "cat": "File handling",
@@ -157,9 +157,9 @@
  },
  {
   "cat": "Error handling",
-  "q": "Ask for a number and handle the case where the text cannot be converted.",
-  "code": "value = input(\"a number: \")\ntry:\n    print(\"doubled:\", int(value) * 2)\nexcept ValueError:\n    print(\"that was not a number\")",
-  "out": "a number: abc\nthat was not a number"
+  "q": "Convert a list of values to numbers, reporting the ones that fail without stopping the loop.",
+  "code": "values = [\"47764\", \"62k\", \"51200\", \"\"]\ntotal = 0\nfor v in values:\n    try:\n        total += int(v)\n    except ValueError:\n        print(\"could not convert:\", repr(v))\nprint(\"total of the good ones:\", total)",
+  "out": "could not convert: '62k'\ncould not convert: ''\ntotal of the good ones: 98964"
  },
  {
   "cat": "Error handling",
@@ -181,9 +181,9 @@
  },
  {
   "cat": "Error handling",
-  "q": "Open a file that does not exist and handle the error instead of crashing.",
-  "code": "try:\n    with open(\"missing.txt\") as f:\n        print(f.read())\nexcept FileNotFoundError:\n    print(\"that file is not there\")",
-  "out": "that file is not there"
+  "q": "Use finally to show that a cleanup line runs whether or not the code fails.",
+  "code": "for divisor in [4, 0]:\n    try:\n        print(\"result:\", 100 / divisor)\n    except ZeroDivisionError:\n        print(\"cannot divide by zero\")\n    finally:\n        print(\"-- attempt finished --\")",
+  "out": "result: 25.0\n-- attempt finished --\ncannot divide by zero\n-- attempt finished --"
  },
  {
   "cat": "Classes and objects",

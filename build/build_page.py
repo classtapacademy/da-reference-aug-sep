@@ -51,16 +51,26 @@ def hl(code):
                        '<span class="c">' + esc(line[i:]) + '</span>')
     return "\n".join(out)
 
-def render(rows, practice, order):
+def cid(cat):
+    return re.sub(r'[^a-z0-9]+','-',cat.lower()).strip('-')
+
+def render(key, rows, practice, order):
+    """Returns the reference body, its category keys, and the practice body.
+    Practice NO LONGER sits inline under each category - it is collected
+    separately and rendered into the Practice window."""
     cats={}
     for r in rows: cats.setdefault(r["cat"],[]).append(r)
     pr={}
     for p in practice: pr.setdefault(p["cat"],[]).append(p)
     keys=[c for c in order if c in cats]+[c for c in cats if c not in order]
-    out=[]
+    out=[]; pout=[]
     for cat in keys:
-        cid=re.sub(r'[^a-z0-9]+','-',cat.lower()).strip('-')
-        out.append('<h2 class="cat" id="%s">%s</h2>'%(cid,esc(cat)))
+        # ids are scoped by tab: "Sorting" exists in BOTH NumPy and pandas, so an
+        # unscoped id would be duplicated and the jump link would land in a hidden tab.
+        c=cid(cat); n=len(pr.get(cat,[]))
+        btn=('<button class="pbtn" data-prac="%s|%s">Practice <span>%d</span></button>'
+             %(key,c,n)) if n else ''
+        out.append('<h2 class="cat" id="c-%s-%s">%s%s</h2>'%(key,c,esc(cat),btn))
         for r in cats[cat]:
             out.append('<article class="e"><h3>%s</h3>'%esc(r["name"]))
             out.append('<div class="what"><p>%s</p></div>'%esc(r["desc"]))
@@ -68,27 +78,47 @@ def render(rows, practice, order):
             if r.get("out"):
                 out.append('<div class="lbl mt">Output</div><div class="out">%s</div>'%esc(r["out"]))
             out.append('</article>')
-        if cat in pr:
-            out.append('<div class="prac"><div class="prachead">Practice &mdash; %s</div>'%esc(cat))
+        if n:
+            pout.append('<h2 class="pcat" id="p-%s-%s">%s <span>%d</span></h2>'
+                        %(key,c,esc(cat),n))
             for i,p in enumerate(pr[cat],1):
-                out.append('<div class="pq"><div class="qn"><b>%d.</b> %s</div>'%(i,esc(p["q"])))
-                out.append('<details><summary>Show one way to do it</summary>'
-                           '<pre><code>%s</code></pre>'%hl(p["code"]))
+                pout.append('<div class="pq"><div class="qn"><b>%d.</b> %s</div>'%(i,esc(p["q"])))
+                pout.append('<details><summary>Show one way to do it</summary>'
+                            '<pre><code>%s</code></pre>'%hl(p["code"]))
                 if p.get("out"):
-                    out.append('<div class="lbl mt">Output</div><div class="out">%s</div>'%esc(p["out"]))
-                out.append('</details></div>')
-            out.append('</div>')
-    return "\n".join(out), keys
+                    pout.append('<div class="lbl mt">Output</div><div class="out">%s</div>'%esc(p["out"]))
+                pout.append('</details></div>')
+    return "\n".join(out), keys, "\n".join(pout)
 
-secs=[]; tabbtns=[]; total=0; ptotal=0
+secs=[]; tabbtns=[]; psecs=[]; ptabs=[]; total=0; ptotal=0
 for key,label,rf,pf,order in TABS:
     rows=rename.apply(load(rf)); practice=rename.apply(load(pf))
-    body,keys=render(rows,practice,order)
+    body,keys,pbody=render(key,rows,practice,order)
     total+=len(rows); ptotal+=len(practice)
     tabbtns.append('<button class="tab" data-go="%s">%s <span>%d</span></button>'%(key,label,len(rows)))
-    jump="".join('<a href="#%s">%s</a>'%(re.sub(r'[^a-z0-9]+','-',c.lower()).strip('-'),esc(c)) for c in keys)
+    jump="".join('<a href="#c-%s-%s">%s</a>'%(key,cid(c),esc(c)) for c in keys)
     secs.append('<section class="sec" id="%s"><nav class="jump">%s</nav>%s</section>'
                 %(key,jump,body))
+    ptabs.append('<button class="ptab" data-ptab="%s">%s <span>%d</span></button>'
+                 %(key,label,len(practice)))
+    psecs.append('<div class="psec" id="ps-%s">%s</div>'%(key,pbody))
+
+TABSTRIP = ("".join(tabbtns) +
+  '<button class="tab popen" id="popen">Practice <span>%d</span></button>'%ptotal)
+
+PRACWIN = ("""<div class="pwrap" id="pwrap" hidden>
+ <div class="pbackdrop" data-close="1"></div>
+ <div class="pwin">
+  <div class="phead">
+   <div class="ptitle">Practice <span>%d questions</span></div>
+   <input class="pfind" id="pfind" type="search" placeholder="Filter questions" autocomplete="off">
+   <button class="pclose" id="pclose">Close</button>
+  </div>
+  <div class="ptabs">%s</div>
+  <div class="pbody" id="pbody">%s</div>
+  <div class="pnone" id="pnone" hidden>Nothing matches that.</div>
+ </div>
+</div>""" % (ptotal, "".join(ptabs), "\n".join(psecs)))
 
 CSS = """
 :root{--paper:#fff;--ink:#17191c;--slate:#5f656e;--ash:#8c9199;--hair:#e6e6e8;--mist:#f4f4f5;
@@ -141,10 +171,47 @@ pre code{font-family:var(--mono);font-size:12.5px;line-height:1.65;white-space:p
  :root:not([data-theme="light"]) .o{color:#e0a86a}}
 .out{background:var(--out-bg);color:var(--out-ink);border-radius:8px;padding:11px 14px;
  font-family:var(--mono);font-size:12.5px;line-height:1.6;white-space:pre;overflow-x:auto}
-.prac{border:2px solid var(--peach);border-radius:12px;padding:16px 20px 6px;margin:4px 0 30px;
- background:var(--mist)}
-.prachead{font-family:var(--ser);font-size:19px;font-weight:600;color:var(--sienna);margin-bottom:12px}
-[data-theme="dark"] .prachead{color:var(--sienna)}
+h2.cat{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.pbtn{font-family:var(--sans);font-size:12.5px;font-weight:600;color:var(--sienna);
+ background:var(--peach);border:0;border-radius:9999px;padding:5px 13px;cursor:pointer;
+ display:inline-flex;gap:6px;align-items:center;white-space:nowrap;flex:none}
+.pbtn span{font-size:11px;font-weight:500;opacity:.75;font-variant-numeric:tabular-nums}
+.pbtn:hover{filter:brightness(.95)}
+.tab.popen{background:var(--sienna);border-color:var(--sienna);color:var(--paper);margin-left:auto}
+.tab.popen span{color:var(--paper);opacity:.72}
+.tab.popen:hover{filter:brightness(1.12);color:var(--paper)}
+.pwrap{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+ padding:28px}
+.pwrap[hidden]{display:none}
+.pbackdrop{position:absolute;inset:0;background:rgba(10,12,14,.55);backdrop-filter:blur(2px)}
+.pwin{position:relative;display:flex;flex-direction:column;width:min(900px,100%);height:min(860px,100%);
+ background:var(--paper);border:1px solid var(--hair);border-radius:16px;overflow:hidden;
+ box-shadow:0 24px 70px rgba(0,0,0,.34)}
+.phead{display:flex;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid var(--hair);
+ flex:none;flex-wrap:wrap}
+.ptitle{font-family:var(--ser);font-size:22px;font-weight:600;flex:none}
+.ptitle span{font-family:var(--sans);font-size:12.5px;font-weight:500;color:var(--ash);margin-left:8px}
+.pfind{flex:1 1 180px;min-width:140px;font-family:var(--sans);font-size:14px;color:var(--ink);
+ background:var(--mist);border:1px solid var(--hair);border-radius:9999px;padding:8px 15px}
+.pfind:focus{outline:2px solid var(--sienna);outline-offset:1px}
+.pclose{font-family:var(--sans);font-size:13.5px;font-weight:600;color:var(--slate);
+ background:none;border:1px solid var(--hair);border-radius:9999px;padding:7px 15px;cursor:pointer;flex:none}
+.pclose:hover{color:var(--ink);border-color:var(--sienna)}
+.ptabs{display:flex;gap:6px;flex-wrap:wrap;padding:12px 20px;border-bottom:1px solid var(--hair);flex:none}
+.ptab{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--slate);background:none;
+ border:1px solid var(--hair);border-radius:9999px;padding:5px 13px;cursor:pointer;
+ display:flex;gap:6px;align-items:center}
+.ptab span{font-size:11px;font-weight:500;color:var(--ash);font-variant-numeric:tabular-nums}
+.ptab:hover{border-color:var(--sienna);color:var(--ink)}
+.ptab.on{background:var(--peach);border-color:var(--peach);color:var(--sienna)}
+.ptab.on span{color:var(--sienna);opacity:.7}
+.pbody{flex:1 1 auto;overflow-y:auto;padding:4px 20px 26px;scroll-behavior:smooth}
+.psec{display:none}.psec.on{display:block}
+h2.pcat{font-family:var(--ser);font-size:21px;font-weight:600;margin:24px 0 4px;padding-bottom:7px;
+ border-bottom:2px solid var(--ink);scroll-margin-top:8px}
+h2.pcat span{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--ash);margin-left:7px}
+.pnone{display:none;padding:24px 20px;color:var(--ash);font-size:15px}
+.pnone.on{display:block}
 .pq{border-top:1px solid var(--hair);padding:12px 0}
 .pq:first-of-type{border-top:0;padding-top:0}
 .qn{font-size:15px;line-height:1.55}
@@ -161,7 +228,9 @@ footer{border-top:1px solid var(--hair);margin-top:44px;padding:20px 0 60px;colo
  color:var(--slate);border-radius:9999px;padding:8px 15px;font-size:13px;font-family:var(--sans);
  cursor:pointer;z-index:50}
 button:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--sienna);outline-offset:2px}
-@media (max-width:640px){h1{font-size:29px}.wrap{padding:0 16px}h2.cat{flex-wrap:wrap}}
+@media (max-width:640px){h1{font-size:29px}.wrap{padding:0 16px}h2.cat{flex-wrap:wrap}
+ .pwrap{padding:0}.pwin{width:100%;height:100%;border-radius:0;border:0}
+ .ptitle{font-size:19px}.phead{padding:13px 16px}.ptabs{padding:10px 16px}.pbody{padding:4px 16px 26px}}
 """
 
 DOC = """<!doctype html>
@@ -184,6 +253,7 @@ DOC = """<!doctype html>
 %s
 <footer>%d entries &middot; %d practice questions</footer>
 </div>
+%s
 <button class="tt" id="tt">Theme</button>
 <script>
 (function(){
@@ -211,9 +281,76 @@ DOC = """<!doctype html>
   document.getElementById('tt').textContent=v.charAt(0).toUpperCase()+v.slice(1);
   try{localStorage.setItem('steep-theme',v);}catch(e){}}
  document.getElementById('tt').onclick=function(){i=(i+1)%%3;ap();};ap();
+ // ---- Practice window ----
+ var pwrap=document.getElementById('pwrap'), pbody=document.getElementById('pbody'),
+     pfind=document.getElementById('pfind'), pnone=document.getElementById('pnone');
+ var ptabs=[].slice.call(document.querySelectorAll('.ptab'));
+ var psecs=[].slice.call(document.querySelectorAll('.psec'));
+ var lastFocus=null;
+ function ptabShow(key){
+   ptabs.forEach(function(b){b.classList.toggle('on',b.dataset.ptab===key);});
+   psecs.forEach(function(s){s.classList.toggle('on',s.id==='ps-'+key);});
+   try{localStorage.setItem('pyref-ptab',key);}catch(e){}
+ }
+ function filter(){
+   var q=pfind.value.trim().toLowerCase(), hits=0;
+   psecs.forEach(function(sec){
+     var shown=0, cat=null, catHits=0;
+     [].slice.call(sec.children).forEach(function(el){
+       if(el.tagName==='H2'){
+         if(cat) cat.style.display = catHits ? '' : 'none';
+         cat=el; catHits=0; return;
+       }
+       if(!el.classList.contains('pq')) return;
+       var t=el.textContent.toLowerCase();
+       var ok = !q || t.indexOf(q)>=0;
+       el.style.display = ok ? '' : 'none';
+       if(ok){shown++;catHits++;hits++;}
+     });
+     if(cat) cat.style.display = catHits ? '' : 'none';
+     sec.dataset.hits=shown;
+   });
+   pnone.classList.toggle('on', q && hits===0);
+ }
+ function openPrac(key,catId){
+   lastFocus=document.activeElement;
+   pwrap.hidden=false;
+   document.body.style.overflow='hidden';
+   if(!key){ try{key=localStorage.getItem('pyref-ptab');}catch(e){} }
+   if(!key || !document.getElementById('ps-'+key)) key=ptabs[0].dataset.ptab;
+   ptabShow(key);
+   pfind.value=''; filter();
+   if(catId){
+     var t=document.getElementById(catId);
+     if(t) t.scrollIntoView();
+   } else { pbody.scrollTop=0; }
+   pfind.focus();
+ }
+ function closePrac(){
+   pwrap.hidden=true;
+   document.body.style.overflow='';
+   if(lastFocus && lastFocus.focus) lastFocus.focus();
+ }
+ document.getElementById('popen').onclick=function(){
+   var cur=null; secs.forEach(function(s){if(s.classList.contains('on')) cur=s.id;});
+   openPrac(cur,null);
+ };
+ document.getElementById('pclose').onclick=closePrac;
+ pwrap.addEventListener('click',function(e){ if(e.target.dataset.close) closePrac(); });
+ ptabs.forEach(function(b){b.onclick=function(){ptabShow(b.dataset.ptab);pfind.value='';filter();pbody.scrollTop=0;};});
+ pfind.addEventListener('input',filter);
+ [].forEach.call(document.querySelectorAll('.pbtn'),function(b){
+   b.onclick=function(){
+     var parts=b.dataset.prac.split('|');
+     openPrac(parts[0],'p-'+parts[0]+'-'+parts[1]);
+   };
+ });
+ document.addEventListener('keydown',function(e){
+   if(e.key==='Escape' && !pwrap.hidden) closePrac();
+ });
 })();
 </script>
-</body></html>""" % (CSS, LD, LL, "".join(tabbtns), "\n".join(secs), total, ptotal)
+</body></html>""" % (CSS, LD, LL, TABSTRIP, "\n".join(secs), total, ptotal, PRACWIN)
 
 errs=[]
 for t in ["div","section","article","p","pre","code","h1","h2","h3","span","nav","a","button","header","footer","details","summary"]:

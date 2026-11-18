@@ -103,9 +103,9 @@
  },
  {
   "cat": "lambda, map, filter, reduce",
-  "q": "Use map to add 10 bonus marks to every mark in a list.",
-  "code": "marks = [72, 85, 64, 55]\nbonus = list(map(lambda m: m + 10, marks))\nprint(bonus)",
-  "out": "[82, 95, 74, 65]"
+  "q": "Use map() across two lists at once to multiply each price by its quantity.",
+  "code": "price = [249, 60, 15]\nqty   = [2, 4, 10]\nprint(list(map(lambda p, q: p * q, price, qty)))",
+  "out": "[498, 240, 150]"
  },
  {
   "cat": "lambda, map, filter, reduce",
@@ -115,15 +115,15 @@
  },
  {
   "cat": "Recursion",
-  "q": "Write a recursive function that adds up the numbers from 1 to n.",
-  "code": "def total(n):\n    if n == 1:\n        return 1\n    return n + total(n - 1)\n\nprint(total(5))\nprint(total(100))",
-  "out": "15\n5050"
+  "q": "Write a recursive function that counts how many digits a number has.",
+  "code": "def digits(n):\n    if n < 10:\n        return 1\n    return 1 + digits(n // 10)\n\nprint(digits(47764))",
+  "out": "5"
  },
  {
   "cat": "Recursion",
-  "q": "Write a recursive function that reverses a piece of text.",
-  "code": "def reverse(text):\n    if text == \"\":\n        return \"\"\n    return reverse(text[1:]) + text[0]\n\nprint(reverse(\"analytics\"))",
-  "out": "scitylana"
+  "q": "Write a recursive function that counts how many times a letter appears in a word.",
+  "code": "def count(word, letter):\n    if word == \"\":\n        return 0\n    first = 1 if word[0] == letter else 0\n    return first + count(word[1:], letter)\n\nprint(count(\"mississippi\", \"s\"))",
+  "out": "4"
  },
  {
   "cat": "List comprehension",
@@ -139,15 +139,15 @@
  },
  {
   "cat": "Writing a function",
-  "q": "Write a function that takes a list of marks and returns the average. Print it for two different lists.",
-  "code": "def average(marks):\n    return round(sum(marks) / len(marks), 2)\n\nprint(average([72, 85, 64]))\nprint(average([91, 58]))",
-  "out": "73.67\n74.5"
+  "q": "Write a function that takes a name and returns a greeting, then call it for three names in a loop.",
+  "code": "def greet(name):\n    return \"Hello, \" + name\n\nfor n in [\"Rahul\", \"Priya\", \"Amit\"]:\n    print(greet(n))",
+  "out": "Hello, Rahul\nHello, Priya\nHello, Amit"
  },
  {
   "cat": "Writing a function",
-  "q": "Write a function that returns the highest and the lowest of a list, and unpack both when you call it.",
-  "code": "def high_low(nums):\n    return max(nums), min(nums)\n\nbest, worst = high_low([72, 85, 64, 91, 58])\nprint(\"highest:\", best)\nprint(\"lowest :\", worst)",
-  "out": "highest: 91\nlowest : 58"
+  "q": "Write a function that counts how many numbers in a list are above a given value.",
+  "code": "def above(nums, limit):\n    count = 0\n    for n in nums:\n        if n > limit:\n            count += 1\n    return count\n\nprint(above([47764, 62990, 51200, 45100], 50000))",
+  "out": "2"
  },
  {
   "cat": "Writing a function",
@@ -199,9 +199,9 @@
  },
  {
   "cat": "lambda, map, filter, reduce",
-  "q": "Use filter() to keep only the names longer than four letters.",
-  "code": "names = [\"Amit\", \"Priya\", \"Raj\", \"Kavya\"]\nprint(list(filter(lambda n: len(n) > 4, names)))",
-  "out": "['Priya', 'Kavya']"
+  "q": "Sort a list of name-and-salary tuples by salary using a lambda as the key.",
+  "code": "staff = [(\"Rahul\", 47764), (\"Priya\", 62990), (\"Amit\", 51200)]\nprint(sorted(staff, key=lambda row: row[1], reverse=True))",
+  "out": "[('Priya', 62990), ('Amit', 51200), ('Rahul', 47764)]"
  },
  {
   "cat": "lambda, map, filter, reduce",
@@ -217,9 +217,9 @@
  },
  {
   "cat": "Recursion",
-  "q": "Write a recursive function that adds up the numbers from 1 to n. Print it for 10.",
-  "code": "def total(n):\n    if n == 1:\n        return 1\n    return n + total(n - 1)\n\nprint(total(10))",
-  "out": "55"
+  "q": "Write a recursive function that raises a number to a power.",
+  "code": "def power(base, n):\n    if n == 0:\n        return 1\n    return base * power(base, n - 1)\n\nprint(power(2, 10))",
+  "out": "1024"
  },
  {
   "cat": "Recursion",
@@ -229,9 +229,9 @@
  },
  {
   "cat": "Recursion",
-  "q": "Write a recursive function that reverses a string.",
-  "code": "def backwards(s):\n    if s == \"\":\n        return \"\"\n    return backwards(s[1:]) + s[0]\n\nprint(backwards(\"Chennai\"))",
-  "out": "iannehC"
+  "q": "Write a recursive function that finds the largest number in a list.",
+  "code": "def largest(nums):\n    if len(nums) == 1:\n        return nums[0]\n    rest = largest(nums[1:])\n    return nums[0] if nums[0] > rest else rest\n\nprint(largest([72, 85, 64, 91, 58]))",
+  "out": "91"
  },
  {
   "cat": "Recursion",
@@ -247,9 +247,9 @@
  },
  {
   "cat": "List comprehension",
-  "q": "From a list of salaries, build a list of only those above 50000.",
-  "code": "salaries = [47764, 62990, 51200, 45100, 58300]\nprint([s for s in salaries if s > 50000])",
-  "out": "[62990, 51200, 58300]"
+  "q": "From a list of words, build a list of only those that start with a vowel.",
+  "code": "words = [\"apple\", \"mango\", \"orange\", \"banana\", \"egg\"]\nprint([w for w in words if w[0] in \"aeiou\"])",
+  "out": "['apple', 'orange', 'egg']"
  },
  {
   "cat": "List comprehension",

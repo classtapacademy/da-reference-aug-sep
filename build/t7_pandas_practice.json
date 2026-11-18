@@ -127,9 +127,9 @@
  },
  {
   "cat": "Sorting",
-  "q": "Sort by department, and within each department by salary from high to low.",
-  "code": "import pandas as pd\ndf = pd.DataFrame({\"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n                   \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n                   \"salary\": [47764, 62990, 51200, 58300, 45100]})\nprint(df.sort_values([\"dept\", \"salary\"], ascending=[True, False]))",
-  "out": "    name   dept  salary\n0  Rahul     HR   47764\n4  Arjun     HR   45100\n2   Amit  Sales   51200\n1  Priya   Tech   62990\n3  Kavya   Tech   58300"
+  "q": "Sort the table by experience, lowest first, and print the three least experienced.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"exp\":    [4, 7, 3, 6, 2],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df.sort_values(\"exp\").head(3))",
+  "out": "    name  exp  salary\n4  Arjun    2   45100\n2   Amit    3   51200\n0  Rahul    4   47764"
  },
  {
   "cat": "Sorting",
@@ -247,15 +247,15 @@
  },
  {
   "cat": "Filtering rows",
-  "q": "Print the employees in Tech who also have more than five years of experience.",
-  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"exp\":    [4, 7, 3, 6, 2],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df[(df[\"dept\"] == \"Tech\") & (df[\"exp\"] > 5)])",
-  "out": "    name  dept  exp  salary\n1  Priya  Tech    7   62990\n3  Kavya  Tech    6   58300"
+  "q": "Print the employees who are NOT in Tech, using the ~ operator.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df[~(df[\"dept\"] == \"Tech\")])",
+  "out": "    name   dept  salary\n0  Rahul     HR   47764\n2   Amit  Sales   51200\n4  Arjun     HR   45100"
  },
  {
   "cat": "Filtering rows",
-  "q": "Print the employees who are in either HR or Sales.",
-  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df[(df[\"dept\"] == \"HR\") | (df[\"dept\"] == \"Sales\")])",
-  "out": "    name   dept  salary\n0  Rahul     HR   47764\n2   Amit  Sales   51200\n4  Arjun     HR   45100"
+  "q": "Print the rows where the salary is between 46000 and 60000.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df[(df[\"salary\"] > 46000) & (df[\"salary\"] < 60000)])",
+  "out": "    name  salary\n0  Rahul   47764\n2   Amit   51200\n3  Kavya   58300"
  },
  {
   "cat": "Filtering rows",
@@ -265,15 +265,15 @@
  },
  {
   "cat": "Sorting",
-  "q": "Sort a table by salary, highest first, and print the top two rows.",
-  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df.sort_values(\"salary\", ascending=False).head(2))",
-  "out": "    name  salary\n1  Priya   62990\n3  Kavya   58300"
+  "q": "Sort by salary and print only the name and salary of the top three earners.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df.sort_values(\"salary\", ascending=False)[[\"name\", \"salary\"]].head(3))",
+  "out": "    name  salary\n1  Priya   62990\n3  Kavya   58300\n2   Amit   51200"
  },
  {
   "cat": "Sorting",
-  "q": "Sort by department first and then by salary within each department.",
-  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"dept\":   [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nprint(df.sort_values([\"dept\", \"salary\"], ascending=[True, False]))",
-  "out": "    name   dept  salary\n0  Rahul     HR   47764\n4  Arjun     HR   45100\n2   Amit  Sales   51200\n1  Priya   Tech   62990\n3  Kavya   Tech   58300"
+  "q": "Sort a Series of salaries indexed by name, highest first, and print the top two.",
+  "code": "import pandas as pd\ns = pd.Series([47764, 62990, 51200, 58300],\n              index=[\"Rahul\", \"Priya\", \"Amit\", \"Kavya\"])\nprint(s.sort_values(ascending=False).head(2))",
+  "out": "Priya    62990\nKavya    58300\ndtype: int64"
  },
  {
   "cat": "Sorting",
@@ -289,9 +289,9 @@
  },
  {
   "cat": "Counting values",
-  "q": "Count how many employees are in each department.",
-  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\": [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\", \"Meena\"],\n    \"dept\": [\"HR\", \"Tech\", \"Sales\", \"Tech\", \"HR\", \"Tech\"]\n})\nprint(df[\"dept\"].value_counts())",
-  "out": "dept\nTech     3\nHR       2\nSales    1\nName: count, dtype: int64"
+  "q": "Print how many rows have a salary above the median, and how many below.",
+  "code": "import pandas as pd\ndf = pd.DataFrame({\n    \"name\":   [\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"],\n    \"salary\": [47764, 62990, 51200, 58300, 45100]\n})\nmid = df[\"salary\"].median()\nprint(\"median:\", mid)\nprint(\"above :\", (df[\"salary\"] > mid).sum())\nprint(\"below :\", (df[\"salary\"] < mid).sum())",
+  "out": "median: 51200.0\nabove : 2\nbelow : 2"
  },
  {
   "cat": "Counting values",

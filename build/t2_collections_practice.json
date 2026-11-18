@@ -73,9 +73,9 @@
  },
  {
   "cat": "Loops",
-  "q": "Print the 7 times table from 7 x 1 to 7 x 10, one line each.",
-  "code": "for i in range(1, 11):\n    print(\"7 x\", i, \"=\", 7 * i)",
-  "out": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35\n7 x 6 = 42\n7 x 7 = 49\n7 x 8 = 56\n7 x 9 = 63\n7 x 10 = 70"
+  "q": "Print each city in a list along with its position, using range(len()).",
+  "code": "cities = [\"Chennai\", \"Pune\", \"Delhi\", \"Kochi\"]\nfor i in range(len(cities)):\n    print(i, cities[i])",
+  "out": "0 Chennai\n1 Pune\n2 Delhi\n3 Kochi"
  },
  {
   "cat": "Loops",
@@ -109,9 +109,9 @@
  },
  {
   "cat": "Sets",
-  "q": "Two teams submitted name lists. Print who is in both, and who is only in the first.",
-  "code": "team_a = {\"Rahul\", \"Priya\", \"Amit\", \"Kavya\"}\nteam_b = {\"Priya\", \"Kavya\", \"Arjun\"}\nprint(\"in both     :\", sorted(team_a & team_b))\nprint(\"only team A :\", sorted(team_a - team_b))",
-  "out": "in both     : ['Kavya', 'Priya']\nonly team A : ['Amit', 'Rahul']"
+  "q": "Check whether every name in a short list also appears in a bigger list, using a set.",
+  "code": "shortlist = {\"Priya\", \"Kavya\"}\neveryone  = {\"Rahul\", \"Priya\", \"Amit\", \"Kavya\", \"Arjun\"}\nprint(\"all present:\", shortlist.issubset(everyone))\nprint(\"missing     :\", sorted(shortlist - everyone))",
+  "out": "all present: True\nmissing     : []"
  },
  {
   "cat": "Sets",
@@ -133,21 +133,21 @@
  },
  {
   "cat": "Loops",
-  "q": "Print the 7 times table from 7 x 1 to 7 x 10, one line each.",
-  "code": "for i in range(1, 11):\n    print(\"7 x\", i, \"=\", 7 * i)",
-  "out": "7 x 1 = 7\n7 x 2 = 14\n7 x 3 = 21\n7 x 4 = 28\n7 x 5 = 35\n7 x 6 = 42\n7 x 7 = 49\n7 x 8 = 56\n7 x 9 = 63\n7 x 10 = 70"
+  "q": "Print every number from 1 to 50 that divides by both 3 and 5.",
+  "code": "for n in range(1, 51):\n    if n % 3 == 0 and n % 5 == 0:\n        print(n, end=\" \")\nprint()",
+  "out": "15 30 45 "
  },
  {
   "cat": "Loops",
-  "q": "Add up the numbers from 1 to 100 with a loop and print the total.",
-  "code": "total = 0\nfor n in range(1, 101):\n    total += n\nprint(\"total:\", total)",
-  "out": "total: 5050"
+  "q": "Use a while loop to keep halving a number until it drops below 1, printing each step.",
+  "code": "n = 200\nwhile n >= 1:\n    print(n)\n    n = n / 2",
+  "out": "200\n100.0\n50.0\n25.0\n12.5\n6.25\n3.125\n1.5625"
  },
  {
   "cat": "Loops",
-  "q": "Count down from 5 to 1 with a while loop, then print \"go\".",
-  "code": "n = 5\nwhile n > 0:\n    print(n)\n    n -= 1\nprint(\"go\")",
-  "out": "5\n4\n3\n2\n1\ngo"
+  "q": "Use a nested loop to print every pair from two short lists.",
+  "code": "depts  = [\"HR\", \"Tech\"]\ncities = [\"Chennai\", \"Pune\", \"Delhi\"]\nfor d in depts:\n    for c in cities:\n        print(d, \"-\", c)",
+  "out": "HR - Chennai\nHR - Pune\nHR - Delhi\nTech - Chennai\nTech - Pune\nTech - Delhi"
  },
  {
   "cat": "Loops",
@@ -181,9 +181,9 @@
  },
  {
   "cat": "Lists",
-  "q": "Reverse a list two ways: with reverse() and with a slice. Show the original is only changed by one of them.",
-  "code": "nums = [1, 2, 3, 4, 5]\nprint(\"slice  :\", nums[::-1])\nprint(\"still  :\", nums)\nnums.reverse()\nprint(\"changed:\", nums)",
-  "out": "slice  : [5, 4, 3, 2, 1]\nstill  : [1, 2, 3, 4, 5]\nchanged: [5, 4, 3, 2, 1]"
+  "q": "Find the second largest number in a list without using sort().",
+  "code": "marks = [72, 85, 64, 91, 58]\nbest = second = 0\nfor m in marks:\n    if m > best:\n        second = best\n        best = m\n    elif m > second:\n        second = m\nprint(\"largest:\", best, \"second:\", second)",
+  "out": "largest: 91 second: 85"
  },
  {
   "cat": "Lists",
@@ -199,9 +199,9 @@
  },
  {
   "cat": "Tuples",
-  "q": "Store a city and its pin code as a tuple, then unpack it into two variables and print them.",
-  "code": "place = (\"Chennai\", 600002)\ncity, pin = place\nprint(city, \"has pin code\", pin)",
-  "out": "Chennai has pin code 600002"
+  "q": "Keep three name-and-salary pairs as tuples in a list, and print the name of the highest paid.",
+  "code": "staff = [(\"Rahul\", 47764), (\"Priya\", 62990), (\"Amit\", 51200)]\ntop = staff[0]\nfor person in staff:\n    if person[1] > top[1]:\n        top = person\nprint(top[0], \"earns the most:\", top[1])",
+  "out": "Priya earns the most: 62990"
  },
  {
   "cat": "Tuples",
@@ -223,9 +223,9 @@
  },
  {
   "cat": "Sets",
-  "q": "Count how many different departments appear in a list, then print them in order.",
-  "code": "depts = [\"HR\", \"Tech\", \"HR\", \"Sales\", \"Tech\", \"HR\"]\nunique = set(depts)\nprint(\"how many:\", len(unique))\nprint(sorted(unique))",
-  "out": "how many: 3\n['HR', 'Sales', 'Tech']"
+  "q": "Given two sets of skills, print the ones either person has, in alphabetical order.",
+  "code": "rahul = {\"python\", \"sql\", \"excel\"}\npriya = {\"sql\", \"powerbi\"}\nprint(sorted(rahul | priya))\nprint(\"how many in total:\", len(rahul | priya))",
+  "out": "['excel', 'powerbi', 'python', 'sql']\nhow many in total: 4"
  },
  {
   "cat": "Sets",
@@ -259,9 +259,9 @@
  },
  {
   "cat": "Dictionaries",
-  "q": "Count how many times each letter appears in the word \"mississippi\".",
-  "code": "word = \"mississippi\"\ncounts = {}\nfor ch in word:\n    counts[ch] = counts.get(ch, 0) + 1\nprint(counts)",
-  "out": "{'m': 1, 'i': 4, 's': 4, 'p': 2}"
+  "q": "Merge two dictionaries of marks so that the second one wins wherever both have the same name.",
+  "code": "term1 = {\"Rahul\": 72, \"Priya\": 85, \"Amit\": 64}\nterm2 = {\"Priya\": 91, \"Kavya\": 58}\nfinal = dict(term1)\nfor name, mark in term2.items():\n    final[name] = mark\nprint(final)",
+  "out": "{'Rahul': 72, 'Priya': 91, 'Amit': 64, 'Kavya': 58}"
  },
  {
   "cat": "Dictionaries",

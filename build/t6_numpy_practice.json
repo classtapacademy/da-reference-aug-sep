@@ -301,9 +301,9 @@
  },
  {
   "cat": "Filtering",
-  "q": "Print only the salaries above 50000 and say how many there are.",
-  "code": "import numpy as np\ns = np.array([47764, 62990, 51200, 58300, 45100])\nhigh = s[s > 50000]\nprint(high)\nprint(\"count:\", (s > 50000).sum())",
-  "out": "[62990 51200 58300]\ncount: 3"
+  "q": "From an array of ages, print the values that fall outside 18 to 60.",
+  "code": "import numpy as np\nages = np.array([24, 17, 45, 62, 33, 70])\nprint(ages[(ages < 18) | (ages > 60)])\nprint(\"outside the range:\", ((ages < 18) | (ages > 60)).sum())",
+  "out": "[17 62 70]\noutside the range: 3"
  },
  {
   "cat": "Filtering",
